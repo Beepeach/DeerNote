@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */; };
+		EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */; };
+		EEF2DFA327A4660C00CA9CA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA227A4660C00CA9CA0 /* ViewController.swift */; };
+		EEF2DFA627A4660C00CA9CA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFA427A4660C00CA9CA0 /* Main.storyboard */; };
+		EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */; };
+		EEF2DFAB27A4660C00CA9CA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFAA27A4660C00CA9CA0 /* Assets.xcassets */; };
+		EEF2DFAE27A4660C00CA9CA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFAC27A4660C00CA9CA0 /* LaunchScreen.storyboard */; };
+		EEF2DFB927A4660D00CA9CA0 /* DeerNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFB827A4660D00CA9CA0 /* DeerNoteTests.swift */; };
+		EEF2DFC327A4660D00CA9CA0 /* DeerNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */; };
+		EEF2DFC527A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EEF2DFB527A4660D00CA9CA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEF2DF9327A4660C00CA9CA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EEF2DF9A27A4660C00CA9CA0;
+			remoteInfo = DeerNote;
+		};
+		EEF2DFBF27A4660D00CA9CA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEF2DF9327A4660C00CA9CA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EEF2DF9A27A4660C00CA9CA0;
+			remoteInfo = DeerNote;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeerNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EEF2DFA227A4660C00CA9CA0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EEF2DFA527A4660C00CA9CA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EEF2DFA827A4660C00CA9CA0 /* DeerNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeerNote.xcdatamodel; sourceTree = "<group>"; };
+		EEF2DFAA27A4660C00CA9CA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EEF2DFAD27A4660C00CA9CA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EEF2DFAF27A4660C00CA9CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEF2DFB427A4660D00CA9CA0 /* DeerNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeerNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEF2DFB827A4660D00CA9CA0 /* DeerNoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteTests.swift; sourceTree = "<group>"; };
+		EEF2DFBE27A4660D00CA9CA0 /* DeerNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeerNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteUITests.swift; sourceTree = "<group>"; };
+		EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EEF2DF9827A4660C00CA9CA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEF2DFB127A4660D00CA9CA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEF2DFBB27A4660D00CA9CA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EEF2DF9227A4660C00CA9CA0 = {
+			isa = PBXGroup;
+			children = (
+				EEF2DF9D27A4660C00CA9CA0 /* DeerNote */,
+				EEF2DFB727A4660D00CA9CA0 /* DeerNoteTests */,
+				EEF2DFC127A4660D00CA9CA0 /* DeerNoteUITests */,
+				EEF2DF9C27A4660C00CA9CA0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EEF2DF9C27A4660C00CA9CA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */,
+				EEF2DFB427A4660D00CA9CA0 /* DeerNoteTests.xctest */,
+				EEF2DFBE27A4660D00CA9CA0 /* DeerNoteUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EEF2DF9D27A4660C00CA9CA0 /* DeerNote */ = {
+			isa = PBXGroup;
+			children = (
+				EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */,
+				EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */,
+				EEF2DFA227A4660C00CA9CA0 /* ViewController.swift */,
+				EEF2DFA427A4660C00CA9CA0 /* Main.storyboard */,
+				EEF2DFAA27A4660C00CA9CA0 /* Assets.xcassets */,
+				EEF2DFAC27A4660C00CA9CA0 /* LaunchScreen.storyboard */,
+				EEF2DFAF27A4660C00CA9CA0 /* Info.plist */,
+				EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */,
+			);
+			path = DeerNote;
+			sourceTree = "<group>";
+		};
+		EEF2DFB727A4660D00CA9CA0 /* DeerNoteTests */ = {
+			isa = PBXGroup;
+			children = (
+				EEF2DFB827A4660D00CA9CA0 /* DeerNoteTests.swift */,
+			);
+			path = DeerNoteTests;
+			sourceTree = "<group>";
+		};
+		EEF2DFC127A4660D00CA9CA0 /* DeerNoteUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */,
+				EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */,
+			);
+			path = DeerNoteUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EEF2DF9A27A4660C00CA9CA0 /* DeerNote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEF2DFC827A4660D00CA9CA0 /* Build configuration list for PBXNativeTarget "DeerNote" */;
+			buildPhases = (
+				EEF2DF9727A4660C00CA9CA0 /* Sources */,
+				EEF2DF9827A4660C00CA9CA0 /* Frameworks */,
+				EEF2DF9927A4660C00CA9CA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeerNote;
+			productName = DeerNote;
+			productReference = EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EEF2DFB327A4660D00CA9CA0 /* DeerNoteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEF2DFCB27A4660D00CA9CA0 /* Build configuration list for PBXNativeTarget "DeerNoteTests" */;
+			buildPhases = (
+				EEF2DFB027A4660D00CA9CA0 /* Sources */,
+				EEF2DFB127A4660D00CA9CA0 /* Frameworks */,
+				EEF2DFB227A4660D00CA9CA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEF2DFB627A4660D00CA9CA0 /* PBXTargetDependency */,
+			);
+			name = DeerNoteTests;
+			productName = DeerNoteTests;
+			productReference = EEF2DFB427A4660D00CA9CA0 /* DeerNoteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EEF2DFBD27A4660D00CA9CA0 /* DeerNoteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEF2DFCE27A4660D00CA9CA0 /* Build configuration list for PBXNativeTarget "DeerNoteUITests" */;
+			buildPhases = (
+				EEF2DFBA27A4660D00CA9CA0 /* Sources */,
+				EEF2DFBB27A4660D00CA9CA0 /* Frameworks */,
+				EEF2DFBC27A4660D00CA9CA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEF2DFC027A4660D00CA9CA0 /* PBXTargetDependency */,
+			);
+			name = DeerNoteUITests;
+			productName = DeerNoteUITests;
+			productReference = EEF2DFBE27A4660D00CA9CA0 /* DeerNoteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EEF2DF9327A4660C00CA9CA0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					EEF2DF9A27A4660C00CA9CA0 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					EEF2DFB327A4660D00CA9CA0 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = EEF2DF9A27A4660C00CA9CA0;
+					};
+					EEF2DFBD27A4660D00CA9CA0 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = EEF2DF9A27A4660C00CA9CA0;
+					};
+				};
+			};
+			buildConfigurationList = EEF2DF9627A4660C00CA9CA0 /* Build configuration list for PBXProject "DeerNote" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EEF2DF9227A4660C00CA9CA0;
+			productRefGroup = EEF2DF9C27A4660C00CA9CA0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EEF2DF9A27A4660C00CA9CA0 /* DeerNote */,
+				EEF2DFB327A4660D00CA9CA0 /* DeerNoteTests */,
+				EEF2DFBD27A4660D00CA9CA0 /* DeerNoteUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EEF2DF9927A4660C00CA9CA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF2DFAE27A4660C00CA9CA0 /* LaunchScreen.storyboard in Resources */,
+				EEF2DFAB27A4660C00CA9CA0 /* Assets.xcassets in Resources */,
+				EEF2DFA627A4660C00CA9CA0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEF2DFB227A4660D00CA9CA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEF2DFBC27A4660D00CA9CA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EEF2DF9727A4660C00CA9CA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF2DFA327A4660C00CA9CA0 /* ViewController.swift in Sources */,
+				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
+				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,
+				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEF2DFB027A4660D00CA9CA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF2DFB927A4660D00CA9CA0 /* DeerNoteTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEF2DFBA27A4660D00CA9CA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF2DFC527A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift in Sources */,
+				EEF2DFC327A4660D00CA9CA0 /* DeerNoteUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EEF2DFB627A4660D00CA9CA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EEF2DF9A27A4660C00CA9CA0 /* DeerNote */;
+			targetProxy = EEF2DFB527A4660D00CA9CA0 /* PBXContainerItemProxy */;
+		};
+		EEF2DFC027A4660D00CA9CA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EEF2DF9A27A4660C00CA9CA0 /* DeerNote */;
+			targetProxy = EEF2DFBF27A4660D00CA9CA0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EEF2DFA427A4660C00CA9CA0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEF2DFA527A4660C00CA9CA0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EEF2DFAC27A4660C00CA9CA0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEF2DFAD27A4660C00CA9CA0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EEF2DFC627A4660D00CA9CA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EEF2DFC727A4660D00CA9CA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EEF2DFC927A4660D00CA9CA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G5RH9MF273;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeerNote/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.beepeach.DeerNote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EEF2DFCA27A4660D00CA9CA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G5RH9MF273;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeerNote/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.beepeach.DeerNote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EEF2DFCC27A4660D00CA9CA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G5RH9MF273;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.beepeach.DeerNoteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeerNote.app/DeerNote";
+			};
+			name = Debug;
+		};
+		EEF2DFCD27A4660D00CA9CA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G5RH9MF273;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.beepeach.DeerNoteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeerNote.app/DeerNote";
+			};
+			name = Release;
+		};
+		EEF2DFCF27A4660D00CA9CA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G5RH9MF273;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.beepeach.DeerNoteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DeerNote;
+			};
+			name = Debug;
+		};
+		EEF2DFD027A4660D00CA9CA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G5RH9MF273;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.beepeach.DeerNoteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DeerNote;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EEF2DF9627A4660C00CA9CA0 /* Build configuration list for PBXProject "DeerNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEF2DFC627A4660D00CA9CA0 /* Debug */,
+				EEF2DFC727A4660D00CA9CA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEF2DFC827A4660D00CA9CA0 /* Build configuration list for PBXNativeTarget "DeerNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEF2DFC927A4660D00CA9CA0 /* Debug */,
+				EEF2DFCA27A4660D00CA9CA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEF2DFCB27A4660D00CA9CA0 /* Build configuration list for PBXNativeTarget "DeerNoteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEF2DFCC27A4660D00CA9CA0 /* Debug */,
+				EEF2DFCD27A4660D00CA9CA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEF2DFCE27A4660D00CA9CA0 /* Build configuration list for PBXNativeTarget "DeerNoteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEF2DFCF27A4660D00CA9CA0 /* Debug */,
+				EEF2DFD027A4660D00CA9CA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EEF2DFA827A4660C00CA9CA0 /* DeerNote.xcdatamodel */,
+			);
+			currentVersion = EEF2DFA827A4660C00CA9CA0 /* DeerNote.xcdatamodel */;
+			path = DeerNote.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EEF2DF9327A4660C00CA9CA0 /* Project object */;
+}
