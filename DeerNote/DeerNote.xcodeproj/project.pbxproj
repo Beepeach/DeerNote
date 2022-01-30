@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */; };
+		EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */; };
 		EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */; };
 		EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */; };
 		EEF2DFA327A4660C00CA9CA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA227A4660C00CA9CA0 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
 		EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeerNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				EEF2DFAC27A4660C00CA9CA0 /* LaunchScreen.storyboard */,
 				EEF2DFAF27A4660C00CA9CA0 /* Info.plist */,
 				EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */,
+				EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */,
+				EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */,
 			);
 			path = DeerNote;
 			sourceTree = "<group>";
@@ -261,7 +267,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */,
 				EEF2DFA327A4660C00CA9CA0 /* ViewController.swift in Sources */,
+				EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */,
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
 				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,
 				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,

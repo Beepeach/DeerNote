@@ -1,19 +1,18 @@
 //
-//  ViewController.swift
+//  NoteListViewController.swift
 //  DeerNote
 //
-//  Created by JunHeeJo on 1/29/22.
+//  Created by JunHeeJo on 1/30/22.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var menuVCLeadingConstraint: NSLayoutConstraint!
+class NoteListViewController: UIViewController {
+    @IBOutlet weak var settingVCLeadingConstraint: NSLayoutConstraint!
     
     @IBAction func tapSetting(_ sender: UIBarButtonItem) {
         UIView.animate(withDuration: 0.3) {
-            self.menuVCLeadingConstraint.constant = self.menuVCLeadingConstraint.constant == 0 ? -self.view.frame.width * 0.8 : 0
+            self.settingVCLeadingConstraint.constant = self.settingVCLeadingConstraint.constant == 0 ? -self.view.frame.width * 0.8 : 0
             self.view.layoutIfNeeded()
         }
         
@@ -25,7 +24,6 @@ class ViewController: UIViewController {
         let searchBar = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchBar
         
-        self.menuVCLeadingConstraint.constant = -self.view.frame.width * 0.8
+        self.settingVCLeadingConstraint.constant = -self.view.frame.width * 0.8
     }
 }
-
