@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Note {
     var contents: String
@@ -13,6 +14,7 @@ struct Note {
     let date: Date
     let updatedDate: Date
     var isDeleted: Bool
+    var color: (UIColor, UIColor) = GradationColors().getRandomColor()
 }
 
 extension Note {
@@ -22,5 +24,6 @@ extension Note {
         date = Date()
         updatedDate = date
         isDeleted = false
+        color = GradationColors().getRandomColor()
     }
 }

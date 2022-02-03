@@ -8,13 +8,19 @@
 import UIKit
 
 class NoteCollectionViewCell: UICollectionViewCell {
+    // MARK: @IBOutlet
     @IBOutlet weak var contents: UILabel!
     
+    // MARK: ViewLifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         setCellShadow()
         setCellCorner()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setGradationBackgroundColor()
     }
     
     private func setCellShadow() {
@@ -26,5 +32,10 @@ class NoteCollectionViewCell: UICollectionViewCell {
     
     private func setCellCorner() {
         self.layer.cornerRadius = 12
+    }
+    
+    func setGradationBackgroundColor() {
+        let color = GradationColors().getRandomColor()
+        self.contentView.setGradationBackgroundColor(colors: color)
     }
 }

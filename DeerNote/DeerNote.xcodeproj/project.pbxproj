@@ -10,6 +10,9 @@
 		EE13B1A527A7C62A0060589B /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A427A7C62A0060589B /* Note.swift */; };
 		EE13B1A727A7C75A0060589B /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A627A7C75A0060589B /* Tag.swift */; };
 		EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */; };
+		EEB76A0227AC168900BCB4B6 /* GradationColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB76A0127AC168900BCB4B6 /* GradationColors.swift */; };
+		EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */; };
+		EEB76A0C27AC226600BCB4B6 /* GradationColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB76A0B27AC226600BCB4B6 /* GradationColorsTests.swift */; };
 		EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */; };
 		EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */; };
 		EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */; };
@@ -18,7 +21,6 @@
 		EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */; };
 		EEF2DFAB27A4660C00CA9CA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFAA27A4660C00CA9CA0 /* Assets.xcassets */; };
 		EEF2DFAE27A4660C00CA9CA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFAC27A4660C00CA9CA0 /* LaunchScreen.storyboard */; };
-		EEF2DFB927A4660D00CA9CA0 /* DeerNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFB827A4660D00CA9CA0 /* DeerNoteTests.swift */; };
 		EEF2DFC327A4660D00CA9CA0 /* DeerNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */; };
 		EEF2DFC527A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +46,9 @@
 		EE13B1A427A7C62A0060589B /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		EE13B1A627A7C75A0060589B /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewCell.swift; sourceTree = "<group>"; };
+		EEB76A0127AC168900BCB4B6 /* GradationColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradationColors.swift; sourceTree = "<group>"; };
+		EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+setGradationBackgroundColor.swift"; sourceTree = "<group>"; };
+		EEB76A0B27AC226600BCB4B6 /* GradationColorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradationColorsTests.swift; sourceTree = "<group>"; };
 		EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
 		EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeerNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +60,6 @@
 		EEF2DFAD27A4660C00CA9CA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEF2DFAF27A4660C00CA9CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEF2DFB427A4660D00CA9CA0 /* DeerNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeerNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEF2DFB827A4660D00CA9CA0 /* DeerNoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteTests.swift; sourceTree = "<group>"; };
 		EEF2DFBE27A4660D00CA9CA0 /* DeerNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeerNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteUITests.swift; sourceTree = "<group>"; };
 		EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			children = (
 				EE13B1A427A7C62A0060589B /* Note.swift */,
 				EE13B1A627A7C75A0060589B /* Tag.swift */,
+				EEB76A0127AC168900BCB4B6 /* GradationColors.swift */,
 				EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */,
 			);
 			path = Model;
@@ -99,6 +104,7 @@
 		EEB769FA27ABAED600BCB4B6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EEB76A0527AC1D4800BCB4B6 /* Extension */,
 				EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */,
 				EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */,
 			);
@@ -131,6 +137,14 @@
 				EEF2DFAC27A4660C00CA9CA0 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		EEB76A0527AC1D4800BCB4B6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		EEF2DF9227A4660C00CA9CA0 = {
@@ -168,7 +182,7 @@
 		EEF2DFB727A4660D00CA9CA0 /* DeerNoteTests */ = {
 			isa = PBXGroup;
 			children = (
-				EEF2DFB827A4660D00CA9CA0 /* DeerNoteTests.swift */,
+				EEB76A0B27AC226600BCB4B6 /* GradationColorsTests.swift */,
 			);
 			path = DeerNoteTests;
 			sourceTree = "<group>";
@@ -253,6 +267,7 @@
 					};
 					EEF2DFB327A4660D00CA9CA0 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 						TestTargetID = EEF2DF9A27A4660C00CA9CA0;
 					};
 					EEF2DFBD27A4660D00CA9CA0 = {
@@ -314,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */,
+				EEB76A0227AC168900BCB4B6 /* GradationColors.swift in Sources */,
 				EE13B1A727A7C75A0060589B /* Tag.swift in Sources */,
 				EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */,
 				EE13B1A527A7C62A0060589B /* Note.swift in Sources */,
@@ -321,6 +337,7 @@
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
 				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,
 				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,
+				EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEF2DFB927A4660D00CA9CA0 /* DeerNoteTests.swift in Sources */,
+				EEB76A0C27AC226600BCB4B6 /* GradationColorsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,15 +572,23 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G5RH9MF273;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.beepeach.DeerNoteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "DeerNoteTests/DeerNoteTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeerNote.app/DeerNote";
@@ -575,15 +600,22 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G5RH9MF273;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.beepeach.DeerNoteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "DeerNoteTests/DeerNoteTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeerNote.app/DeerNote";

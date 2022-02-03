@@ -34,7 +34,7 @@ class NoteListViewController: UIViewController {
         }
     }
     
-    // MARK: ViewLifeCycle
+    // MARK: ViewControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setMenuVCHiding()

@@ -109,7 +109,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="All" id="Xne-do-Cb4">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="40e-cX-NJv">
-                            <color key="tintColor" systemColor="systemTealColor"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="tapMenu:" destination="V3N-VV-Pda" id="a9a-cG-jEd"/>
                             </connections>
