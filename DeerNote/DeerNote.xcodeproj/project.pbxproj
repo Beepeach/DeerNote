@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE13B1A527A7C62A0060589B /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A427A7C62A0060589B /* Note.swift */; };
+		EE13B1A727A7C75A0060589B /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A627A7C75A0060589B /* Tag.swift */; };
+		EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */; };
 		EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */; };
 		EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */; };
 		EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE13B1A427A7C62A0060589B /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		EE13B1A627A7C75A0060589B /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewCell.swift; sourceTree = "<group>"; };
 		EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
 		EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeerNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE13B1A327A7C5F70060589B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE13B1A427A7C62A0060589B /* Note.swift */,
+				EE13B1A627A7C75A0060589B /* Tag.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EEF2DF9227A4660C00CA9CA0 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +120,7 @@
 		EEF2DF9D27A4660C00CA9CA0 /* DeerNote */ = {
 			isa = PBXGroup;
 			children = (
+				EE13B1A327A7C5F70060589B /* Model */,
 				EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */,
 				EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */,
 				EEF2DFA227A4660C00CA9CA0 /* ViewController.swift */,
@@ -115,6 +131,7 @@
 				EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */,
 				EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */,
 				EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */,
+				EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */,
 			);
 			path = DeerNote;
 			sourceTree = "<group>";
@@ -267,8 +284,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */,
+				EE13B1A727A7C75A0060589B /* Tag.swift in Sources */,
 				EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */,
 				EEF2DFA327A4660C00CA9CA0 /* ViewController.swift in Sources */,
+				EE13B1A527A7C62A0060589B /* Note.swift in Sources */,
 				EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */,
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
 				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,

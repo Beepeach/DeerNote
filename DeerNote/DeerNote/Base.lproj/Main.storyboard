@@ -15,8 +15,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ded-aj-gHj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FG1-zq-luq">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="FG1-zq-luq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -36,48 +36,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-Di-WE9">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cN6-85-KCn">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="6Jd-bv-aL3">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RAS-hc-oA7">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdq-Mt-Fon">
                                 <rect key="frame" x="0.0" y="0.0" width="331" height="896"/>
                                 <connections>
                                     <segue destination="aFX-ek-WNf" kind="embed" id="PEg-5M-QcZ"/>
                                 </connections>
                             </containerView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-Di-WE9">
+                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="edY-Bz-Lx7">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="12" minY="12" maxX="12" maxY="12"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoteCollectionViewCell" id="6Jd-bv-aL3" customClass="NoteCollectionViewCell" customModule="DeerNote" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="12" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RAS-hc-oA7">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여기에는 메모에 앞글자가 나타나게 됩니다. 너무 길면 이건 끊겨서 나타야하므로 어디서 끊어야 되는지 애매하군요." lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBm-p0-rje">
+                                                    <rect key="frame" x="8" y="8" width="112" height="74"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="2022. 01. 01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKG-Qa-rYu">
+                                                    <rect key="frame" x="30" y="102" width="90" height="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" systemColor="systemGray3Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                            <constraints>
+                                                <constraint firstItem="DKG-Qa-rYu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RAS-hc-oA7" secondAttribute="leading" constant="20" id="Ib1-lx-iY3"/>
+                                                <constraint firstAttribute="bottom" secondItem="DKG-Qa-rYu" secondAttribute="bottom" constant="8" id="V0X-4e-vnu"/>
+                                                <constraint firstAttribute="trailing" secondItem="DKG-Qa-rYu" secondAttribute="trailing" constant="8" id="Zm4-OZ-1Jh"/>
+                                                <constraint firstItem="DKG-Qa-rYu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EBm-p0-rje" secondAttribute="bottom" constant="20" id="gPT-L1-XSD"/>
+                                                <constraint firstItem="EBm-p0-rje" firstAttribute="top" secondItem="RAS-hc-oA7" secondAttribute="top" constant="8" id="law-pl-R3H"/>
+                                                <constraint firstAttribute="trailing" secondItem="EBm-p0-rje" secondAttribute="trailing" constant="8" id="nad-FK-xdF"/>
+                                                <constraint firstItem="EBm-p0-rje" firstAttribute="leading" secondItem="RAS-hc-oA7" secondAttribute="leading" constant="8" id="wpT-jp-IcA"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="contents" destination="EBm-p0-rje" id="Aiz-7j-FDB"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="V3N-VV-Pda" id="Ff6-zC-CC0"/>
+                                    <outlet property="delegate" destination="V3N-VV-Pda" id="Olm-hD-iXA"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FjG-bC-dcK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="bdq-Mt-Fon" secondAttribute="bottom" id="ETE-cc-Q4i"/>
                             <constraint firstItem="bdq-Mt-Fon" firstAttribute="top" secondItem="MNf-5Z-om8" secondAttribute="top" id="OR7-cu-wQh"/>
+                            <constraint firstItem="FjG-bC-dcK" firstAttribute="bottom" secondItem="cTV-Di-WE9" secondAttribute="bottom" constant="-34" id="P7p-vi-21Q"/>
                             <constraint firstItem="bdq-Mt-Fon" firstAttribute="leading" secondItem="MNf-5Z-om8" secondAttribute="leading" id="hq6-ug-ybs"/>
+                            <constraint firstItem="cTV-Di-WE9" firstAttribute="trailing" secondItem="FjG-bC-dcK" secondAttribute="trailing" id="j8D-9N-GE6"/>
                             <constraint firstItem="bdq-Mt-Fon" firstAttribute="width" secondItem="MNf-5Z-om8" secondAttribute="width" multiplier="0.8" id="jlc-ZN-4CA"/>
+                            <constraint firstItem="cTV-Di-WE9" firstAttribute="leading" secondItem="FjG-bC-dcK" secondAttribute="leading" id="tvl-21-B2U"/>
+                            <constraint firstItem="cTV-Di-WE9" firstAttribute="top" secondItem="FjG-bC-dcK" secondAttribute="top" id="uaY-OL-pYb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All" id="Xne-do-Cb4">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="40e-cX-NJv">
                             <color key="tintColor" systemColor="systemTealColor"/>
                             <connections>
-                                <action selector="tapSetting:" destination="V3N-VV-Pda" id="GzH-N1-09G"/>
+                                <action selector="tapMenu:" destination="V3N-VV-Pda" id="a9a-cG-jEd"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.pencil" catalog="system" id="KgC-RH-vSI">
@@ -88,12 +122,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noteListCollectionView" destination="cTV-Di-WE9" id="tgR-Ok-tTi"/>
                         <outlet property="settingVCLeadingConstraint" destination="hq6-ug-ybs" id="RwR-9h-xTn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6o-ah-uNS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="925" y="125"/>
+            <point key="canvasLocation" x="924.63768115942037" y="124.55357142857142"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="CgA-EV-DRL">
@@ -287,6 +322,9 @@
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
