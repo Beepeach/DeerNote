@@ -42,7 +42,9 @@ class NoteListViewController: UIViewController {
     private var isSlideMenuAppeared: Bool = false
     private var touchBeginPoint: CGFloat = 0.0
     private var differenceFromTouchBeginPoint: CGFloat = 0.0
-    private lazy var menuVCWidth: CGFloat = view.frame.width * 0.8
+    private var menuVCWidth: CGFloat {
+        return view.frame.width * 0.8
+    }
     
     
     // MARK: @IBOutlet
@@ -66,7 +68,7 @@ class NoteListViewController: UIViewController {
     }
     
     private func setMenuVCHiding() {
-        self.menuContainerViewLeadingConstraint.constant = -menuVCWidth
+        self.menuContainerViewLeadingConstraint.constant = -menuVCWidth * 3
         dimmingView.alpha = 0.0
     }
     
@@ -102,7 +104,7 @@ class NoteListViewController: UIViewController {
         setNavBarOpaque()
         isSlideMenuAppeared = false
         dimmingView.alpha = 0.0
-        menuContainerViewLeadingConstraint.constant = -menuVCWidth
+        menuContainerViewLeadingConstraint.constant = -menuVCWidth * 3
     }
     
     private func setNavBarTranslucent(){
@@ -248,6 +250,6 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
         
         let itemHeight: CGFloat = contentsHeight / CGFloat(rows)
         
-        return itemHeight
+        return max(itemHeight, 100)
     }
 }
