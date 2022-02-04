@@ -7,23 +7,24 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+protocol MenuViewControllerDeleagete: AnyObject {
+    func buttonDidTapped(_ vc: UIViewController)
+}
 
-    @IBOutlet weak var menuTableView: UITableView!
+class MenuViewController: UIViewController {
+    // MARK: Properties
+    weak var delegate: MenuViewControllerDeleagete?
     
+    
+    // MARK: ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuTableView.dataSource = self
-    }
-}
-
-extension MenuViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    
+    // MARK: @IBAction
+    @IBAction func clickButton(_ sender: Any) {
+        self.delegate?.buttonDidTapped(self)
     }
 }
