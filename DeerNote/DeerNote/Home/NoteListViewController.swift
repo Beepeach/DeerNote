@@ -232,7 +232,8 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
         let leftInset: CGFloat = layout.sectionInset.left
         let rightInset: CGFloat = layout.sectionInset.right
         let itemInset: CGFloat = layout.minimumInteritemSpacing
-        let totalHorizonInset: CGFloat = leftInset + rightInset + (itemInset * CGFloat(columns))
+        let safeAreaInset: CGFloat = view.safeAreaInsets.left + view.safeAreaInsets.right
+        let totalHorizonInset: CGFloat = leftInset + rightInset + (itemInset * CGFloat(columns)) + safeAreaInset
         let contentsWidth: CGFloat = view.frame.width - totalHorizonInset
         
         let itemWidth: CGFloat = contentsWidth / CGFloat(columns)
@@ -241,11 +242,11 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     private func calculateItemHight(_ layout: UICollectionViewFlowLayout, rows: Int) -> CGFloat {
+        // TODO: SearchController로 인해 layer가 깨지는 문제가 발생해서 CollectionView의 yOffset은 삭제 이후 문제가 해결되면 다시 추가 예정
         let topInset: CGFloat = layout.sectionInset.top
         let bottomInset: CGFloat = layout.sectionInset.bottom
         let lineInset: CGFloat = layout.minimumLineSpacing
-        let yOffset: CGFloat = layout.collectionView?.frame.origin.y ?? 0.0
-        let totalVerticalInset: CGFloat = topInset + bottomInset + lineInset + yOffset
+        let totalVerticalInset: CGFloat = topInset + bottomInset + lineInset
         let contentsHeight: CGFloat = view.frame.height - totalVerticalInset
         
         let itemHeight: CGFloat = contentsHeight / CGFloat(rows)
