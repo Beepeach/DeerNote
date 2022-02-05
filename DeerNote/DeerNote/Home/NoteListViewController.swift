@@ -176,11 +176,18 @@ class NoteListViewController: UIViewController {
     
     private func completeMenuVCMove() {
         if differenceFromTouchBeginPoint > menuVCWidth / 2 {
-            disappearSlideMenu()
-            navigationController?.navigationBar.alpha = 1.0
+            UIView.animate(withDuration: 0.3) {
+                self.disappearSlideMenu()
+                self.navigationController?.navigationBar.alpha = 1.0
+                self.view.layoutIfNeeded()
+            }
+            
         } else {
-            appearSlideMenu()
-            navigationController?.navigationBar.alpha = 0.01
+            UIView.animate(withDuration: 0.3) {
+                self.appearSlideMenu()
+                self.navigationController?.navigationBar.alpha = 0.01
+                self.view.layoutIfNeeded()
+            }
         }
     }
 }
