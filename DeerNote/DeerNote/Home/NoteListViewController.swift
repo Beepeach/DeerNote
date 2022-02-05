@@ -175,7 +175,7 @@ class NoteListViewController: UIViewController {
     }
     
     private func completeMenuVCMove() {
-        if differenceFromTouchBeginPoint > menuVCWidth / 2 {
+        if differenceFromTouchBeginPoint > menuVCWidth / 4 {
             UIView.animate(withDuration: 0.3) {
                 self.disappearSlideMenu()
                 self.navigationController?.navigationBar.alpha = 1.0
