@@ -126,8 +126,8 @@
                             <constraint firstItem="xHH-Fp-ixb" firstAttribute="bottom" secondItem="Its-tI-Ctg" secondAttribute="bottom" id="bin-ba-2yJ"/>
                             <constraint firstItem="xHH-Fp-ixb" firstAttribute="top" secondItem="MNf-5Z-om8" secondAttribute="top" id="cc6-nJ-AYq"/>
                             <constraint firstAttribute="bottom" secondItem="w4t-3E-eGD" secondAttribute="bottom" id="ga8-yi-1D7"/>
-                            <constraint firstItem="cTV-Di-WE9" firstAttribute="trailing" secondItem="MNf-5Z-om8" secondAttribute="trailing" id="j8D-9N-GE6"/>
-                            <constraint firstItem="cTV-Di-WE9" firstAttribute="leading" secondItem="MNf-5Z-om8" secondAttribute="leading" id="tvl-21-B2U"/>
+                            <constraint firstItem="cTV-Di-WE9" firstAttribute="trailing" secondItem="FjG-bC-dcK" secondAttribute="trailing" id="j8D-9N-GE6"/>
+                            <constraint firstItem="cTV-Di-WE9" firstAttribute="leading" secondItem="FjG-bC-dcK" secondAttribute="leading" id="tvl-21-B2U"/>
                             <constraint firstItem="cTV-Di-WE9" firstAttribute="top" secondItem="FjG-bC-dcK" secondAttribute="top" id="uaY-OL-pYb"/>
                         </constraints>
                     </view>
@@ -327,6 +327,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="1Ew-26-MYl"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
                             <constraint firstItem="qEM-37-yOK" firstAttribute="centerX" secondItem="S0e-Va-0z4" secondAttribute="centerX" id="MbS-uD-Wlr"/>
