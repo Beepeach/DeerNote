@@ -16,6 +16,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         setCellShadow()
         setCellCorner()
+        contents.textColor = .white
     }
     
     override func layoutSubviews() {
