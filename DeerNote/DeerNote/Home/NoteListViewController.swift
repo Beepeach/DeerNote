@@ -77,7 +77,6 @@ class NoteListViewController: UIViewController {
         self.navigationItem.searchController = searchBar
     }
     
-    
     // MARK: @IBAction
     @IBAction func tapMenu(_ sender: UIBarButtonItem) {
         UIView.animate(withDuration: 0.3) {
@@ -189,6 +188,15 @@ class NoteListViewController: UIViewController {
                 self.view.layoutIfNeeded()
             }
         }
+    }
+    
+    // MARK: - CustomMethods
+    override var shouldAutorotate: Bool {
+        if isSlideMenuAppeared {
+            return false
+        }
+        
+        return true
     }
 }
 
