@@ -287,7 +287,7 @@
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gYt-CY-7Mo" userLabel="Version Container View">
                                 <rect key="frame" x="0.0" y="0.0" width="331" height="300"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zvf-K9-M1C">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zvf-K9-M1C" userLabel="All Note Container View">
                                         <rect key="frame" x="12" y="88.5" width="307" height="37"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note.text" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="71F-ld-7nd">
@@ -327,7 +327,7 @@
                                             <constraint firstAttribute="trailing" secondItem="I5v-N3-PzR" secondAttribute="trailing" id="z3E-Cg-EN0"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BqA-bo-dhO">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BqA-bo-dhO" userLabel="Trash Container View">
                                         <rect key="frame" x="12" y="131.5" width="307" height="37"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wmn-Fm-wW2">
@@ -368,7 +368,7 @@
                                             <constraint firstItem="Fbb-hE-LVF" firstAttribute="top" secondItem="BqA-bo-dhO" secondAttribute="top" id="vrW-7w-w2Q"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPq-gH-j8M">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPq-gH-j8M" userLabel="Settings Container View">
                                         <rect key="frame" x="12" y="174.5" width="307" height="37"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gearshape" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nnw-Gt-khp">
@@ -409,7 +409,7 @@
                                             <constraint firstAttribute="bottom" secondItem="WyQ-JS-6my" secondAttribute="bottom" constant="8" id="zCP-eT-Pih"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOt-cR-OFB">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOt-cR-OFB" userLabel="Untagged Container View">
                                         <rect key="frame" x="12" y="255" width="307" height="37"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tag.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HCJ-Ec-yeL">
@@ -464,13 +464,41 @@
                                     <constraint firstItem="BqA-bo-dhO" firstAttribute="trailing" secondItem="Zvf-K9-M1C" secondAttribute="trailing" id="zvc-r8-aD6"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LtV-pH-JR3" userLabel="Line View">
+                                <rect key="frame" x="8" y="300" width="315" height="1"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="jzR-dN-8en"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tco-9a-YuZ">
+                                <rect key="frame" x="0.0" y="301" width="331" height="595"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TagCell" id="nBm-La-tsX">
+                                        <rect key="frame" x="0.0" y="44.5" width="331" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nBm-La-tsX" id="7cf-Gf-LUB">
+                                            <rect key="frame" x="0.0" y="0.0" width="331" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1Ew-26-MYl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="1Ew-26-MYl" firstAttribute="trailing" secondItem="LtV-pH-JR3" secondAttribute="trailing" constant="8" id="4ff-gr-NZX"/>
+                            <constraint firstAttribute="bottom" secondItem="tco-9a-YuZ" secondAttribute="bottom" id="QRg-y3-qpr"/>
                             <constraint firstItem="gYt-CY-7Mo" firstAttribute="leading" secondItem="S0e-Va-0z4" secondAttribute="leading" id="QbW-T1-yTr"/>
+                            <constraint firstItem="LtV-pH-JR3" firstAttribute="leading" secondItem="1Ew-26-MYl" secondAttribute="leading" constant="8" id="WzK-I4-bex"/>
+                            <constraint firstItem="tco-9a-YuZ" firstAttribute="trailing" secondItem="1Ew-26-MYl" secondAttribute="trailing" id="Z8s-8s-hc7"/>
+                            <constraint firstItem="LtV-pH-JR3" firstAttribute="top" secondItem="gYt-CY-7Mo" secondAttribute="bottom" id="aVR-Ut-Xc5"/>
+                            <constraint firstItem="tco-9a-YuZ" firstAttribute="top" secondItem="LtV-pH-JR3" secondAttribute="bottom" id="bTO-GJ-15I"/>
                             <constraint firstAttribute="trailing" secondItem="gYt-CY-7Mo" secondAttribute="trailing" id="qj3-3O-AXD"/>
                             <constraint firstItem="gYt-CY-7Mo" firstAttribute="top" secondItem="S0e-Va-0z4" secondAttribute="top" id="umf-a8-dj7"/>
+                            <constraint firstItem="tco-9a-YuZ" firstAttribute="leading" secondItem="1Ew-26-MYl" secondAttribute="leading" id="yEI-AR-qXO"/>
                         </constraints>
                     </view>
                 </viewController>
