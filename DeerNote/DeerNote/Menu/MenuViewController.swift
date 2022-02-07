@@ -23,7 +23,7 @@ class MenuViewController: UIViewController {
     }
     
     
-    // MARK: @IBAction
+    // MARK: @IBAction  
     @IBAction func clickButton(_ sender: Any) {
         self.delegate?.buttonDidTapped(self)
     }

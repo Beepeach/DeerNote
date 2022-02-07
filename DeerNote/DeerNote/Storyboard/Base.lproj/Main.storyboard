@@ -234,11 +234,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0t-LI-wsG">
                                 <rect key="frame" x="0.0" y="0.0" width="331" height="56"/>
                                 <items>
-                                    <navigationItem title="설정" id="Yp4-ry-gLW">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.backward" catalog="system" id="ssA-36-fWM">
-                                            <color key="tintColor" systemColor="systemTealColor"/>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="설정" id="Yp4-ry-gLW"/>
                                 </items>
                                 <navigationBarAppearance key="standardAppearance">
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -484,7 +480,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
