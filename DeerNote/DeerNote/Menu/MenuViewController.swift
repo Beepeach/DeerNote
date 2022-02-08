@@ -14,7 +14,11 @@ protocol MenuViewControllerDeleagete: AnyObject {
 class MenuViewController: UIViewController {
     // MARK: Properties
     weak var delegate: MenuViewControllerDeleagete?
-    
+    @IBOutlet weak var tagTableView: UITableView!
+    var tags: [Tag] = [
+        Tag(name: "아무거나"),
+        Tag(name: "내맘내맘")
+    ]
     
     // MARK: ViewLifeCycle
     override func viewDidLoad() {
@@ -23,8 +27,25 @@ class MenuViewController: UIViewController {
     }
     
     
-    // MARK: @IBAction  
+    // MARK: @IBAction
     @IBAction func clickButton(_ sender: Any) {
         self.delegate?.buttonDidTapped(self)
+    }
+}
+
+
+extension MenuViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tags.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") else {
+            return UITableViewCell()
+        }
+        
+        cell.textLabel?.text = tags[indexPath.row].name
+        
+        return cell
     }
 }
