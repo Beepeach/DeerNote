@@ -61,6 +61,47 @@ class ContainerViewController: UIViewController {
         view.addSubview(noteListNav.view)
         noteListNav.didMove(toParent: self)
     }
+
+    @IBAction func panningView(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .changed:
+            guard let targetView = sender.view else {
+                return
+            }
+            let translation = sender.translation(in: targetView)
+            
+            
+            if noteListNav.view.frame.origin.x <= 0 && translation.x < 0 {
+                return
+            }
+            
+            if noteListNav.view.frame.origin.x >= menuVCWidth && translation.x > 0 {
+                return
+            }
+            
+            if noteListNav.view.frame.origin.x >= 0 && noteListNav.view.frame.origin.x <= menuVCWidth {
+                noteListNav.view.frame.origin.x += translation.x
+                sender.setTranslation(.zero, in: targetView)
+            }
+        case .ended:
+            switch menuState {
+            case .opened:
+                if noteListNav.view.frame.origin.x > menuVCWidth * 0.8 {
+                    openMenu(completion: nil)
+                } else {
+                    closeMenu(completion: nil)
+                }
+            case .closed:
+                if noteListNav.view.frame.origin.x > view.frame.width * 0.2 {
+                    openMenu(completion: nil)
+                } else {
+                    closeMenu(completion: nil)
+                }
+            }
+        default:
+            break
+        }
+    }
 }
 
 
