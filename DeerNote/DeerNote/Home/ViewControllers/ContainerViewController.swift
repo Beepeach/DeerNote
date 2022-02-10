@@ -9,13 +9,17 @@ import UIKit
 import CloudKit
 
 class ContainerViewController: UIViewController {
+    // MARK: Enum
     enum MenuState {
         case opened
         case closed
     }
     
+    // MARK: Properties
     private var menuState: MenuState = .closed
-    
+    private var menuVCWidth: CGFloat {
+        return view.frame.width * 0.8
+    }
     private let menuVC: MenuViewController = {
         guard let menuVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController else {
             return MenuViewController()
@@ -23,7 +27,6 @@ class ContainerViewController: UIViewController {
         
         return menuVC
     }()
-    
     private let noteListNav: UINavigationController = {
         guard let noteListNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoteListNavigationController") as? UINavigationController else {
             return UINavigationController(rootViewController: NoteListViewController())
@@ -31,13 +34,9 @@ class ContainerViewController: UIViewController {
         
         return noteListNav
     }()
-    
     private lazy var noteListVC: NoteListViewController = noteListNav.viewControllers.first as? NoteListViewController ?? NoteListViewController()
-    
-    private var menuVCWidth: CGFloat {
-        return view.frame.width * 0.8
-    }
 
+    // MARK: VCLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addChildVCs()
@@ -64,6 +63,47 @@ class ContainerViewController: UIViewController {
     }
 }
 
+
+// MARK: - NoteListViewControllerDelegate
+extension ContainerViewController: NoteListViewControllerDelegate {
+    func didTapMenuButton(_ vc: NoteListViewController) {
+        toggleSideMenu(completion: nil)
+    }
+    
+    func toggleSideMenu(completion: (() -> Void)?) {
+        switch menuState {
+        case .closed:
+           openMenu(completion: completion)
+        case .opened:
+            closeMenu(completion: completion)
+        }
+    }
+    
+    private func openMenu(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
+        } completion: { [weak self] done in
+            if done {
+                self?.menuState = .opened
+                completion?()
+            }
+        }
+    }
+    
+    private func closeMenu(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            self.noteListNav.view.frame.origin.x = 0
+        } completion: { [weak self] done in
+            if done {
+                self?.menuState = .closed
+                completion?()
+            }
+        }
+    }
+}
+
+
+// MARK: - MenuViewControllerDelegate
 extension ContainerViewController: MenuViewControllerDeleagete {
     func didTap(_ vc: MenuViewController, mainMenu: MenuViewController.MainMenu) {
         switch mainMenu {
@@ -84,6 +124,25 @@ extension ContainerViewController: MenuViewControllerDeleagete {
     func didTap(_ vc: MenuViewController, tag: Tag) {
         toggleSideMenu(completion: nil)
         showTagNoteListVC(tag: tag)
+    }
+    
+    private func resetTagNoteVC() {
+        if !noteListVC.children.isEmpty {
+            guard let tagNoteVC = noteListVC.children.first as? NoteListViewController else {
+                return
+            }
+            
+            tagNoteVC.view.removeFromSuperview()
+            tagNoteVC.removeFromParent()
+            
+            noteListVC.title = "All"
+        }
+        print("Delete TagVC")
+    }
+    
+    private func performSegue(mainMenu: MenuViewController.MainMenu) {
+        let segueID = "to" + mainMenu.rawValue
+        noteListVC.performSegue(withIdentifier: segueID, sender: nil)
     }
     
     private func showTagNoteListVC(tag: Tag) {
@@ -123,62 +182,5 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         // TODO: - Tag에 해당하는 데이터를 불러오는 작업이 추가되어야합니다.
         print("Replace TagNoteListVC")
     }
-    
-    
-    private func resetTagNoteVC() {
-        if !noteListVC.children.isEmpty {
-            guard let tagNoteVC = noteListVC.children.first as? NoteListViewController else {
-                return
-            }
-            
-            tagNoteVC.view.removeFromSuperview()
-            tagNoteVC.removeFromParent()
-            
-            noteListVC.title = "All"
-            print("Delete TagVC")
-        }
-    }
-    
-    private func performSegue(mainMenu: MenuViewController.MainMenu) {
-        let segueID = "to" + mainMenu.rawValue
-        noteListVC.performSegue(withIdentifier: segueID, sender: nil)
-    }
 }
 
-
-extension ContainerViewController: NoteListViewControllerDelegate {
-    func didTapMenuButton(_ vc: NoteListViewController) {
-        toggleSideMenu(completion: nil)
-    }
-    
-    func toggleSideMenu(completion: (() -> Void)?) {
-        switch menuState {
-        case .closed:
-           openMenu(completion: completion)
-        case .opened:
-            closeMenu(completion: completion)
-        }
-    }
-    
-    private func openMenu(completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-            self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
-        } completion: { [weak self] done in
-            if done {
-                self?.menuState = .opened
-                completion?()
-            }
-        }
-    }
-    
-    private func closeMenu(completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-            self.noteListNav.view.frame.origin.x = 0
-        } completion: { [weak self] done in
-            if done {
-                self?.menuState = .closed
-                completion?()
-            }
-        }
-    }
-}
