@@ -49,6 +49,7 @@ class ContainerViewController: UIViewController {
     }
     
     private func addMenuVC() {
+        menuVC.delegate = self
         addChild(menuVC)
         menuVC.view.frame = CGRect(x: 0, y: 0, width: self.menuVCWidth, height: self.view.frame.height)
         view.addSubview(menuVC.view)
@@ -60,6 +61,16 @@ class ContainerViewController: UIViewController {
         addChild(noteListNav)
         view.addSubview(noteListNav.view)
         noteListNav.didMove(toParent: self)
+    }
+}
+
+extension ContainerViewController: MenuViewControllerDeleagete {
+    func didTap(_ vc: MenuViewController, mainMenu: MenuViewController.MainMenu) {
+        toggleSideMenu(completion: nil)
+    }
+    
+    func didTap(_ vc: MenuViewController, tag: Tag) {
+        toggleSideMenu(completion: nil)
     }
 }
 

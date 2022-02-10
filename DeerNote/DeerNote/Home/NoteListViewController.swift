@@ -63,12 +63,6 @@ class NoteListViewController: UIViewController {
         setupSearchBar()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let menuVC = segue.destination as? MenuViewController {
-            menuVC.delegate = self
-        }
-    }
-    
     private func setMenuVCHiding() {
     }
     
@@ -162,17 +156,6 @@ class NoteListViewController: UIViewController {
         }
         
         return true
-    }
-}
-
-
-// MARK: - MenuViewControllerDelegate
-extension NoteListViewController: MenuViewControllerDeleagete {
-    func buttonDidTapped(_ vc: UIViewController) {
-        UIView.animate(withDuration: 0.3) {
-//            self.disappearSlideMenu()
-            self.view.layoutIfNeeded()
-        }
     }
 }
 
