@@ -49,9 +49,6 @@ class NoteListViewController: UIViewController {
     
     // MARK: @IBOutlet
     @IBOutlet weak var noteListCollectionView: UICollectionView!
-    @IBOutlet weak var dimmingView: UIView!
-    @IBOutlet weak var slideMenuContainerView: UIView!
-    @IBOutlet weak var menuContainerViewLeadingConstraint: NSLayoutConstraint!
     
     
     // MARK: ViewControllerLifeCycle
@@ -68,8 +65,6 @@ class NoteListViewController: UIViewController {
     }
     
     private func setMenuVCHiding() {
-        self.menuContainerViewLeadingConstraint.constant = -menuVCWidth * 3
-        dimmingView.alpha = 0.0
     }
     
     private func setupSearchBar() {
@@ -95,15 +90,11 @@ class NoteListViewController: UIViewController {
     private func appearSlideMenu() {
         setNavBarTranslucent()
         isSlideMenuAppeared = true
-        dimmingView.alpha = 0.75
-        menuContainerViewLeadingConstraint.constant = 0
     }
     
     private func disappearSlideMenu() {
         setNavBarOpaque()
         isSlideMenuAppeared = false
-        dimmingView.alpha = 0.0
-        menuContainerViewLeadingConstraint.constant = -menuVCWidth * 3
     }
     
     private func setNavBarTranslucent(){
@@ -129,12 +120,12 @@ class NoteListViewController: UIViewController {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isSlideMenuAppeared {
-            guard let touch = touches.first else {
-                return
-            }
-            
-            let difference = calculateDifferenceFromTouchBeginPoint(touch)
-            moveMenuVC(difference)
+//            guard let touch = touches.first else {
+//                return
+//            }
+//            
+//            let difference = calculateDifferenceFromTouchBeginPoint(touch)
+//            moveMenuVC(difference)
         }
     }
     
@@ -149,27 +140,27 @@ class NoteListViewController: UIViewController {
     }
     
     private func saveTouchBeginPoint(_ touch: UITouch) {
-        let location = touch.location(in: dimmingView)
-        touchBeginPoint = location.x
+//        let location = touch.location(in: dimmingView)
+//        touchBeginPoint = location.x
     }
     
-    private func calculateDifferenceFromTouchBeginPoint(_ touch: UITouch) -> CGFloat {
-        let location = touch.location(in: dimmingView)
-        let differenceFromTouchBeginPointOfX = touchBeginPoint - location.x
-        
-        return differenceFromTouchBeginPointOfX
-    }
+//    private func calculateDifferenceFromTouchBeginPoint(_ touch: UITouch) -> CGFloat {
+//        let location = touch.location(in: dimmingView)
+//        let differenceFromTouchBeginPointOfX = touchBeginPoint - location.x
+//
+//        return differenceFromTouchBeginPointOfX
+//    }
     
     private func moveMenuVC(_ difference: CGFloat) {
         if difference > 0 && difference < menuVCWidth {
-            menuContainerViewLeadingConstraint.constant = -difference
+//            menuContainerViewLeadingConstraint.constant = -difference
             differenceFromTouchBeginPoint = difference
             transluentBackView(difference)
         }
     }
     
     private func transluentBackView (_ difference: CGFloat) {
-        dimmingView.alpha = 0.75 - (0.75 * (difference / menuVCWidth))
+//        dimmingView.alpha = 0.75 - (0.75 * (difference / menuVCWidth))
         navigationController?.navigationBar.alpha = 0.01 + (1.0 * max(0, difference - menuVCWidth * 0.8) / (menuVCWidth * 0.2))
     }
     
