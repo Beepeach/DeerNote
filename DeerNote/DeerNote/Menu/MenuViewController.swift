@@ -13,12 +13,14 @@ protocol MenuViewControllerDeleagete: AnyObject {
 }
 
 class MenuViewController: UIViewController {
+    // MARK: Enum
     enum MainMenu: String, CaseIterable {
         case all = "AllNote"
         case trash = "Trash"
         case settings = "Settings"
         case untagged = "Untagged"
     }
+    
     
     // MARK: Properties
     weak var delegate: MenuViewControllerDeleagete?
@@ -27,13 +29,17 @@ class MenuViewController: UIViewController {
         Tag(name: "내맘내맘")
     ]
     
+    
+    // MARK: @IBOutlet
     @IBOutlet weak var tagTableView: UITableView!
+    
     
     // MARK: ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
+    
     
     // MARK: @IBAction
     @IBAction func tapAllNotes(_ sender: UIButton) {
@@ -47,12 +53,14 @@ class MenuViewController: UIViewController {
     @IBAction func tapSettings(_ sender: UIButton) {
         delegate?.didTap(self, mainMenu: .settings)
     }
+    
     @IBAction func tapUntagged(_ sender: UIButton) {
         delegate?.didTap(self, mainMenu: .untagged)
     }
 }
 
 
+// MARK: - UITableViewDataSource
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tags.count
@@ -70,6 +78,7 @@ extension MenuViewController: UITableViewDataSource {
 }
 
 
+// MARK: - UITableViewDelegate
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didTap(self, tag: tags[indexPath.row])
