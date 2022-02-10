@@ -437,6 +437,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LEB-S8-51v" userLabel="LineView">
+                                <rect key="frame" x="413" y="44" width="1" height="818"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="qfT-CE-bcH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wcQ-t0-1W1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -445,12 +452,14 @@
                             <constraint firstItem="gfJ-bp-bh4" firstAttribute="top" secondItem="o3k-ZB-Qvi" secondAttribute="bottom" constant="50" id="2kK-dZ-IfH"/>
                             <constraint firstItem="yIA-TL-T7z" firstAttribute="leading" secondItem="jNU-Vh-X84" secondAttribute="leadingMargin" constant="12" id="5FY-ry-iEG"/>
                             <constraint firstItem="2b1-7t-Bgr" firstAttribute="leading" secondItem="wcQ-t0-1W1" secondAttribute="leading" id="5Qs-Lw-oc6"/>
+                            <constraint firstItem="LEB-S8-51v" firstAttribute="top" secondItem="wcQ-t0-1W1" secondAttribute="top" id="BX5-Ti-dVy"/>
                             <constraint firstItem="gfJ-bp-bh4" firstAttribute="trailing" secondItem="o3k-ZB-Qvi" secondAttribute="trailing" id="BhW-vm-dJt"/>
                             <constraint firstItem="2b1-7t-Bgr" firstAttribute="trailing" secondItem="wcQ-t0-1W1" secondAttribute="trailing" id="DnX-lb-SyO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yIA-TL-T7z" secondAttribute="trailing" constant="12" id="Ikg-T2-ajL"/>
                             <constraint firstItem="j78-7o-wWd" firstAttribute="top" secondItem="wcQ-t0-1W1" secondAttribute="top" constant="12" id="J8X-ew-7V2"/>
                             <constraint firstItem="It3-PR-g0g" firstAttribute="top" secondItem="j78-7o-wWd" secondAttribute="bottom" constant="6" id="K5H-rN-01z"/>
                             <constraint firstItem="gfJ-bp-bh4" firstAttribute="leading" secondItem="o3k-ZB-Qvi" secondAttribute="leading" id="Sy8-Wi-Mxq"/>
+                            <constraint firstAttribute="trailing" secondItem="LEB-S8-51v" secondAttribute="trailing" id="aYr-X2-Iea"/>
                             <constraint firstAttribute="bottom" secondItem="2b1-7t-Bgr" secondAttribute="bottom" id="bw5-13-P7a"/>
                             <constraint firstItem="o3k-ZB-Qvi" firstAttribute="leading" secondItem="It3-PR-g0g" secondAttribute="leading" id="cdW-1M-eem"/>
                             <constraint firstItem="o3k-ZB-Qvi" firstAttribute="trailing" secondItem="It3-PR-g0g" secondAttribute="trailing" id="hyR-XG-94G"/>
@@ -460,12 +469,13 @@
                             <constraint firstItem="yIA-TL-T7z" firstAttribute="top" secondItem="gfJ-bp-bh4" secondAttribute="bottom" constant="8" id="u3d-RP-cYs"/>
                             <constraint firstItem="2b1-7t-Bgr" firstAttribute="top" secondItem="yIA-TL-T7z" secondAttribute="bottom" id="ubd-tQ-x3T"/>
                             <constraint firstItem="o3k-ZB-Qvi" firstAttribute="top" secondItem="It3-PR-g0g" secondAttribute="bottom" constant="6" id="voj-qC-Xnx"/>
+                            <constraint firstItem="wcQ-t0-1W1" firstAttribute="bottom" secondItem="LEB-S8-51v" secondAttribute="bottom" id="wWV-6W-fCw"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMm-Ht-fv0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="883" y="858"/>
+            <point key="canvasLocation" x="882.60869565217399" y="857.8125"/>
         </scene>
     </scenes>
     <resources>
@@ -482,6 +492,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
