@@ -407,8 +407,8 @@
                                     <constraint firstItem="tha-I7-KUa" firstAttribute="top" secondItem="gfJ-bp-bh4" secondAttribute="top" constant="8" id="lPh-VN-M4u"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIA-TL-T7z" userLabel="Line View">
-                                <rect key="frame" x="32" y="274" width="350" height="1"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIA-TL-T7z" userLabel="Menu Line View">
+                                <rect key="frame" x="20" y="274" width="362" height="1"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Exl-Zy-Vjq"/>
@@ -437,7 +437,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LEB-S8-51v" userLabel="LineView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LEB-S8-51v" userLabel="VC Line View">
                                 <rect key="frame" x="413" y="44" width="1" height="818"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
@@ -448,9 +448,9 @@
                         <viewLayoutGuide key="safeArea" id="wcQ-t0-1W1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2b1-7t-Bgr" firstAttribute="leading" secondItem="jNU-Vh-X84" secondAttribute="leading" id="07o-Xw-SFN"/>
                             <constraint firstItem="It3-PR-g0g" firstAttribute="trailing" secondItem="j78-7o-wWd" secondAttribute="trailing" id="0fN-Rw-F0c"/>
                             <constraint firstItem="gfJ-bp-bh4" firstAttribute="top" secondItem="o3k-ZB-Qvi" secondAttribute="bottom" constant="50" id="2kK-dZ-IfH"/>
-                            <constraint firstItem="yIA-TL-T7z" firstAttribute="leading" secondItem="jNU-Vh-X84" secondAttribute="leadingMargin" constant="12" id="5FY-ry-iEG"/>
                             <constraint firstItem="2b1-7t-Bgr" firstAttribute="leading" secondItem="wcQ-t0-1W1" secondAttribute="leading" id="5Qs-Lw-oc6"/>
                             <constraint firstItem="LEB-S8-51v" firstAttribute="top" secondItem="wcQ-t0-1W1" secondAttribute="top" id="BX5-Ti-dVy"/>
                             <constraint firstItem="gfJ-bp-bh4" firstAttribute="trailing" secondItem="o3k-ZB-Qvi" secondAttribute="trailing" id="BhW-vm-dJt"/>
@@ -462,6 +462,7 @@
                             <constraint firstAttribute="trailing" secondItem="LEB-S8-51v" secondAttribute="trailing" id="aYr-X2-Iea"/>
                             <constraint firstAttribute="bottom" secondItem="2b1-7t-Bgr" secondAttribute="bottom" id="bw5-13-P7a"/>
                             <constraint firstItem="o3k-ZB-Qvi" firstAttribute="leading" secondItem="It3-PR-g0g" secondAttribute="leading" id="cdW-1M-eem"/>
+                            <constraint firstItem="yIA-TL-T7z" firstAttribute="leading" secondItem="jNU-Vh-X84" secondAttribute="leadingMargin" id="d8h-ZJ-URm"/>
                             <constraint firstItem="o3k-ZB-Qvi" firstAttribute="trailing" secondItem="It3-PR-g0g" secondAttribute="trailing" id="hyR-XG-94G"/>
                             <constraint firstItem="wcQ-t0-1W1" firstAttribute="trailing" secondItem="j78-7o-wWd" secondAttribute="trailing" constant="12" id="jhS-Ia-dad"/>
                             <constraint firstItem="j78-7o-wWd" firstAttribute="leading" secondItem="wcQ-t0-1W1" secondAttribute="leading" constant="12" id="mch-Ir-p4n"/>
