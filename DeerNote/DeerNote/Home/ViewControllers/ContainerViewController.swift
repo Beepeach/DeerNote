@@ -66,11 +66,82 @@ class ContainerViewController: UIViewController {
 
 extension ContainerViewController: MenuViewControllerDeleagete {
     func didTap(_ vc: MenuViewController, mainMenu: MenuViewController.MainMenu) {
+        switch mainMenu {
+        case .all:
+            resetTagNoteVC()
+            noteListNav.popToRootViewController(animated: true)
+        case .trash:
+            performSegue(mainMenu: mainMenu)
+        case .settings:
+            performSegue(mainMenu: mainMenu)
+        case .untagged:
+            showTagNoteListVC(tag: Tag())
+        }
+        
         toggleSideMenu(completion: nil)
     }
     
     func didTap(_ vc: MenuViewController, tag: Tag) {
         toggleSideMenu(completion: nil)
+        showTagNoteListVC(tag: tag)
+    }
+    
+    private func showTagNoteListVC(tag: Tag) {
+        if noteListVC.children.isEmpty {
+            addTagNoteListVC(tag: tag)
+        } else {
+            replaceTagNoteListVC(tag: tag)
+        }
+    }
+    
+    private func addTagNoteListVC(tag: Tag) {
+        guard let tagNoteListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoteListViewController") as? NoteListViewController else {
+            return
+        }
+        
+        noteListVC.addChild(tagNoteListVC)
+        noteListVC.view.addSubview(tagNoteListVC.view)
+        tagNoteListVC.didMove(toParent: noteListVC)
+        
+        noteListVC.title = tag.name
+        
+        // TODO: - Tag에 해당하는 데이터를 불러오는 작업이 추가되어야합니다.
+        print("Add TagNoteListVC")
+    }
+    
+    private func replaceTagNoteListVC(tag: Tag) {
+        if noteListVC.title == tag.name {
+            return
+        }
+        
+        guard let _ = noteListVC.children.first as? NoteListViewController else {
+            return
+        }
+        
+        noteListVC.title = tag.name
+        
+        // TODO: - Tag에 해당하는 데이터를 불러오는 작업이 추가되어야합니다.
+        print("Replace TagNoteListVC")
+    }
+    
+    
+    private func resetTagNoteVC() {
+        if !noteListVC.children.isEmpty {
+            guard let tagNoteVC = noteListVC.children.first as? NoteListViewController else {
+                return
+            }
+            
+            tagNoteVC.view.removeFromSuperview()
+            tagNoteVC.removeFromParent()
+            
+            noteListVC.title = "All"
+            print("Delete TagVC")
+        }
+    }
+    
+    private func performSegue(mainMenu: MenuViewController.MainMenu) {
+        let segueID = "to" + mainMenu.rawValue
+        noteListVC.performSegue(withIdentifier: segueID, sender: nil)
     }
 }
 

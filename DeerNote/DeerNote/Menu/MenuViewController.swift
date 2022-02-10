@@ -36,7 +36,6 @@ class MenuViewController: UIViewController {
     }
     
     // MARK: @IBAction
-
     @IBAction func tapAllNotes(_ sender: UIButton) {
         delegate?.didTap(self, mainMenu: .all)
     }

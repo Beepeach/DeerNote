@@ -8,5 +8,11 @@
 import Foundation
 
 struct Tag {
-    let name: String
+    var name: String
+}
+
+extension Tag {
+    init() {
+        name = "Untagged"
+    }
 }
