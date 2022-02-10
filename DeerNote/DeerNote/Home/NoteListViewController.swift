@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NoteListViewControllerDelegate: AnyObject {
+    func didTapMenuButton(_ vc: NoteListViewController)
+}
+
 class NoteListViewController: UIViewController {
     // MARK: Properties
     var dummyNote: [Note] = [
@@ -39,6 +43,7 @@ class NoteListViewController: UIViewController {
         Note(contents: "크하하하하", tag: [], date: Date(), updatedDate: Date(), isDeleted: false)
     ]
     
+    weak var delegate: NoteListViewControllerDelegate?
     private var isSlideMenuAppeared: Bool = false
     private var touchBeginPoint: CGFloat = 0.0
     private var differenceFromTouchBeginPoint: CGFloat = 0.0
@@ -74,39 +79,8 @@ class NoteListViewController: UIViewController {
     
     // MARK: @IBAction
     @IBAction func tapMenu(_ sender: UIBarButtonItem) {
-        UIView.animate(withDuration: 0.3) {
-            self.appearSlideMenu()
-            self.view.layoutIfNeeded()
-        }
+        delegate?.didTapMenuButton(self)
     }
-    
-    @IBAction func tapDimmingView(_ sender: UITapGestureRecognizer) {
-        UIView.animate(withDuration: 0.3) {
-            self.disappearSlideMenu()
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    private func appearSlideMenu() {
-        setNavBarTranslucent()
-        isSlideMenuAppeared = true
-    }
-    
-    private func disappearSlideMenu() {
-        setNavBarOpaque()
-        isSlideMenuAppeared = false
-    }
-    
-    private func setNavBarTranslucent(){
-        navigationController?.navigationBar.alpha = 0.01
-        navigationController?.navigationBar.isUserInteractionEnabled = false
-    }
-    
-    private func setNavBarOpaque() {
-        navigationController?.navigationBar.alpha = 1.0
-        navigationController?.navigationBar.isUserInteractionEnabled = true
-    }
-    
     
     // MARK: Touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -167,14 +141,14 @@ class NoteListViewController: UIViewController {
     private func completeMenuVCMove() {
         if differenceFromTouchBeginPoint > menuVCWidth / 4 {
             UIView.animate(withDuration: 0.3) {
-                self.disappearSlideMenu()
+//                self.disappearSlideMenu()
                 self.navigationController?.navigationBar.alpha = 1.0
                 self.view.layoutIfNeeded()
             }
             
         } else {
             UIView.animate(withDuration: 0.3) {
-                self.appearSlideMenu()
+//                self.appearSlideMenu()
                 self.navigationController?.navigationBar.alpha = 0.01
                 self.view.layoutIfNeeded()
             }
@@ -196,7 +170,7 @@ class NoteListViewController: UIViewController {
 extension NoteListViewController: MenuViewControllerDeleagete {
     func buttonDidTapped(_ vc: UIViewController) {
         UIView.animate(withDuration: 0.3) {
-            self.disappearSlideMenu()
+//            self.disappearSlideMenu()
             self.view.layoutIfNeeded()
         }
     }

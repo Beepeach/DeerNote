@@ -56,8 +56,39 @@ class ContainerViewController: UIViewController {
     }
     
     private func addNoteListNav() {
+        noteListVC.delegate = self
         addChild(noteListNav)
         view.addSubview(noteListNav.view)
         noteListNav.didMove(toParent: self)
+    }
+}
+
+
+extension ContainerViewController: NoteListViewControllerDelegate {
+    func didTapMenuButton(_ vc: NoteListViewController) {
+        toggleSideMenu(completion: nil)
+    }
+    
+    func toggleSideMenu(completion: (() -> Void)?) {
+        switch menuState {
+        case .closed:
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
+                self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
+            } completion: { [weak self] done in
+                if done {
+                    self?.menuState = .opened
+                    completion?()
+                }
+            }
+        case .opened:
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
+                self.noteListNav.view.frame.origin.x = 0
+            } completion: { [weak self] done in
+                if done {
+                    self?.menuState = .closed
+                    completion?()
+                }
+            }
+        }
     }
 }
