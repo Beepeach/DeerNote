@@ -72,22 +72,30 @@ extension ContainerViewController: NoteListViewControllerDelegate {
     func toggleSideMenu(completion: (() -> Void)?) {
         switch menuState {
         case .closed:
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-                self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
-            } completion: { [weak self] done in
-                if done {
-                    self?.menuState = .opened
-                    completion?()
-                }
-            }
+           openMenu(completion: completion)
         case .opened:
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-                self.noteListNav.view.frame.origin.x = 0
-            } completion: { [weak self] done in
-                if done {
-                    self?.menuState = .closed
-                    completion?()
-                }
+            closeMenu(completion: completion)
+        }
+    }
+    
+    private func openMenu(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
+        } completion: { [weak self] done in
+            if done {
+                self?.menuState = .opened
+                completion?()
+            }
+        }
+    }
+    
+    private func closeMenu(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            self.noteListNav.view.frame.origin.x = 0
+        } completion: { [weak self] done in
+            if done {
+                self?.menuState = .closed
+                completion?()
             }
         }
     }
