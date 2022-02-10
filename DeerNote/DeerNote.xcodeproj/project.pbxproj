@@ -117,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				EE7933A427B4FC220004BEF8 /* ContainerViewController.swift */,
+				EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -126,7 +127,6 @@
 			children = (
 				EE7933A327B4FC110004BEF8 /* ViewControllers */,
 				EEB76A0527AC1D4800BCB4B6 /* Extension */,
-				EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */,
 				EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */,
 			);
 			path = Home;
