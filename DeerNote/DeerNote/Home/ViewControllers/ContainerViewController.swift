@@ -15,8 +15,11 @@ class ContainerViewController: UIViewController {
         case closed
     }
     
+    
     // MARK: Properties
     private var menuState: MenuState = .closed
+    private var differenceFromFirstTouch: CGFloat = 0.0
+    
     private var menuVCWidth: CGFloat {
         return view.frame.width * 0.8
     }
@@ -36,6 +39,7 @@ class ContainerViewController: UIViewController {
     }()
     private lazy var noteListVC: NoteListViewController = noteListNav.viewControllers.first as? NoteListViewController ?? NoteListViewController()
 
+    
     // MARK: VCLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +53,7 @@ class ContainerViewController: UIViewController {
     
     private func addMenuVC() {
         menuVC.delegate = self
+        
         addChild(menuVC)
         menuVC.view.frame = CGRect(x: 0, y: 0, width: self.menuVCWidth, height: self.view.frame.height)
         view.addSubview(menuVC.view)
@@ -57,60 +62,87 @@ class ContainerViewController: UIViewController {
     
     private func addNoteListNav() {
         noteListVC.delegate = self
+        
         addChild(noteListNav)
         view.addSubview(noteListNav.view)
         noteListNav.didMove(toParent: self)
     }
-
-    private var difference: CGFloat = 0.0
     
+  
+    // MARK: @IBAction
     @IBAction func panningView(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .changed:
             guard let targetView = sender.view else {
                 return
             }
-            let translation = sender.translation(in: targetView)
-
+            let translation: CGPoint = sender.translation(in: targetView)
             
-            
-            if noteListNav.view.frame.origin.x <= 0 && translation.x < 0 {
-                return
+            if checkNoteListNavCanMoving(from: translation) {
+                moveNoteList(from: translation)
+                setDynamicDimmingViewAlpha()
             }
+            sender.setTranslation(.zero, in: targetView)
             
-            if noteListNav.view.frame.origin.x >= menuVCWidth && translation.x > 0 {
-                return
-            }
-            
-            if noteListNav.view.frame.origin.x >= 0 && noteListNav.view.frame.origin.x <= menuVCWidth {
-                difference += translation.x
-                
-                noteListVC.dimmingView.alpha = 0 + (0.5 * (noteListNav.view.frame.origin.x / menuVCWidth))
-                noteListNav.view.frame.origin.x += translation.x
-                sender.setTranslation(.zero, in: targetView)
-            }
-        case .ended:
+        case .ended, .cancelled, .failed:
             switch menuState {
             case .opened:
-                if noteListNav.view.frame.origin.x > menuVCWidth * 0.8 {
-                    openMenu(completion: nil)
-                } else {
-                    closeMenu(completion: nil)
-                }
+                let isNearRightSide :Bool = noteListNav.view.frame.origin.x > menuVCWidth * 0.8
+                completeMenuAnimation(on: isNearRightSide)
             case .closed:
-                if noteListNav.view.frame.origin.x > view.frame.width * 0.2 {
-                    openMenu(completion: nil)
-                } else {
-                    closeMenu(completion: nil)
-                }
+                let isNotNearLeftSide: Bool = noteListNav.view.frame.origin.x > view.frame.width * 0.2
+                completeMenuAnimation(on: isNotNearLeftSide)
             }
         default:
             break
         }
         
-        difference = 0.0
+        differenceFromFirstTouch = 0.0
+    }
+    
+    private func checkNoteListNavCanMoving(from translation: CGPoint) -> Bool {
+        if isWrong(touch: translation) {
+            return false
+        }
+        
+        let isCorrectMoveBound: Bool = noteListNav.view.frame.origin.x >= 0 && noteListNav.view.frame.origin.x <= menuVCWidth
+        
+        if isCorrectMoveBound {
+            return true
+        }
+        
+        return false
+    }
+    
+    private func isWrong(touch translation: CGPoint) -> Bool {
+        let isLeftWrongTouch: Bool = noteListNav.view.frame.origin.x <= 0 && translation.x < 0
+        let isRightWrongTouch: Bool = noteListNav.view.frame.origin.x >= menuVCWidth && translation.x > 0
+        
+        if isLeftWrongTouch || isRightWrongTouch {
+            return true
+        }
+        
+        return false
+    }
+    
+    private func moveNoteList(from translation: CGPoint) {
+        differenceFromFirstTouch += translation.x
+        noteListNav.view.frame.origin.x += translation.x
+    }
+    
+    private func setDynamicDimmingViewAlpha() {
+        noteListVC.dimmingView.alpha = 0 + (0.5 * (noteListNav.view.frame.origin.x / menuVCWidth))
+    }
+    
+    private func completeMenuAnimation(on condition: Bool) {
+        if condition {
+            openMenu(completion: nil)
+        } else {
+            closeMenu(completion: nil)
+        }
     }
 }
+
 
 
 // MARK: - NoteListViewControllerDelegate
