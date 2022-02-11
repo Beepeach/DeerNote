@@ -110,14 +110,23 @@
                                     <outlet property="delegate" destination="V3N-VV-Pda" id="Olm-hD-iXA"/>
                                 </connections>
                             </collectionView>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy0-ca-Xm9" userLabel="Dimming View">
+                                <rect key="frame" x="0.0" y="488" width="414" height="408"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FjG-bC-dcK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="cy0-ca-Xm9" firstAttribute="top" secondItem="FjG-bC-dcK" secondAttribute="top" constant="400" placeholder="YES" id="4s1-qx-SFB"/>
+                            <constraint firstAttribute="bottom" secondItem="cy0-ca-Xm9" secondAttribute="bottom" id="CZS-Yz-Av6"/>
                             <constraint firstAttribute="bottom" secondItem="cTV-Di-WE9" secondAttribute="bottom" id="P7p-vi-21Q"/>
+                            <constraint firstItem="cy0-ca-Xm9" firstAttribute="top" secondItem="MNf-5Z-om8" secondAttribute="top" priority="750" id="TaV-Ix-Lo9"/>
                             <constraint firstItem="cTV-Di-WE9" firstAttribute="trailing" secondItem="FjG-bC-dcK" secondAttribute="trailing" id="j8D-9N-GE6"/>
+                            <constraint firstItem="cy0-ca-Xm9" firstAttribute="leading" secondItem="FjG-bC-dcK" secondAttribute="leading" id="mm1-cw-NlG"/>
                             <constraint firstItem="cTV-Di-WE9" firstAttribute="leading" secondItem="FjG-bC-dcK" secondAttribute="leading" id="tvl-21-B2U"/>
                             <constraint firstItem="cTV-Di-WE9" firstAttribute="top" secondItem="FjG-bC-dcK" secondAttribute="top" id="uaY-OL-pYb"/>
+                            <constraint firstItem="cy0-ca-Xm9" firstAttribute="trailing" secondItem="FjG-bC-dcK" secondAttribute="trailing" id="y4u-QL-pSi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All" id="Xne-do-Cb4">
@@ -132,6 +141,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dimmingView" destination="cy0-ca-Xm9" id="cP9-c6-knY"/>
                         <outlet property="noteListCollectionView" destination="cTV-Di-WE9" id="tgR-Ok-tTi"/>
                         <segue destination="Dfc-bu-Oqp" kind="show" identifier="toTrash" id="v8D-ex-t8U"/>
                         <segue destination="N3h-IV-AYf" kind="presentation" identifier="toSettings" id="CO3-r1-Qze"/>
@@ -144,7 +154,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="857" y="125"/>
+            <point key="canvasLocation" x="856.52173913043487" y="124.55357142857142"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="CgA-EV-DRL">
@@ -534,6 +544,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

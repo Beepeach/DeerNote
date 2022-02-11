@@ -62,6 +62,8 @@ class ContainerViewController: UIViewController {
         noteListNav.didMove(toParent: self)
     }
 
+    private var difference: CGFloat = 0.0
+    
     @IBAction func panningView(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .changed:
@@ -69,6 +71,7 @@ class ContainerViewController: UIViewController {
                 return
             }
             let translation = sender.translation(in: targetView)
+
             
             
             if noteListNav.view.frame.origin.x <= 0 && translation.x < 0 {
@@ -80,6 +83,9 @@ class ContainerViewController: UIViewController {
             }
             
             if noteListNav.view.frame.origin.x >= 0 && noteListNav.view.frame.origin.x <= menuVCWidth {
+                difference += translation.x
+                
+                noteListVC.dimmingView.alpha = 0 + (0.75 * (noteListNav.view.frame.origin.x / menuVCWidth))
                 noteListNav.view.frame.origin.x += translation.x
                 sender.setTranslation(.zero, in: targetView)
             }
@@ -101,6 +107,8 @@ class ContainerViewController: UIViewController {
         default:
             break
         }
+        
+        difference = 0.0
     }
 }
 
@@ -123,6 +131,7 @@ extension ContainerViewController: NoteListViewControllerDelegate {
     private func openMenu(completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
+            self.noteListVC.dimmingView.alpha = 0.75
         } completion: { [weak self] done in
             if done {
                 self?.menuState = .opened
@@ -134,6 +143,7 @@ extension ContainerViewController: NoteListViewControllerDelegate {
     private func closeMenu(completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.noteListNav.view.frame.origin.x = 0
+            self.noteListVC.dimmingView.alpha = 0.0
         } completion: { [weak self] done in
             if done {
                 self?.menuState = .closed

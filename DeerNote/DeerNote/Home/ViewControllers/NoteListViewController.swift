@@ -54,16 +54,17 @@ class NoteListViewController: UIViewController {
     
     // MARK: @IBOutlet
     @IBOutlet weak var noteListCollectionView: UICollectionView!
-    
+    @IBOutlet weak var dimmingView: UIView!
     
     // MARK: ViewControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setMenuVCHiding()
+        setdimmingView()
         setupSearchBar()
     }
     
-    private func setMenuVCHiding() {
+    private func setdimmingView() {
+        dimmingView.alpha = 0.0
     }
     
     private func setupSearchBar() {
