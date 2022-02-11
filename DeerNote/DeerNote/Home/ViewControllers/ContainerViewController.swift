@@ -115,6 +115,10 @@ class ContainerViewController: UIViewController {
 
 // MARK: - NoteListViewControllerDelegate
 extension ContainerViewController: NoteListViewControllerDelegate {
+    func didTapDimmingView(_ vc: NoteListViewController) {
+        closeMenu(completion: nil)
+    }
+    
     func didTapMenuButton(_ vc: NoteListViewController) {
         toggleSideMenu(completion: nil)
     }

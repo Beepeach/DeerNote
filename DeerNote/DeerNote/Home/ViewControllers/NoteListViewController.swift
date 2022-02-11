@@ -9,6 +9,7 @@ import UIKit
 
 protocol NoteListViewControllerDelegate: AnyObject {
     func didTapMenuButton(_ vc: NoteListViewController)
+    func didTapDimmingView(_ vc: NoteListViewController)
 }
 
 class NoteListViewController: UIViewController {
@@ -75,6 +76,10 @@ class NoteListViewController: UIViewController {
     // MARK: @IBAction
     @IBAction func tapMenu(_ sender: UIBarButtonItem) {
         delegate?.didTapMenuButton(self)
+    }
+    
+    @IBAction func tapDimmingView(_ sender: Any) {
+        delegate?.didTapDimmingView(self)
     }
     
     // MARK: Touch

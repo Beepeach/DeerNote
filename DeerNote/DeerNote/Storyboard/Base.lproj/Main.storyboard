@@ -110,9 +110,13 @@
                                     <outlet property="delegate" destination="V3N-VV-Pda" id="Olm-hD-iXA"/>
                                 </connections>
                             </collectionView>
-                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy0-ca-Xm9" userLabel="Dimming View">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy0-ca-Xm9" userLabel="Dimming View">
                                 <rect key="frame" x="0.0" y="488" width="414" height="408"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="n51-2c-0H2" appends="YES" id="fTg-34-BZI"/>
+                                </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FjG-bC-dcK"/>
@@ -148,9 +152,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6o-ah-uNS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Cc1-WK-TrJ">
+                <tapGestureRecognizer id="n51-2c-0H2">
                     <connections>
-                        <action selector="tapDimmingView:" destination="V3N-VV-Pda" id="ehw-Z5-x2Y"/>
+                        <action selector="tapDimmingView:" destination="V3N-VV-Pda" id="zRd-km-sJL"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
