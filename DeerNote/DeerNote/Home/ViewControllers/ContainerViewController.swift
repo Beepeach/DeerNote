@@ -85,7 +85,7 @@ class ContainerViewController: UIViewController {
             if noteListNav.view.frame.origin.x >= 0 && noteListNav.view.frame.origin.x <= menuVCWidth {
                 difference += translation.x
                 
-                noteListVC.dimmingView.alpha = 0 + (0.75 * (noteListNav.view.frame.origin.x / menuVCWidth))
+                noteListVC.dimmingView.alpha = 0 + (0.5 * (noteListNav.view.frame.origin.x / menuVCWidth))
                 noteListNav.view.frame.origin.x += translation.x
                 sender.setTranslation(.zero, in: targetView)
             }
@@ -131,7 +131,7 @@ extension ContainerViewController: NoteListViewControllerDelegate {
     private func openMenu(completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
-            self.noteListVC.dimmingView.alpha = 0.75
+            self.noteListVC.dimmingView.alpha = 0.5
         } completion: { [weak self] done in
             if done {
                 self?.menuState = .opened
