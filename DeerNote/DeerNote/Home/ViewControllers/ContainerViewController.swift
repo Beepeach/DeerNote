@@ -68,6 +68,15 @@ class ContainerViewController: UIViewController {
         noteListNav.didMove(toParent: self)
     }
     
+    // MARK: CustomMethods
+    override var shouldAutorotate: Bool {
+        if menuState == .opened {
+            return false
+        }
+        
+        return true
+    }
+    
   
     // MARK: @IBAction
     @IBAction func panningView(_ sender: UIPanGestureRecognizer) {
