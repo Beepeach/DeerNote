@@ -47,6 +47,7 @@
                 <panGestureRecognizer minimumNumberOfTouches="1" id="pTC-xd-56y">
                     <connections>
                         <action selector="panningView:" destination="wLE-Ou-NOA" id="Jhn-I6-RN1"/>
+                        <outlet property="delegate" destination="wLE-Ou-NOA" id="moA-kd-qQM"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>

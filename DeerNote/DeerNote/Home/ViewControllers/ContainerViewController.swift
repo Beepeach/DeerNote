@@ -280,3 +280,18 @@ extension ContainerViewController: MenuViewControllerDeleagete {
     }
 }
 
+
+// MARK: - UIGestureRecognizerDelegate
+extension ContainerViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
+            return false
+        }
+        let translation = panGestureRecognizer.translation(in: view)
+        let isAlomstHorizontalPanning: Bool = abs(translation.x) > abs(translation.y)
+        if isAlomstHorizontalPanning {
+            return true
+        }
+        return false
+    }
+}
