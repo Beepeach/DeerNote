@@ -287,11 +287,24 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
         guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
             return false
         }
+        
+        guard !isNoteEditorVC() else {
+            return false
+        }
+        
         let translation = panGestureRecognizer.translation(in: view)
         let isAlomstHorizontalPanning: Bool = abs(translation.x) > abs(translation.y)
         if isAlomstHorizontalPanning {
             return true
         }
+        return false
+    }
+    
+    private func isNoteEditorVC() -> Bool {
+        if let _ = noteListNav.topViewController as? NoteEditorViewController {
+            return true
+        }
+        
         return false
     }
 }
