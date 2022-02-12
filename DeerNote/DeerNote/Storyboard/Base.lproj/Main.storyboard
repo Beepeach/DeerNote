@@ -171,11 +171,39 @@
                     <view key="view" contentMode="scaleToFill" id="QSI-Br-xcd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="여기에 노트 작성" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="teu-dj-Hhj">
+                                <rect key="frame" x="12" y="100" width="402" height="712"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k81-4D-6lO" userLabel="Tag View">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ulB-RO-51M"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="DCe-Ku-Ahm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="k81-4D-6lO" firstAttribute="leading" secondItem="DCe-Ku-Ahm" secondAttribute="leading" id="2jw-yZ-fpU"/>
+                            <constraint firstItem="DCe-Ku-Ahm" firstAttribute="bottom" secondItem="k81-4D-6lO" secondAttribute="bottom" id="55p-wl-knA"/>
+                            <constraint firstItem="k81-4D-6lO" firstAttribute="top" secondItem="teu-dj-Hhj" secondAttribute="bottom" id="J5h-X6-rWx"/>
+                            <constraint firstItem="k81-4D-6lO" firstAttribute="trailing" secondItem="DCe-Ku-Ahm" secondAttribute="trailing" id="Oiv-Af-Qgg"/>
+                            <constraint firstItem="teu-dj-Hhj" firstAttribute="trailing" secondItem="DCe-Ku-Ahm" secondAttribute="trailing" id="c50-XE-jLJ"/>
+                            <constraint firstItem="teu-dj-Hhj" firstAttribute="top" secondItem="DCe-Ku-Ahm" secondAttribute="top" constant="12" id="h9X-Gc-k1S"/>
+                            <constraint firstItem="teu-dj-Hhj" firstAttribute="leading" secondItem="DCe-Ku-Ahm" secondAttribute="leading" constant="12" id="z5C-3v-4Kt"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="H7Q-Cx-CsH">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="H7Q-Cx-CsH">
                         <rightBarButtonItems>
+                            <barButtonItem title="저장" style="plain" id="R0s-Dw-Bsr">
+                                <color key="tintColor" systemColor="systemTealColor"/>
+                            </barButtonItem>
                             <barButtonItem title="Item" image="pencil.slash" catalog="system" id="7zE-co-y5K">
                                 <color key="tintColor" systemColor="systemTealColor"/>
                             </barButtonItem>
@@ -187,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZR-qn-MOl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1874" y="125"/>
+            <point key="canvasLocation" x="1873.913043478261" y="124.55357142857142"/>
         </scene>
         <!--휴지통-->
         <scene sceneID="JH6-3E-PrN">
@@ -544,6 +572,9 @@
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="tag.slash" catalog="system" width="128" height="119"/>
         <image name="trash" catalog="system" width="121" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
