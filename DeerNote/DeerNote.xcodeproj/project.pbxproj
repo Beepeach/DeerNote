@@ -11,6 +11,7 @@
 		EE13B1A527A7C62A0060589B /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A427A7C62A0060589B /* Note.swift */; };
 		EE13B1A727A7C75A0060589B /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A627A7C75A0060589B /* Tag.swift */; };
 		EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */; };
+		EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE145B8227B7FED1008EAA35 /* NoteEditorViewController.swift */; };
 		EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7933A427B4FC220004BEF8 /* ContainerViewController.swift */; };
 		EEB76A0227AC168900BCB4B6 /* GradationColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB76A0127AC168900BCB4B6 /* GradationColors.swift */; };
 		EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */; };
@@ -49,6 +50,7 @@
 		EE13B1A427A7C62A0060589B /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		EE13B1A627A7C75A0060589B /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE145B8227B7FED1008EAA35 /* NoteEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorViewController.swift; sourceTree = "<group>"; };
 		EE7933A427B4FC220004BEF8 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		EEB76A0127AC168900BCB4B6 /* GradationColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradationColors.swift; sourceTree = "<group>"; };
 		EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+setGradationBackgroundColor.swift"; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 				EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EE145B8127B7FEA5008EAA35 /* NoteEditor */ = {
+			isa = PBXGroup;
+			children = (
+				EE145B8227B7FED1008EAA35 /* NoteEditorViewController.swift */,
+			);
+			path = NoteEditor;
 			sourceTree = "<group>";
 		};
 		EE7933A327B4FC110004BEF8 /* ViewControllers */ = {
@@ -197,6 +207,7 @@
 				EE13B1A327A7C5F70060589B /* Model */,
 				EEB769FA27ABAED600BCB4B6 /* Home */,
 				EEB769FB27ABAF2B00BCB4B6 /* Menu */,
+				EE145B8127B7FEA5008EAA35 /* NoteEditor */,
 			);
 			path = DeerNote;
 			sourceTree = "<group>";
@@ -361,6 +372,7 @@
 				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,
 				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,
 				EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */,
+				EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */,
 				EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
