@@ -203,6 +203,9 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="pencil.slash" catalog="system" id="7zE-co-y5K">
                                 <color key="tintColor" systemColor="systemTealColor"/>
+                                <connections>
+                                    <action selector="tapEndEditButton:" destination="hco-nt-dVO" id="yLC-jT-dOA"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="ellipsis.circle" catalog="system" id="jdl-Ao-gvX">
                                 <color key="tintColor" systemColor="systemTealColor"/>

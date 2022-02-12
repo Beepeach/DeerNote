@@ -19,4 +19,12 @@ class NoteEditorViewController: UIViewController {
         
         contentTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
     }
+    
+    @IBAction func tapEndEditButton(_ sender: UIBarButtonItem) {
+        contentTextView.resignFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("disappear")
+    }
 }
