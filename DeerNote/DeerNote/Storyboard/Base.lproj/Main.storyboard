@@ -215,6 +215,7 @@
                     <connections>
                         <outlet property="EndEditBarButtonItem" destination="7zE-co-y5K" id="Cwi-oi-sxy"/>
                         <outlet property="contentTextView" destination="teu-dj-Hhj" id="fuo-QN-wiL"/>
+                        <outlet property="tagViewBottomConstraint" destination="55p-wl-knA" id="1hS-6V-tdN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZR-qn-MOl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
