@@ -15,7 +15,9 @@ class NoteEditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.tintColor = .systemTeal
+        contentTextView.becomeFirstResponder()
+        
+        navigationController?.navigationBar.tintColor = .systemTeal
         
         contentTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
     }
