@@ -38,6 +38,17 @@ class ContainerViewController: UIViewController {
         return noteListNav
     }()
     private lazy var noteListVC: NoteListViewController = noteListNav.viewControllers.first as? NoteListViewController ?? NoteListViewController()
+    private var visibleNoteListVC: NoteListViewController {
+        if noteListVC.children.isEmpty {
+            return noteListVC
+        }
+        
+        guard let tagNoteListVC = noteListVC.children.last as? NoteListViewController else {
+            return noteListVC
+        }
+        
+        return tagNoteListVC
+    }
 
     
     // MARK: VCLifeCycle
@@ -140,7 +151,7 @@ class ContainerViewController: UIViewController {
     }
     
     private func setDynamicDimmingViewAlpha() {
-        noteListVC.dimmingView.alpha = 0 + (0.5 * (noteListNav.view.frame.origin.x / menuVCWidth))
+        visibleNoteListVC.dimmingView.alpha = 0 + (0.5 * (noteListNav.view.frame.origin.x / menuVCWidth))
     }
     
     private func completeMenuAnimation(on condition: Bool) {
@@ -176,7 +187,7 @@ extension ContainerViewController: NoteListViewControllerDelegate {
     private func openMenu(completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
-            self.noteListVC.dimmingView.alpha = 0.5
+            self.visibleNoteListVC.dimmingView.alpha = 0.5
         } completion: { [weak self] done in
             if done {
                 self?.menuState = .opened
@@ -188,7 +199,7 @@ extension ContainerViewController: NoteListViewControllerDelegate {
     private func closeMenu(completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.noteListNav.view.frame.origin.x = 0
-            self.noteListVC.dimmingView.alpha = 0.0
+            self.visibleNoteListVC.dimmingView.alpha = 0.0
         } completion: { [weak self] done in
             if done {
                 self?.menuState = .closed
