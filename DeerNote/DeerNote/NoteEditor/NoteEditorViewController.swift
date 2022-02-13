@@ -8,11 +8,16 @@
 import UIKit
 
 class NoteEditorViewController: UIViewController {
+    var tags: [Tag] = [
+    ]
+    
+    
     // MARK: @IBOutlet
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var EndEditBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var tagViewBottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var tagCollectionView: UICollectionView!
+
     
     // MARK: VCLifeCycle
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,13 +76,81 @@ class NoteEditorViewController: UIViewController {
 
 
 extension NoteEditorViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return section == 0 ? 1 : tags.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath)
+        switch indexPath.section {
+        case 0:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCreatorCell", for: indexPath) as? TagCreatorCollectionViewCell else {
+                return TagCreatorCollectionViewCell()
+            }
+            
+            return cell
+        default:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as? TagCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            
+            cell.tagNameLabel.text = tags[indexPath.item].name
+            
+            return cell
+        }
+    }
+}
+
+
+extension NoteEditorViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selcet")
+    }
+}
+
+
+extension NoteEditorViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text, text.count > 0 else {
+                  return false
+        }
         
-        return cell
+        if tags.contains(where: { $0.name == text }) {
+            return false
+        }
+        
+        tags.append(Tag(name: text))
+        textField.text = nil
+        textField.becomeFirstResponder()
+      
+        tagCollectionView.reloadSections(IndexSet(integer: 1))
+        return true
+    }
+    
+    
+    // TODO: - 왜 크기가 안바뀔까?? 다이나믹하게 바뀌도록 만들어야합니다.
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.text != nil {
+            guard let text = textField.text else {
+                return true
+            }
+            
+            let nsText = text as NSString
+            let finalString = nsText.replacingCharacters(in: range, with: string)
+            textField.frame.size.width = getWidth(text: finalString)
+            self.view.layoutIfNeeded()
+        }
+        
+        return true
+    }
+    
+    private func getWidth(text: String) -> CGFloat {
+        let dummyTextField = UITextField(frame: .zero)
+        dummyTextField.text = text
+        dummyTextField.sizeToFit()
+        return dummyTextField.frame.size.width
     }
 }

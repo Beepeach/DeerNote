@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -172,52 +173,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="여기에 노트 작성" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="teu-dj-Hhj">
-                                <rect key="frame" x="12" y="100" width="402" height="712"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k81-4D-6lO" userLabel="Tag View">
-                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <rect key="frame" x="12" y="812" width="402" height="50"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="S4m-DV-lDy">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="402" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="08k-5h-Mww">
                                             <size key="itemSize" width="166" height="43"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TagCell" id="WES-wN-pt0">
-                                                <rect key="frame" x="0.0" y="3.5" width="166" height="43"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TagCreatorCell" id="2lW-Uv-RHH" customClass="TagCreatorCollectionViewCell" customModule="DeerNote" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="8" width="83.5" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="suP-ht-fzJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="166" height="43"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zgX-FF-o3g">
+                                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="34"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqS-KS-r5p">
-                                                            <rect key="frame" x="0.0" y="0.0" width="166" height="43"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Tag" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="F4f-IC-Unv" customClass="customField" customModule="DeerNote" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="83.5" height="34"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="hco-nt-dVO" id="Si6-9f-RGK"/>
+                                                            </connections>
+                                                        </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="oqS-KS-r5p" firstAttribute="top" secondItem="suP-ht-fzJ" secondAttribute="top" id="KrF-UV-Y0m"/>
-                                                        <constraint firstAttribute="bottom" secondItem="oqS-KS-r5p" secondAttribute="bottom" id="ja2-bH-Fk2"/>
-                                                        <constraint firstItem="oqS-KS-r5p" firstAttribute="leading" secondItem="suP-ht-fzJ" secondAttribute="leading" id="vGb-D5-ODT"/>
-                                                        <constraint firstAttribute="trailing" secondItem="oqS-KS-r5p" secondAttribute="trailing" id="xMX-9o-iCd"/>
+                                                        <constraint firstAttribute="trailing" secondItem="F4f-IC-Unv" secondAttribute="trailing" id="OXH-fc-XyL"/>
+                                                        <constraint firstItem="F4f-IC-Unv" firstAttribute="top" secondItem="zgX-FF-o3g" secondAttribute="top" id="QoA-84-D9Q"/>
+                                                        <constraint firstAttribute="bottom" secondItem="F4f-IC-Unv" secondAttribute="bottom" id="uCn-Lq-SyZ"/>
+                                                        <constraint firstItem="F4f-IC-Unv" firstAttribute="leading" secondItem="zgX-FF-o3g" secondAttribute="leading" id="yn4-3S-AQR"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
-                                                <size key="customSize" width="166" height="43"/>
+                                                <connections>
+                                                    <outlet property="TagField" destination="F4f-IC-Unv" id="rdd-t7-dlH"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TagCell" id="WES-wN-pt0" customClass="TagCollectionViewCell" customModule="DeerNote" customModuleProvider="target">
+                                                <rect key="frame" x="103.5" y="12" width="55" height="26"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="suP-ht-fzJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Tag" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5I-ZI-tYJ">
+                                                            <rect key="frame" x="6" y="4" width="25" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcF-rt-0XW">
+                                                            <rect key="frame" x="37" y="7" width="12" height="12"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="12" id="7bF-pC-wzk"/>
+                                                                <constraint firstAttribute="width" secondItem="VcF-rt-0XW" secondAttribute="height" multiplier="1:1" id="d1s-6x-wy3"/>
+                                                            </constraints>
+                                                            <color key="tintColor" systemColor="systemTealColor"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="">
+                                                                <imageReference key="image" image="cancel" symbolScale="small"/>
+                                                            </buttonConfiguration>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="VcF-rt-0XW" firstAttribute="leading" secondItem="s5I-ZI-tYJ" secondAttribute="trailing" constant="6" id="Awm-iq-iwV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="VcF-rt-0XW" secondAttribute="trailing" constant="6" id="CAc-zr-1SJ"/>
+                                                        <constraint firstItem="s5I-ZI-tYJ" firstAttribute="leading" secondItem="suP-ht-fzJ" secondAttribute="leading" constant="6" id="Jhh-uR-91k"/>
+                                                        <constraint firstItem="s5I-ZI-tYJ" firstAttribute="top" secondItem="suP-ht-fzJ" secondAttribute="top" constant="4" id="SqL-IM-rR8"/>
+                                                        <constraint firstAttribute="bottom" secondItem="s5I-ZI-tYJ" secondAttribute="bottom" constant="4" id="YSN-Uc-qyE"/>
+                                                        <constraint firstItem="VcF-rt-0XW" firstAttribute="centerY" secondItem="s5I-ZI-tYJ" secondAttribute="centerY" id="ml8-tj-GlH"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <connections>
+                                                    <outlet property="tagNameLabel" destination="s5I-ZI-tYJ" id="xgP-Gq-zzl"/>
+                                                    <outlet property="tagremoveButton" destination="VcF-rt-0XW" id="dWs-ds-gaX"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
                                             <outlet property="dataSource" destination="hco-nt-dVO" id="JLf-68-pV7"/>
+                                            <outlet property="delegate" destination="hco-nt-dVO" id="ge1-rr-g6d"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
@@ -230,11 +268,18 @@
                                     <constraint firstAttribute="trailing" secondItem="S4m-DV-lDy" secondAttribute="trailing" id="vSj-8C-ean"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="여기에 노트 작성" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="teu-dj-Hhj">
+                                <rect key="frame" x="12" y="100" width="402" height="712"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DCe-Ku-Ahm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="k81-4D-6lO" firstAttribute="leading" secondItem="DCe-Ku-Ahm" secondAttribute="leading" id="2jw-yZ-fpU"/>
+                            <constraint firstItem="k81-4D-6lO" firstAttribute="leading" secondItem="DCe-Ku-Ahm" secondAttribute="leading" constant="12" id="2jw-yZ-fpU"/>
                             <constraint firstItem="DCe-Ku-Ahm" firstAttribute="bottom" secondItem="k81-4D-6lO" secondAttribute="bottom" id="55p-wl-knA"/>
                             <constraint firstItem="k81-4D-6lO" firstAttribute="top" secondItem="teu-dj-Hhj" secondAttribute="bottom" id="J5h-X6-rWx"/>
                             <constraint firstItem="k81-4D-6lO" firstAttribute="trailing" secondItem="DCe-Ku-Ahm" secondAttribute="trailing" id="Oiv-Af-Qgg"/>
@@ -259,6 +304,7 @@
                     <connections>
                         <outlet property="EndEditBarButtonItem" destination="7zE-co-y5K" id="Cwi-oi-sxy"/>
                         <outlet property="contentTextView" destination="teu-dj-Hhj" id="fuo-QN-wiL"/>
+                        <outlet property="tagCollectionView" destination="S4m-DV-lDy" id="82o-Ig-y4b"/>
                         <outlet property="tagViewBottomConstraint" destination="55p-wl-knA" id="1hS-6V-tdN"/>
                     </connections>
                 </viewController>
@@ -613,6 +659,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cancel" width="256" height="256"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
