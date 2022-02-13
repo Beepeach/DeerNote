@@ -68,3 +68,16 @@ class NoteEditorViewController: UIViewController {
         contentTextView.resignFirstResponder()
     }
 }
+
+
+extension NoteEditorViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath)
+        
+        return cell
+    }
+}

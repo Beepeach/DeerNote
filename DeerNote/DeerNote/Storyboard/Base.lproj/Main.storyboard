@@ -181,9 +181,53 @@
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k81-4D-6lO" userLabel="Tag View">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="S4m-DV-lDy">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="08k-5h-Mww">
+                                            <size key="itemSize" width="166" height="43"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TagCell" id="WES-wN-pt0">
+                                                <rect key="frame" x="0.0" y="3.5" width="166" height="43"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="suP-ht-fzJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="166" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqS-KS-r5p">
+                                                            <rect key="frame" x="0.0" y="0.0" width="166" height="43"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="oqS-KS-r5p" firstAttribute="top" secondItem="suP-ht-fzJ" secondAttribute="top" id="KrF-UV-Y0m"/>
+                                                        <constraint firstAttribute="bottom" secondItem="oqS-KS-r5p" secondAttribute="bottom" id="ja2-bH-Fk2"/>
+                                                        <constraint firstItem="oqS-KS-r5p" firstAttribute="leading" secondItem="suP-ht-fzJ" secondAttribute="leading" id="vGb-D5-ODT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="oqS-KS-r5p" secondAttribute="trailing" id="xMX-9o-iCd"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <size key="customSize" width="166" height="43"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="hco-nt-dVO" id="JLf-68-pV7"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="S4m-DV-lDy" secondAttribute="bottom" id="1zW-eq-XFy"/>
+                                    <constraint firstItem="S4m-DV-lDy" firstAttribute="top" secondItem="k81-4D-6lO" secondAttribute="top" id="Mhg-d5-a0Y"/>
+                                    <constraint firstItem="S4m-DV-lDy" firstAttribute="leading" secondItem="k81-4D-6lO" secondAttribute="leading" id="d5J-Bd-D18"/>
                                     <constraint firstAttribute="height" constant="50" id="ulB-RO-51M"/>
+                                    <constraint firstAttribute="trailing" secondItem="S4m-DV-lDy" secondAttribute="trailing" id="vSj-8C-ean"/>
                                 </constraints>
                             </view>
                         </subviews>
