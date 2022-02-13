@@ -70,7 +70,7 @@ class NoteEditorViewController: UIViewController {
     
     // MARK: @IBAction
     @IBAction func tapEndEditButton(_ sender: UIBarButtonItem) {
-        contentTextView.resignFirstResponder()
+        self.view.endEditing(true)
     }
 }
 
