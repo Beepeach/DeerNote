@@ -258,7 +258,6 @@
                                         </cells>
                                         <connections>
                                             <outlet property="dataSource" destination="hco-nt-dVO" id="JLf-68-pV7"/>
-                                            <outlet property="delegate" destination="hco-nt-dVO" id="ge1-rr-g6d"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>

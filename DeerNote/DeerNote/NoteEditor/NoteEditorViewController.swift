@@ -8,6 +8,7 @@
 import UIKit
 
 class NoteEditorViewController: UIViewController {
+    // MARK: Properties
     var tags: [Tag] = [
     ]
     
@@ -29,35 +30,14 @@ class NoteEditorViewController: UIViewController {
         setupDefaultApperance()
         adjustApperanceWhenKeyboardShow()
         resetApperanceWhenKeyboardHide()
-        
+        observeTagRemoveButtonTapped()
         contentTextView.becomeFirstResponder()
-        
-        NotificationCenter.default.addObserver(forName: .tapRemoveButtonDidTapped, object: nil, queue: .main) { noti in
-            guard let userInfo = noti.userInfo else {
-                return
-            }
-            
-            guard let targetTag: String = userInfo[TagCollectionViewCell.removedTagNameUserInfoKey] as? String else {
-                return
-            }
-            
-            print(targetTag)
-            
-            let index = self.tags.firstIndex {
-                $0.name == targetTag
-            }
-            
-            guard let index = index else {
-                return
-            }
-            
-            self.tags.remove(at: index)
-            self.tagCollectionView.deleteItems(at: [IndexPath(item: index, section: 1)])
-            
-            self.tagCollectionView.reloadSections(IndexSet(integer: 1))
-        }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+        
     private func setupDefaultApperance() {
         navigationController?.navigationBar.tintColor = .systemTeal
         contentTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
@@ -92,6 +72,28 @@ class NoteEditorViewController: UIViewController {
         }
     }
     
+    private func observeTagRemoveButtonTapped() {
+        NotificationCenter.default.addObserver(forName: .tapRemoveButtonDidTapped, object: nil, queue: .main) { [weak self] noti in
+            guard let userInfo = noti.userInfo else {
+                return
+            }
+            guard let targetTag: String = userInfo[TagCollectionViewCell.removedTagNameUserInfoKey] as? String else {
+                return
+            }
+            guard let targetIndex = self?.tags.firstIndex(where: {$0.name == targetTag}) else {
+                return
+            }
+            
+            self?.removeTag(at: targetIndex)
+            self?.tagCollectionView.reloadSections(IndexSet(integer: 1))
+        }
+    }
+    
+    private func removeTag(at targetIndex : Int) {
+        self.tags.remove(at: targetIndex)
+        self.tagCollectionView.deleteItems(at: [IndexPath(item: targetIndex, section: 1)])
+    }
+    
     
     // MARK: @IBAction
     @IBAction func tapEndEditButton(_ sender: UIBarButtonItem) {
@@ -100,6 +102,7 @@ class NoteEditorViewController: UIViewController {
 }
 
 
+// MARK: - UICollectionViewDataSource
 extension NoteEditorViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -121,9 +124,7 @@ extension NoteEditorViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as? TagCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
             cell.tagNameLabel.text = tags[indexPath.item].name
-            cell.tagremoveButton.tag = indexPath.item
             
             return cell
         }
@@ -131,24 +132,18 @@ extension NoteEditorViewController: UICollectionViewDataSource {
 }
 
 
-extension NoteEditorViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selcet")
-    }
-}
-
-
+// MARK: - UITextFieldDelegate
 extension NoteEditorViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text, text.count > 0 else {
                   return false
         }
-        
-        if tags.contains(where: { $0.name == text }) {
+        guard !isExistingTag(name: text) else {
             return false
         }
         
         tags.append(Tag(name: text))
+        
         textField.text = nil
         textField.becomeFirstResponder()
       
@@ -156,27 +151,37 @@ extension NoteEditorViewController: UITextFieldDelegate {
         return true
     }
     
-    
-    // TODO: - 왜 크기가 안바뀔까?? 다이나믹하게 바뀌도록 만들어야합니다.
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.text != nil {
-            guard let text = textField.text else {
-                return true
-            }
-            
-            let nsText = text as NSString
-            let finalString = nsText.replacingCharacters(in: range, with: string)
-            textField.frame.size.width = getWidth(text: finalString)
-            self.view.layoutIfNeeded()
+    private func isExistingTag(name: String) -> Bool {
+        if tags.contains(where: { $0.name == name }) {
+            return true
         }
         
-        return true
-    }
-    
-    private func getWidth(text: String) -> CGFloat {
-        let dummyTextField = UITextField(frame: .zero)
-        dummyTextField.text = text
-        dummyTextField.sizeToFit()
-        return dummyTextField.frame.size.width
+        return false
     }
 }
+
+
+// TODO: - 왜 크기가 안바뀔까?? 다이나믹하게 바뀌도록 만들어야합니다.
+/*
+func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if textField.text != nil {
+        guard let text = textField.text else {
+            return true
+        }
+        
+        let nsText = text as NSString
+        let finalString = nsText.replacingCharacters(in: range, with: string)
+        textField.frame.size.width = getWidth(text: finalString)
+        self.view.layoutIfNeeded()
+    }
+    
+    return true
+}
+
+private func getWidth(text: String) -> CGFloat {
+    let dummyTextField = UITextField(frame: .zero)
+    dummyTextField.text = text
+    dummyTextField.sizeToFit()
+    return dummyTextField.frame.size.width
+}
+*/
