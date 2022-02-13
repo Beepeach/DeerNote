@@ -302,8 +302,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="EndEditBarButtonItem" destination="7zE-co-y5K" id="Cwi-oi-sxy"/>
                         <outlet property="contentTextView" destination="teu-dj-Hhj" id="fuo-QN-wiL"/>
+                        <outlet property="endEditBarButtonItem" destination="7zE-co-y5K" id="Cwi-oi-sxy"/>
                         <outlet property="tagCollectionView" destination="S4m-DV-lDy" id="82o-Ig-y4b"/>
                         <outlet property="tagViewBottomConstraint" destination="55p-wl-knA" id="1hS-6V-tdN"/>
                     </connections>

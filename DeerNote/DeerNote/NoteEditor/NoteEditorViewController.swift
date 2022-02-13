@@ -14,7 +14,7 @@ class NoteEditorViewController: UIViewController {
     
     // MARK: @IBOutlet
     @IBOutlet weak var contentTextView: UITextView!
-    @IBOutlet weak var EndEditBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var endEditBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var tagViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagCollectionView: UICollectionView!
 
