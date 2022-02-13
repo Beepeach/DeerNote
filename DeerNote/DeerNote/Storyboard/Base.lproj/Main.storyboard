@@ -165,7 +165,7 @@
             </objects>
             <point key="canvasLocation" x="856.52173913043487" y="124.55357142857142"/>
         </scene>
-        <!--Note Editor View Controller-->
+        <!--New-->
         <scene sceneID="CgA-EV-DRL">
             <objects>
                 <viewController id="hco-nt-dVO" customClass="NoteEditorViewController" customModule="DeerNote" customModuleProvider="target" sceneMemberID="viewController">
@@ -291,7 +291,7 @@
                             <constraint firstItem="teu-dj-Hhj" firstAttribute="leading" secondItem="DCe-Ku-Ahm" secondAttribute="leading" constant="12" id="z5C-3v-4Kt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="H7Q-Cx-CsH">
+                    <navigationItem key="navigationItem" title="New" largeTitleDisplayMode="never" id="H7Q-Cx-CsH">
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="pencil.slash" catalog="system" id="7zE-co-y5K">
                                 <color key="tintColor" systemColor="systemTealColor"/>
