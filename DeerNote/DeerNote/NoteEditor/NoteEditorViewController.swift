@@ -31,6 +31,31 @@ class NoteEditorViewController: UIViewController {
         resetApperanceWhenKeyboardHide()
         
         contentTextView.becomeFirstResponder()
+        
+        NotificationCenter.default.addObserver(forName: .tapRemoveButtonDidTapped, object: nil, queue: .main) { noti in
+            guard let userInfo = noti.userInfo else {
+                return
+            }
+            
+            guard let targetTag: String = userInfo[TagCollectionViewCell.removedTagNameUserInfoKey] as? String else {
+                return
+            }
+            
+            print(targetTag)
+            
+            let index = self.tags.firstIndex {
+                $0.name == targetTag
+            }
+            
+            guard let index = index else {
+                return
+            }
+            
+            self.tags.remove(at: index)
+            self.tagCollectionView.deleteItems(at: [IndexPath(item: index, section: 1)])
+            
+            self.tagCollectionView.reloadSections(IndexSet(integer: 1))
+        }
     }
     
     private func setupDefaultApperance() {
@@ -98,6 +123,7 @@ extension NoteEditorViewController: UICollectionViewDataSource {
             }
             
             cell.tagNameLabel.text = tags[indexPath.item].name
+            cell.tagremoveButton.tag = indexPath.item
             
             return cell
         }

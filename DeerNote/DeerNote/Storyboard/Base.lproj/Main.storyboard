@@ -214,10 +214,10 @@
                                                 </connections>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TagCell" id="WES-wN-pt0" customClass="TagCollectionViewCell" customModule="DeerNote" customModuleProvider="target">
-                                                <rect key="frame" x="103.5" y="12" width="55" height="26"/>
+                                                <rect key="frame" x="103.5" y="12" width="63" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="suP-ht-fzJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="26"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="63" height="26"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Tag" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5I-ZI-tYJ">
@@ -227,15 +227,18 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcF-rt-0XW">
-                                                            <rect key="frame" x="37" y="7" width="12" height="12"/>
+                                                            <rect key="frame" x="37" y="3" width="20" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="12" id="7bF-pC-wzk"/>
+                                                                <constraint firstAttribute="height" constant="20" id="7bF-pC-wzk"/>
                                                                 <constraint firstAttribute="width" secondItem="VcF-rt-0XW" secondAttribute="height" multiplier="1:1" id="d1s-6x-wy3"/>
                                                             </constraints>
                                                             <color key="tintColor" systemColor="systemTealColor"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="">
                                                                 <imageReference key="image" image="cancel" symbolScale="small"/>
                                                             </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="tapTagRemoveButton:" destination="WES-wN-pt0" eventType="touchUpInside" id="doz-cv-qGM"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
