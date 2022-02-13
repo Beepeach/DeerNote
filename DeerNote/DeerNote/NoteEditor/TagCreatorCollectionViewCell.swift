@@ -9,7 +9,4 @@ import UIKit
 
 class TagCreatorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var TagField: UITextField!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 }
