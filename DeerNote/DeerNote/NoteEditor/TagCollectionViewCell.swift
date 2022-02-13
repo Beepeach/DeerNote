@@ -8,14 +8,23 @@
 import UIKit
 
 class TagCollectionViewCell: UICollectionViewCell {
+    // MARK: @IBOutlet
     @IBOutlet weak var tagNameLabel: UILabel!
     @IBOutlet weak var tagremoveButton: UIButton!
     
+    
+    // MARK: ViewLayout
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupLayout()
+    }
+    
+    private func setupLayout() {
         self.contentView.layer.borderWidth = 0.5
         self.contentView.layer.cornerRadius = 3
     }
+    
+    // MARK: @IBAction
     @IBAction func tapTagRemoveButton(_ sender: UIButton) {
         guard let name = tagNameLabel.text else {
             return
@@ -25,9 +34,11 @@ class TagCollectionViewCell: UICollectionViewCell {
 }
 
 
+// MARK: - Notification
 extension Notification.Name {
     static let tapRemoveButtonDidTapped = Notification.Name(rawValue: "tapRemoveButtonDidTapped")
 }
+
 
 extension TagCollectionViewCell {
     static let removedTagNameUserInfoKey: String = "tagName"
