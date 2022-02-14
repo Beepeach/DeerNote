@@ -104,6 +104,7 @@
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="contents" destination="EBm-p0-rje" id="Aiz-7j-FDB"/>
+                                            <segue destination="hco-nt-dVO" kind="show" identifier="toEditorVCSegue" id="uwn-Si-vGD"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -660,6 +661,9 @@
             <point key="canvasLocation" x="857" y="858"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="uwn-Si-vGD"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="cancel" width="256" height="256"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>

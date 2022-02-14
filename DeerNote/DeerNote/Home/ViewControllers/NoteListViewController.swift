@@ -75,6 +75,19 @@ class NoteListViewController: UIViewController {
     @IBAction func tapDimmingView(_ sender: Any) {
         delegate?.didTapDimmingView(self)
     }
+    
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "toEditorVCSegue":
+            let vc = segue.destination as! NoteEditorViewController
+            vc.title = "Edit"
+            
+            
+        default:
+            break
+        }
+    }
 }
 
 
