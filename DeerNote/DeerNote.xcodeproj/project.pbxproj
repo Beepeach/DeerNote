@@ -14,6 +14,8 @@
 		EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE145B8227B7FED1008EAA35 /* NoteEditorViewController.swift */; };
 		EE145B8527B8EA84008EAA35 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE145B8427B8EA84008EAA35 /* TagCollectionViewCell.swift */; };
 		EE145B8727B9012B008EAA35 /* TagCreatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE145B8627B9012B008EAA35 /* TagCreatorCollectionViewCell.swift */; };
+		EE1970CF27BA44930026CE19 /* TrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1970CE27BA44930026CE19 /* TrashViewController.swift */; };
+		EE1970D227BA48590026CE19 /* DeletedNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1970D127BA48590026CE19 /* DeletedNoteTableViewCell.swift */; };
 		EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7933A427B4FC220004BEF8 /* ContainerViewController.swift */; };
 		EEB76A0227AC168900BCB4B6 /* GradationColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB76A0127AC168900BCB4B6 /* GradationColors.swift */; };
 		EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */; };
@@ -55,6 +57,8 @@
 		EE145B8227B7FED1008EAA35 /* NoteEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorViewController.swift; sourceTree = "<group>"; };
 		EE145B8427B8EA84008EAA35 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE145B8627B9012B008EAA35 /* TagCreatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCreatorCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE1970CE27BA44930026CE19 /* TrashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashViewController.swift; sourceTree = "<group>"; };
+		EE1970D127BA48590026CE19 /* DeletedNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedNoteTableViewCell.swift; sourceTree = "<group>"; };
 		EE7933A427B4FC220004BEF8 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		EEB76A0127AC168900BCB4B6 /* GradationColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradationColors.swift; sourceTree = "<group>"; };
 		EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+setGradationBackgroundColor.swift"; sourceTree = "<group>"; };
@@ -127,6 +131,15 @@
 				EE145B8627B9012B008EAA35 /* TagCreatorCollectionViewCell.swift */,
 			);
 			path = NoteEditor;
+			sourceTree = "<group>";
+		};
+		EE1970CD27BA44730026CE19 /* Trash */ = {
+			isa = PBXGroup;
+			children = (
+				EE1970CE27BA44930026CE19 /* TrashViewController.swift */,
+				EE1970D127BA48590026CE19 /* DeletedNoteTableViewCell.swift */,
+			);
+			path = Trash;
 			sourceTree = "<group>";
 		};
 		EE7933A327B4FC110004BEF8 /* ViewControllers */ = {
@@ -214,6 +227,7 @@
 				EEB769FA27ABAED600BCB4B6 /* Home */,
 				EEB769FB27ABAF2B00BCB4B6 /* Menu */,
 				EE145B8127B7FEA5008EAA35 /* NoteEditor */,
+				EE1970CD27BA44730026CE19 /* Trash */,
 			);
 			path = DeerNote;
 			sourceTree = "<group>";
@@ -372,8 +386,10 @@
 				EE145B8727B9012B008EAA35 /* TagCreatorCollectionViewCell.swift in Sources */,
 				EE13B1A727A7C75A0060589B /* Tag.swift in Sources */,
 				EE145B8527B8EA84008EAA35 /* TagCollectionViewCell.swift in Sources */,
+				EE1970CF27BA44930026CE19 /* TrashViewController.swift in Sources */,
 				EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */,
 				EE13B1A527A7C62A0060589B /* Note.swift in Sources */,
+				EE1970D227BA48590026CE19 /* DeletedNoteTableViewCell.swift in Sources */,
 				EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */,
 				EE023C5427B02104004833A8 /* UINavigationController + shouldAutoroate.swift in Sources */,
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
