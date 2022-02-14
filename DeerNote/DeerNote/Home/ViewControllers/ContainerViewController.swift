@@ -299,7 +299,7 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
             return false
         }
         
-        guard !isNoteEditorVC() else {
+        guard isNoteListVC() else {
             return false
         }
         
@@ -311,8 +311,8 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
         return false
     }
     
-    private func isNoteEditorVC() -> Bool {
-        if let _ = noteListNav.topViewController as? NoteEditorViewController {
+    private func isNoteListVC() -> Bool {
+        if let _ = noteListNav.topViewController as? NoteListViewController {
             return true
         }
         
