@@ -9,14 +9,14 @@ import UIKit
 
 class NoteCollectionViewCell: UICollectionViewCell {
     // MARK: @IBOutlet
-    @IBOutlet weak var contents: UILabel!
+    @IBOutlet weak var contentsLabel: UILabel!
     
     // MARK: ViewLifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setCellShadow()
         setCellCorner()
-        contents.textColor = .white
+        contentsLabel.textColor = .white
     }
     
     override func layoutSubviews() {

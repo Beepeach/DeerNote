@@ -103,7 +103,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="contents" destination="EBm-p0-rje" id="Aiz-7j-FDB"/>
+                                            <outlet property="contentsLabel" destination="EBm-p0-rje" id="Aiz-7j-FDB"/>
                                             <segue destination="hco-nt-dVO" kind="show" identifier="toEditorVCSegue" id="uwn-Si-vGD"/>
                                         </connections>
                                     </collectionViewCell>
@@ -198,9 +198,6 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="83.5" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                            <connections>
-                                                                <outlet property="delegate" destination="hco-nt-dVO" id="Si6-9f-RGK"/>
-                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>

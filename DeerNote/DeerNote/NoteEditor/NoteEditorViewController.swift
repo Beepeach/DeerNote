@@ -12,6 +12,7 @@ class NoteEditorViewController: UIViewController {
     var tags: [Tag] = [
     ]
     
+    var contents: String?
     
     // MARK: @IBOutlet
     @IBOutlet weak var contentTextView: UITextView!
@@ -32,10 +33,13 @@ class NoteEditorViewController: UIViewController {
         resetApperanceWhenKeyboardHide()
         observeTagRemoveButtonTapped()
         contentTextView.becomeFirstResponder()
+        
+        contentTextView.text = contents
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        print(#function)
     }
         
     private func setupDefaultApperance() {

@@ -83,6 +83,16 @@ class NoteListViewController: UIViewController {
             let vc = segue.destination as! NoteEditorViewController
             vc.title = "Edit"
             
+            guard let cell = sender as? NoteCollectionViewCell else {
+                return
+            }
+            
+            guard let targetIndexPath = noteListCollectionView.indexPath(for: cell) else {
+                return
+            }
+            
+            vc.contents = cell.contentsLabel.text
+            
             
         default:
             break
@@ -102,7 +112,7 @@ extension NoteListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.contents.text = dummyNote[indexPath.item].contents
+        cell.contentsLabel.text = dummyNote[indexPath.item].contents
         
         return cell
     }
