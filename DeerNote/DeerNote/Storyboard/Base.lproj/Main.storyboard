@@ -352,6 +352,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Dfc-bu-Oqp" id="nZG-Ak-lNb"/>
+                                    <outlet property="delegate" destination="Dfc-bu-Oqp" id="ozb-a1-Pyq"/>
                                 </connections>
                             </tableView>
                         </subviews>
