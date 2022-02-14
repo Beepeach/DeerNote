@@ -122,6 +122,7 @@ extension NoteEditorViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCreatorCell", for: indexPath) as? TagCreatorCollectionViewCell else {
                 return TagCreatorCollectionViewCell()
             }
+            cell.delegate = self
             
             return cell
         default:
@@ -136,8 +137,8 @@ extension NoteEditorViewController: UICollectionViewDataSource {
 }
 
 
-// MARK: - UITextFieldDelegate
-extension NoteEditorViewController: UITextFieldDelegate {
+// MARK: - TagCreatorCollectionViewCellDelegate
+extension NoteEditorViewController: TagCreatorCollectionViewCellDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text, text.count > 0 else {
                   return false
@@ -162,30 +163,32 @@ extension NoteEditorViewController: UITextFieldDelegate {
         
         return false
     }
-}
-
-
-// TODO: - 왜 크기가 안바뀔까?? 다이나믹하게 바뀌도록 만들어야합니다.
-/*
-func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    if textField.text != nil {
-        guard let text = textField.text else {
-            return true
-        }
-        
-        let nsText = text as NSString
-        let finalString = nsText.replacingCharacters(in: range, with: string)
-        textField.frame.size.width = getWidth(text: finalString)
-        self.view.layoutIfNeeded()
-    }
     
-    return true
+    // TODO: - 왜 크기가 안바뀔까?? 다이나믹하게 바뀌도록 만들어야합니다.
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        /*
+        if textField.text != nil {
+            guard let text = textField.text else {
+                return true
+            }
+            
+            let nsText = text as NSString
+            let finalString = nsText.replacingCharacters(in: range, with: string)
+            textField.frame.size.width = getWidth(text: finalString)
+            self.view.layoutIfNeeded()
+        }
+        */
+        
+        return true
+    }
+
+    private func getWidth(text: String) -> CGFloat {
+        let dummyTextField = UITextField(frame: .zero)
+        dummyTextField.text = text
+        dummyTextField.sizeToFit()
+        return dummyTextField.frame.size.width
+    }
 }
 
-private func getWidth(text: String) -> CGFloat {
-    let dummyTextField = UITextField(frame: .zero)
-    dummyTextField.text = text
-    dummyTextField.sizeToFit()
-    return dummyTextField.frame.size.width
-}
-*/
+
+
