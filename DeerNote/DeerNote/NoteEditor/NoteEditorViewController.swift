@@ -48,7 +48,7 @@ class NoteEditorViewController: UIViewController {
     }
     
     private func adjustApperanceWhenKeyboardShow() {
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { noti in
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { [weak self] noti in
             guard let userInfo = noti.userInfo else {
                 return
             }
@@ -57,7 +57,7 @@ class NoteEditorViewController: UIViewController {
                 return
             }
             
-            UIView.animate(withDuration: 0.3) { [weak self] in
+            UIView.animate(withDuration: 0.3) {
                 guard let safeAreaBottomInset = self?.view.safeAreaInsets.bottom else {
                     return
                 }
@@ -68,8 +68,8 @@ class NoteEditorViewController: UIViewController {
     }
     
     private func resetApperanceWhenKeyboardHide() {
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { _ in
-            UIView.animate(withDuration: 0.3) { [weak self] in
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { [weak self] _ in
+            UIView.animate(withDuration: 0.3) {
                 self?.tagViewBottomConstraint.constant = 0
                 self?.view.layoutIfNeeded()
             }
