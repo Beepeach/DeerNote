@@ -20,10 +20,32 @@ class TrashViewController: UIViewController {
              """, tag: [], date: Date(), updatedDate: Date(), isDeleted: false)
     ]
     
+    @IBOutlet weak var deletedNotesTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
+    }
+    
+    @IBAction func tapEmptyTrash(_ sender: Any) {
+        let alertController = UIAlertController(title: nil, message: "휴지통을 모두 비우시겠어요?\n휴지통에서 삭제하면 더 이상 복구할 수 없습니다.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let emptyAction = UIAlertAction(title: "비우기", style: .destructive, handler: { [weak self] _ in
+            guard let deletedNotesCount = self?.deletedNotes.count else {
+                return
+            }
+            self?.deletedNotesTableView.performBatchUpdates {
+                for i in 0 ..< deletedNotesCount {
+                    self?.deletedNotes.removeFirst()
+                    self?.deletedNotesTableView.deleteRows(at: [IndexPath(item: i, section: 0)], with: .automatic)
+                }
+            }
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(emptyAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     deinit {

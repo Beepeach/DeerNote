@@ -364,7 +364,16 @@
                             <constraint firstAttribute="bottom" secondItem="QEF-qc-A7X" secondAttribute="bottom" id="t6H-IX-Bbd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="휴지통" id="ZVs-10-WR9"/>
+                    <navigationItem key="navigationItem" title="휴지통" id="ZVs-10-WR9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="eCq-lP-Ugn">
+                            <connections>
+                                <action selector="tapEmptyTrash:" destination="Dfc-bu-Oqp" id="Z1M-RW-4Do"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="deletedNotesTableView" destination="QEF-qc-A7X" id="UxI-MD-OoS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYg-2w-TTf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
