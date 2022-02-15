@@ -154,6 +154,9 @@
                             </barButtonItem>
                             <barButtonItem title="확인" id="E1z-cr-Tge">
                                 <color key="tintColor" systemColor="systemTealColor"/>
+                                <connections>
+                                    <action selector="tapDoneButton:" destination="V3N-VV-Pda" id="S4q-IY-nKE"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>

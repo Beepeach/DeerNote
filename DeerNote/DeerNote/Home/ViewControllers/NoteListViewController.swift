@@ -54,6 +54,9 @@ class NoteListViewController: UIViewController {
         super.viewDidLoad()
         setdimmingView()
         setupSearchBar()
+        
+        doneBarButton.isEnabled = false
+        doneBarButton.tintColor = .clear
     }
     
     private func setdimmingView() {
@@ -68,6 +71,12 @@ class NoteListViewController: UIViewController {
     // MARK: @IBAction
     @IBAction func tapMenu(_ sender: UIBarButtonItem) {
         delegate?.didTapMenuButton(self)
+    }
+    @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
+        self.isLongPressed = false
+        noteListCollectionView.reloadData()
+        sender.isEnabled = false
+        sender.tintColor = .clear
     }
     
     @IBAction func tapDimmingView(_ sender: Any) {
@@ -91,6 +100,13 @@ class NoteListViewController: UIViewController {
             UIView.animate(withDuration: 0.3) {
                 selectedCell.contentView.alpha = 0.75
             }
+            
+            UIView.animate(withDuration: 0.3) {
+                self.doneBarButton.isEnabled = true
+                self.doneBarButton.tintColor = .systemTeal
+                
+            }
+            
            
             noteListCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
