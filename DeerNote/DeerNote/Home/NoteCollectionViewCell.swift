@@ -9,6 +9,7 @@ import UIKit
 
 class NoteCollectionViewCell: UICollectionViewCell {
     var isAnimating: Bool = true
+    var cellColor: (UIColor, UIColor)?
     
     // MARK: @IBOutlet
     @IBOutlet weak var contentsLabel: UILabel!
@@ -26,6 +27,13 @@ class NoteCollectionViewCell: UICollectionViewCell {
         setGradationBackgroundColor()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        if let thisLayer = contentView.layer.sublayers?.first as? CAGradientLayer {
+            thisLayer.removeFromSuperlayer()
+        }
+    }
+    
     private func setCellShadow() {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 100, height: 100)
@@ -38,8 +46,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     }
     
     func setGradationBackgroundColor() {
-        let color = GradationColors().getRandomColor()
-        self.contentView.setGradationBackgroundColor(colors: color)
+        self.contentView.setGradationBackgroundColor(colors: cellColor ?? GradationColors().kindaBlue)
     }
     
     func startShakeAnimation() {
@@ -64,6 +71,6 @@ class NoteCollectionViewCell: UICollectionViewCell {
     }
     
     deinit {
-        print(#function)
+        print("cell", #function)
     }
 }

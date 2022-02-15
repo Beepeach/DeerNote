@@ -151,6 +151,7 @@ extension NoteListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        cell.cellColor = dummyNote[indexPath.item].color
         cell.contentsLabel.text = dummyNote[indexPath.item].contents
         
         if isLongPressed {
