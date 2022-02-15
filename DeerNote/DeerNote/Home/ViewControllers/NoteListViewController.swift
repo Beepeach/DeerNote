@@ -76,6 +76,26 @@ class NoteListViewController: UIViewController {
         delegate?.didTapDimmingView(self)
     }
     
+    @IBAction func pressNoteListCell(_ sender: UILongPressGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            print("long")
+            guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: sender.view)) else {
+                return
+            }
+            noteListCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            print(selectedIndexPath)
+        case .changed:
+            noteListCollectionView.updateInteractiveMovementTargetPosition(sender.location(in: sender.view))
+        case .ended:
+            noteListCollectionView.endInteractiveMovement()
+            noteListCollectionView.reloadData()
+            print("End")
+        default:
+            noteListCollectionView.cancelInteractiveMovement()
+        }
+    }
+    
     // MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -121,6 +141,18 @@ extension NoteListViewController: UICollectionViewDataSource {
 
 //MARK: - UICollectionViewDelegate
 extension NoteListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("source: \(sourceIndexPath)")
+        print("destination: \(destinationIndexPath)")
+        let temp = dummyNote[sourceIndexPath.item]
+        dummyNote[sourceIndexPath.item] = dummyNote[destinationIndexPath.item]
+        dummyNote[destinationIndexPath.item] = temp
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
             return .zero

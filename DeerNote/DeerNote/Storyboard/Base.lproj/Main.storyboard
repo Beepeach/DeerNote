@@ -65,6 +65,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-Di-WE9">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="edY-Bz-Lx7">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -111,6 +112,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="V3N-VV-Pda" id="Ff6-zC-CC0"/>
                                     <outlet property="delegate" destination="V3N-VV-Pda" id="Olm-hD-iXA"/>
+                                    <outletCollection property="gestureRecognizers" destination="ti9-15-Wql" appends="YES" id="fxh-9m-oM2"/>
                                 </connections>
                             </collectionView>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy0-ca-Xm9" userLabel="Dimming View">
@@ -169,6 +171,11 @@
                         <action selector="tapDimmingView:" destination="V3N-VV-Pda" id="zRd-km-sJL"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ti9-15-Wql">
+                    <connections>
+                        <action selector="pressNoteListCell:" destination="V3N-VV-Pda" id="1tn-rS-k6N"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="856.52173913043487" y="124.55357142857142"/>
         </scene>
