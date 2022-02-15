@@ -49,7 +49,7 @@ class NoteListViewController: UIViewController {
     // MARK: @IBOutlet
     @IBOutlet weak var noteListCollectionView: UICollectionView!
     @IBOutlet weak var dimmingView: UIView!
-    
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
     // MARK: ViewControllerLifeCycle
     override func viewDidLoad() {

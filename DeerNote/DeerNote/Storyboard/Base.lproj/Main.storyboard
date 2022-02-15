@@ -143,15 +143,21 @@
                                 <action selector="tapMenu:" destination="V3N-VV-Pda" id="a9a-cG-jEd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.pencil" catalog="system" id="KgC-RH-vSI">
-                            <color key="tintColor" systemColor="systemTealColor"/>
-                            <connections>
-                                <segue destination="hco-nt-dVO" kind="show" id="WP6-rf-pVF"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="square.and.pencil" catalog="system" id="KgC-RH-vSI">
+                                <color key="tintColor" systemColor="systemTealColor"/>
+                                <connections>
+                                    <segue destination="hco-nt-dVO" kind="show" id="WP6-rf-pVF"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="확인" id="E1z-cr-Tge">
+                                <color key="tintColor" systemColor="systemTealColor"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="dimmingView" destination="cy0-ca-Xm9" id="cP9-c6-knY"/>
+                        <outlet property="doneBarButton" destination="E1z-cr-Tge" id="7pM-f3-PJm"/>
                         <outlet property="noteListCollectionView" destination="cTV-Di-WE9" id="tgR-Ok-tTi"/>
                         <segue destination="Dfc-bu-Oqp" kind="show" identifier="toTrash" id="v8D-ex-t8U"/>
                         <segue destination="N3h-IV-AYf" kind="presentation" identifier="toSettings" id="CO3-r1-Qze"/>
