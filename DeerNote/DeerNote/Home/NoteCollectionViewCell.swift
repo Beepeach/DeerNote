@@ -8,6 +8,8 @@
 import UIKit
 
 class NoteCollectionViewCell: UICollectionViewCell {
+    var isAnimating: Bool = true
+    
     // MARK: @IBOutlet
     @IBOutlet weak var contentsLabel: UILabel!
     
@@ -38,5 +40,30 @@ class NoteCollectionViewCell: UICollectionViewCell {
     func setGradationBackgroundColor() {
         let color = GradationColors().getRandomColor()
         self.contentView.setGradationBackgroundColor(colors: color)
+    }
+    
+    func startShakeAnimation() {
+        let shakeAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        shakeAnimation.duration = 0.1
+        shakeAnimation.repeatCount = 100
+        shakeAnimation.autoreverses = true
+        
+        let startAngle: Float =  2 * (Float.pi / 180)
+        let stopAngle = -startAngle
+        shakeAnimation.fromValue = startAngle
+        shakeAnimation.toValue = stopAngle
+        
+        self.layer.add(shakeAnimation, forKey: "shakeAnimation")
+        
+        isAnimating = true
+    }
+    
+    func stopShakeAnimation() {
+        self.layer.removeAnimation(forKey: "shakeAnimation")
+        isAnimating = false
+    }
+    
+    deinit {
+        print(#function)
     }
 }

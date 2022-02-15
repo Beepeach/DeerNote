@@ -15,16 +15,13 @@ protocol NoteListViewControllerDelegate: AnyObject {
 class NoteListViewController: UIViewController {
     // MARK: Properties
     var dummyNote: [Note] = [
-        Note(contents: "안녕하세요. 반갑습니다 글자를 어디서부터 끊어야할지 잘 모르겠네요", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: """
-             반가워요
-             이걸 어디서 끊어야할까요
-             """, tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "잘있어요", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "더미더미", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "미더미더", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "크하하하하", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "안녕하세요. 반갑습니다 글자를 어디서부터 끊어야할지 잘 모르겠네요", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
+        Note(contents: "1", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
+        Note(contents: "2", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
+        Note(contents: "3", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
+        Note(contents: "4", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
+        Note(contents: "5", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
+        Note(contents: "6", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
+        Note(contents: "7", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
         Note(contents: """
              반가워요
              이걸 어디서 끊어야할까요
@@ -44,6 +41,7 @@ class NoteListViewController: UIViewController {
         Note(contents: "크하하하하", tag: [], date: Date(), updatedDate: Date(), isDeleted: false)
     ]
     weak var delegate: NoteListViewControllerDelegate?
+    var isLongPressed: Bool = false
 
 
     // MARK: @IBOutlet
@@ -79,18 +77,39 @@ class NoteListViewController: UIViewController {
     @IBAction func pressNoteListCell(_ sender: UILongPressGestureRecognizer) {
         switch sender.state {
         case .began:
-            print("long")
-            guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: sender.view)) else {
+            guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
                 return
             }
+            
+            guard let selectedCell = noteListCollectionView.cellForItem(at: selectedIndexPath) as? NoteCollectionViewCell else {
+                return
+            }
+            
+            noteListCollectionView.visibleCells.map { $0 as? NoteCollectionViewCell }.forEach { $0?.startShakeAnimation() }
+            
+            selectedCell.stopShakeAnimation()
+            UIView.animate(withDuration: 0.3) {
+                selectedCell.contentView.alpha = 0.75
+            }
+           
             noteListCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
-            print(selectedIndexPath)
         case .changed:
-            noteListCollectionView.updateInteractiveMovementTargetPosition(sender.location(in: sender.view))
+            noteListCollectionView.updateInteractiveMovementTargetPosition(sender.location(in: noteListCollectionView))
         case .ended:
             noteListCollectionView.endInteractiveMovement()
+            guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
+                return
+            }
+            
+            guard let selectedCell = noteListCollectionView.cellForItem(at: selectedIndexPath) as? NoteCollectionViewCell else {
+                return
+            }
+            selectedCell.startShakeAnimation()
+            UIView.animate(withDuration: 0.3) {
+                selectedCell.contentView.alpha = 1.0
+            }
+            isLongPressed = true
             noteListCollectionView.reloadData()
-            print("End")
         default:
             noteListCollectionView.cancelInteractiveMovement()
         }
@@ -134,6 +153,12 @@ extension NoteListViewController: UICollectionViewDataSource {
         
         cell.contentsLabel.text = dummyNote[indexPath.item].contents
         
+        if isLongPressed {
+            cell.startShakeAnimation()
+        } else {
+            cell.stopShakeAnimation()
+        }
+       
         return cell
     }
 }
@@ -148,9 +173,8 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         print("source: \(sourceIndexPath)")
         print("destination: \(destinationIndexPath)")
-        let temp = dummyNote[sourceIndexPath.item]
-        dummyNote[sourceIndexPath.item] = dummyNote[destinationIndexPath.item]
-        dummyNote[destinationIndexPath.item] = temp
+        let note = dummyNote.remove(at: sourceIndexPath.item)
+        dummyNote.insert(note, at: destinationIndexPath.item)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
