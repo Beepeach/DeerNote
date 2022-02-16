@@ -16,10 +16,10 @@ extension UIView {
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         
-        updateGradientLayerFrame(gradientLayer)
+        upsertGradientLayerFrame(gradientLayer)
     }
     
-    private func updateGradientLayerFrame(_ gradientLayer: CAGradientLayer) {
+    private func upsertGradientLayerFrame(_ gradientLayer: CAGradientLayer) {
         if let layer = layer.sublayers?.first as? CAGradientLayer {
             layer.frame = bounds
         } else {
