@@ -52,7 +52,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     func startShakeAnimation() {
         let shakeAnimation = CABasicAnimation(keyPath: "transform.rotation")
         shakeAnimation.duration = 0.1
-        shakeAnimation.repeatCount = 100
+        shakeAnimation.repeatCount = 999999
         shakeAnimation.autoreverses = true
         
         let startAngle: Float =  2 * (Float.pi / 180)
