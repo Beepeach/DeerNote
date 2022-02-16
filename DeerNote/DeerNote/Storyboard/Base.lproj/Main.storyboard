@@ -210,7 +210,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="83.5" height="34"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Tag" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="F4f-IC-Unv" customClass="customField" customModule="DeerNote" customModuleProvider="target">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Tag" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="F4f-IC-Unv">
                                                             <rect key="frame" x="0.0" y="0.0" width="83.5" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
