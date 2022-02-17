@@ -29,8 +29,8 @@ class NoteCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        if let thisLayer = contentView.layer.sublayers?.first as? CAGradientLayer {
-            thisLayer.removeFromSuperlayer()
+        if let previousGradientLayer = contentView.layer.sublayers?.first as? CAGradientLayer {
+            previousGradientLayer.removeFromSuperlayer()
         }
     }
     
@@ -50,19 +50,26 @@ class NoteCollectionViewCell: UICollectionViewCell {
     }
     
     func startShakeAnimation() {
+        let shakeAnimation = setupShakeAnimation()
+        self.layer.add(shakeAnimation, forKey: "shakeAnimation")
+        
+        isAnimating = true
+    }
+    
+    private func setupShakeAnimation() -> CABasicAnimation {
         let shakeAnimation = CABasicAnimation(keyPath: "transform.rotation")
         shakeAnimation.duration = 0.1
         shakeAnimation.repeatCount = 999999
-        shakeAnimation.autoreverses = true
-        
+        setupShakeAngle(shakeAnimation)
+        return shakeAnimation
+    }
+    
+    private func setupShakeAngle(_ shakeAnimation: CABasicAnimation) {
         let startAngle: Float =  2 * (Float.pi / 180)
         let stopAngle = -startAngle
         shakeAnimation.fromValue = startAngle
         shakeAnimation.toValue = stopAngle
-        
-        self.layer.add(shakeAnimation, forKey: "shakeAnimation")
-        
-        isAnimating = true
+        shakeAnimation.autoreverses = true
     }
     
     func stopShakeAnimation() {
