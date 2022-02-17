@@ -85,7 +85,6 @@ class NoteListViewController: UIViewController {
             
             self?.backgroundQueue.addOperation(noteEditingStopOperation)
         }
-        
     }
     
     private func setdimmingView() {
@@ -100,12 +99,14 @@ class NoteListViewController: UIViewController {
     // MARK: @IBAction
     @IBAction func tapMenu(_ sender: UIBarButtonItem) {
         delegate?.didTapMenuButton(self)
+        tapDoneButton(UIBarButtonItem())
     }
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
         self.isLongPressed = false
         noteListCollectionView.reloadData()
         doneBarButton.isEnabled = false
         doneBarButton.tintColor = .clear
+        backgroundQueue.cancelAllOperations()
     }
     
     @IBAction func tapDimmingView(_ sender: Any) {
