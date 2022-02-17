@@ -12,6 +12,10 @@ protocol NoteListViewControllerDelegate: AnyObject {
     func didTapDimmingView(_ vc: NoteListViewController)
 }
 
+extension Notification.Name {
+    static let noteDidLongPressed = Self(rawValue: "noteDidLongPressed")
+}
+
 class NoteListViewController: UIViewController {
     // MARK: Properties
     var dummyNote: [Note] = [
@@ -42,8 +46,9 @@ class NoteListViewController: UIViewController {
     ]
     weak var delegate: NoteListViewControllerDelegate?
     var isLongPressed: Bool = false
-
-
+    let backgroundQueue = OperationQueue()
+    
+    
     // MARK: @IBOutlet
     @IBOutlet weak var noteListCollectionView: UICollectionView!
     @IBOutlet weak var dimmingView: UIView!
@@ -57,6 +62,30 @@ class NoteListViewController: UIViewController {
         
         doneBarButton.isEnabled = false
         doneBarButton.tintColor = .clear
+        
+        NotificationCenter.default.addObserver(forName: .noteDidLongPressed, object: nil, queue: .main) { [weak self] _ in
+            // TODO: - Operation을 계속 생성하는데 만약 시간을 reset하는 다른 방법이 있다면 변경하는게 좋습니다.
+            let noteEditingStopOperation = BlockOperation {
+                autoreleasepool {
+                }
+            }
+            
+            noteEditingStopOperation.addExecutionBlock {
+                autoreleasepool {
+                    // TODO: - sleep말고 다른 좋은 방법이 있다면 변경하는게 좋습니다.
+                    sleep(20)
+                    guard !noteEditingStopOperation.isCancelled else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.tapDoneButton(UIBarButtonItem())
+                    }
+                }
+            }
+            
+            self?.backgroundQueue.addOperation(noteEditingStopOperation)
+        }
+        
     }
     
     private func setdimmingView() {
@@ -75,8 +104,8 @@ class NoteListViewController: UIViewController {
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
         self.isLongPressed = false
         noteListCollectionView.reloadData()
-        sender.isEnabled = false
-        sender.tintColor = .clear
+        doneBarButton.isEnabled = false
+        doneBarButton.tintColor = .clear
     }
     
     @IBAction func tapDimmingView(_ sender: Any) {
@@ -107,11 +136,12 @@ class NoteListViewController: UIViewController {
                 
             }
             
-           
             noteListCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
             noteListCollectionView.updateInteractiveMovementTargetPosition(sender.location(in: noteListCollectionView))
         case .ended:
+            backgroundQueue.cancelAllOperations()
+            
             noteListCollectionView.endInteractiveMovement()
             guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
                 return
@@ -126,6 +156,8 @@ class NoteListViewController: UIViewController {
             }
             isLongPressed = true
             noteListCollectionView.reloadData()
+            
+            NotificationCenter.default.post(name: .noteDidLongPressed, object: nil)
         default:
             noteListCollectionView.cancelInteractiveMovement()
         }
@@ -175,7 +207,7 @@ extension NoteListViewController: UICollectionViewDataSource {
         } else {
             cell.stopShakeAnimation()
         }
-       
+        
         return cell
     }
 }
