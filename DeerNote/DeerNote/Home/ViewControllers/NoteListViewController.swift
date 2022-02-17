@@ -46,7 +46,12 @@ class NoteListViewController: UIViewController {
     ]
     weak var delegate: NoteListViewControllerDelegate?
     var isLongPressed: Bool = false
-    let backgroundQueue = OperationQueue()
+    private let backgroundSerialQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        
+        return queue
+    }()
     
     
     // MARK: @IBOutlet
@@ -64,26 +69,11 @@ class NoteListViewController: UIViewController {
         doneBarButton.tintColor = .clear
         
         NotificationCenter.default.addObserver(forName: .noteDidLongPressed, object: nil, queue: .main) { [weak self] _ in
-            // TODO: - Operation을 계속 생성하는데 만약 시간을 reset하는 다른 방법이 있다면 변경하는게 좋습니다.
-            let noteEditingStopOperation = BlockOperation {
-                autoreleasepool {
+            self?.backgroundSerialQueue.schedule(after: .init(Date() + 20), {
+                DispatchQueue.main.async {
+                    self?.tapDoneButton(UIBarButtonItem())
                 }
-            }
-            
-            noteEditingStopOperation.addExecutionBlock {
-                autoreleasepool {
-                    // TODO: - sleep말고 다른 좋은 방법이 있다면 변경하는게 좋습니다.
-                    sleep(20)
-                    guard !noteEditingStopOperation.isCancelled else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self?.tapDoneButton(UIBarButtonItem())
-                    }
-                }
-            }
-            
-            self?.backgroundQueue.addOperation(noteEditingStopOperation)
+            })
         }
     }
     
@@ -106,7 +96,7 @@ class NoteListViewController: UIViewController {
         noteListCollectionView.reloadData()
         doneBarButton.isEnabled = false
         doneBarButton.tintColor = .clear
-        backgroundQueue.cancelAllOperations()
+        backgroundSerialQueue.cancelAllOperations()
     }
     
     @IBAction func tapDimmingView(_ sender: Any) {
@@ -141,7 +131,7 @@ class NoteListViewController: UIViewController {
         case .changed:
             noteListCollectionView.updateInteractiveMovementTargetPosition(sender.location(in: noteListCollectionView))
         case .ended:
-            backgroundQueue.cancelAllOperations()
+            backgroundSerialQueue.cancelAllOperations()
             
             noteListCollectionView.endInteractiveMovement()
             guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
