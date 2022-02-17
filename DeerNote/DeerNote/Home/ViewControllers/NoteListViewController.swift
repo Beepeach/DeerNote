@@ -12,10 +12,6 @@ protocol NoteListViewControllerDelegate: AnyObject {
     func didTapDimmingView(_ vc: NoteListViewController)
 }
 
-extension Notification.Name {
-    static let noteDidLongPressed = Self(rawValue: "noteDidLongPressed")
-}
-
 class NoteListViewController: UIViewController {
     // MARK: Properties
     var dummyNote: [Note] = [
@@ -45,7 +41,7 @@ class NoteListViewController: UIViewController {
         Note(contents: "크하하하하", tag: [], date: Date(), updatedDate: Date(), isDeleted: false)
     ]
     weak var delegate: NoteListViewControllerDelegate?
-    var isLongPressed: Bool = false
+    private var isLongPressed: Bool = false
     private let backgroundSerialQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -59,22 +55,14 @@ class NoteListViewController: UIViewController {
     @IBOutlet weak var dimmingView: UIView!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
+    
     // MARK: ViewControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setdimmingView()
         setupSearchBar()
-        
-        doneBarButton.isEnabled = false
-        doneBarButton.tintColor = .clear
-        
-        NotificationCenter.default.addObserver(forName: .noteDidLongPressed, object: nil, queue: .main) { [weak self] _ in
-            self?.backgroundSerialQueue.schedule(after: .init(Date() + 20), {
-                DispatchQueue.main.async {
-                    self?.tapDoneButton(UIBarButtonItem())
-                }
-            })
-        }
+        setupDoneBarButtonHidden()
+        stopShakeAnimationWhenNoEdit()
     }
     
     private func setdimmingView() {
@@ -86,16 +74,32 @@ class NoteListViewController: UIViewController {
         self.navigationItem.searchController = searchBar
     }
     
+    private func setupDoneBarButtonHidden() {
+        doneBarButton.isEnabled = false
+        doneBarButton.tintColor = .clear
+    }
+    
+    private func stopShakeAnimationWhenNoEdit() {
+        NotificationCenter.default.addObserver(forName: .noteDidLongPressed, object: nil, queue: .main) { [weak self] _ in
+            self?.backgroundSerialQueue.schedule(after: .init(Date() + 20), {
+                DispatchQueue.main.async {
+                    self?.tapDoneButton(UIBarButtonItem())
+                }
+            })
+        }
+    }
+    
+    
     // MARK: @IBAction
     @IBAction func tapMenu(_ sender: UIBarButtonItem) {
         delegate?.didTapMenuButton(self)
         tapDoneButton(UIBarButtonItem())
     }
+    
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
         self.isLongPressed = false
         noteListCollectionView.reloadData()
-        doneBarButton.isEnabled = false
-        doneBarButton.tintColor = .clear
+        setupDoneBarButtonHidden()
         backgroundSerialQueue.cancelAllOperations()
     }
     
@@ -103,37 +107,24 @@ class NoteListViewController: UIViewController {
         delegate?.didTapDimmingView(self)
     }
     
+    
     @IBAction func pressNoteListCell(_ sender: UILongPressGestureRecognizer) {
         switch sender.state {
         case .began:
             guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
                 return
             }
-            
             guard let selectedCell = noteListCollectionView.cellForItem(at: selectedIndexPath) as? NoteCollectionViewCell else {
                 return
             }
-            
-            noteListCollectionView.visibleCells.map { $0 as? NoteCollectionViewCell }.forEach { $0?.startShakeAnimation() }
-            
-            selectedCell.stopShakeAnimation()
-            UIView.animate(withDuration: 0.3) {
-                selectedCell.contentView.alpha = 0.75
-            }
-            
-            UIView.animate(withDuration: 0.3) {
-                self.doneBarButton.isEnabled = true
-                self.doneBarButton.tintColor = .systemTeal
-                
-            }
-            
+            startShakeAnimationWithVisibleCell(without: selectedCell)
             noteListCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
             noteListCollectionView.updateInteractiveMovementTargetPosition(sender.location(in: noteListCollectionView))
         case .ended:
             backgroundSerialQueue.cancelAllOperations()
-            
             noteListCollectionView.endInteractiveMovement()
+            
             guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
                 return
             }
@@ -142,17 +133,37 @@ class NoteListViewController: UIViewController {
                 return
             }
             selectedCell.startShakeAnimation()
-            UIView.animate(withDuration: 0.3) {
-                selectedCell.contentView.alpha = 1.0
-            }
+            setupTranslucent(with: selectedCell)
+            
             isLongPressed = true
             noteListCollectionView.reloadData()
-            
             NotificationCenter.default.post(name: .noteDidLongPressed, object: nil)
         default:
             noteListCollectionView.cancelInteractiveMovement()
         }
     }
+    
+    private func startShakeAnimationWithVisibleCell(without selectedCell: NoteCollectionViewCell) {
+        noteListCollectionView.visibleCells.map { $0 as? NoteCollectionViewCell }.forEach { $0?.startShakeAnimation() }
+        
+        selectedCell.stopShakeAnimation()
+        setupTranslucent(with: selectedCell)
+        setupDoneBarButtonVisible()
+    }
+    
+    private func setupTranslucent(with selectedCell: NoteCollectionViewCell) {
+        UIView.animate(withDuration: 0.3) {
+            selectedCell.contentView.alpha = selectedCell.contentView.alpha == 1.0 ? 0.75 : 1.0
+        }
+    }
+    
+    private func setupDoneBarButtonVisible() {
+        UIView.animate(withDuration: 0.3) {
+            self.doneBarButton.isEnabled = true
+            self.doneBarButton.tintColor = .systemTeal
+        }
+    }
+    
     
     // MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -165,13 +176,7 @@ class NoteListViewController: UIViewController {
                 return
             }
             
-            guard let targetIndexPath = noteListCollectionView.indexPath(for: cell) else {
-                return
-            }
-            
             vc.contents = cell.contentsLabel.text
-            
-            
         default:
             break
         }
@@ -193,13 +198,17 @@ extension NoteListViewController: UICollectionViewDataSource {
         cell.cellColor = dummyNote[indexPath.item].color
         cell.contentsLabel.text = dummyNote[indexPath.item].contents
         
+        startOrStopShakeAnimation(cell)
+        
+        return cell
+    }
+    
+    private func startOrStopShakeAnimation(_ cell: NoteCollectionViewCell) {
         if isLongPressed {
             cell.startShakeAnimation()
         } else {
             cell.stopShakeAnimation()
         }
-        
-        return cell
     }
 }
 
@@ -253,4 +262,10 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
         
         return max(itemHeight, 100)
     }
+}
+
+
+// MARK: - Notification
+extension Notification.Name {
+    static let noteDidLongPressed = Self(rawValue: "noteDidLongPressed")
 }
