@@ -11,7 +11,8 @@ import CoreData
 class CoreDataManager {
     static let shared: CoreDataManager = CoreDataManager()
     
-    private init() { }
+    // UITest를 위해서 private 제거
+    init() { }
     
     var container: NSPersistentContainer?
     
