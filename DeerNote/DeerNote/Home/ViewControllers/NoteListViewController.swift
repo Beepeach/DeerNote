@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol NoteListViewControllerDelegate: AnyObject {
     func didTapMenuButton(_ vc: NoteListViewController)
@@ -14,31 +15,8 @@ protocol NoteListViewControllerDelegate: AnyObject {
 
 class NoteListViewController: UIViewController {
     // MARK: Properties
-    var dummyNote: [Note] = [
-        Note(contents: "1", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "2", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "3", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "4", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "5", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "6", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "7", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: """
-             반가워요
-             이걸 어디서 끊어야할까요
-             """, tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "잘있어요", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "더미더미", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "미더미더", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "크하하하하", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "안녕하세요. 반갑습니다 글자를 어디서부터 끊어야할지 잘 모르겠네요", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: """
-             반가워요
-             이걸 어디서 끊어야할까요
-             """, tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "잘있어요", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "더미더미", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "미더미더", tag: [], date: Date(), updatedDate: Date(), isDeleted: false),
-        Note(contents: "크하하하하", tag: [], date: Date(), updatedDate: Date(), isDeleted: false)
+    var dummyNote: [NoteEntity] = [
+        
     ]
     weak var delegate: NoteListViewControllerDelegate?
     private var isLongPressed: Bool = false
@@ -63,6 +41,22 @@ class NoteListViewController: UIViewController {
         setupSearchBar()
         setupDoneBarButtonHidden()
         stopShakeAnimationWhenNoEdit()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(#function)
+        
+        func fetch() {
+            let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+            do {
+                dummyNote = try CoreDataManager.shared.mainContext.fetch(fetchRequest)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        fetch()
     }
     
     private func setdimmingView() {
@@ -195,7 +189,7 @@ extension NoteListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.cellColor = dummyNote[indexPath.item].color
+        cell.cellColor = GradationColors().getRandomColor()
         cell.contentsLabel.text = dummyNote[indexPath.item].contents
         
         startOrStopShakeAnimation(cell)

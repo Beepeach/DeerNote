@@ -6,11 +6,9 @@
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="gradientColor" inverseEntity="Note"/>
     </entity>
     <entity name="Note" representedClassName="NoteEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="colorID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="contents" optional="YES" attributeType="String"/>
         <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isDeletedNote" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="tagID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="gradientColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradientColor" inverseName="notes" inverseEntity="GradientColor"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="notes" inverseEntity="Tag"/>
@@ -20,7 +18,7 @@
         <relationship name="notes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
     <elements>
-        <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="163"/>
+        <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="133"/>
         <element name="Tag" positionX="-49.1796875" positionY="-251.7890625" width="128" height="73"/>
         <element name="GradientColor" positionX="-1134.84765625" positionY="306.61328125" width="128" height="88"/>
     </elements>

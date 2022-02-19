@@ -47,4 +47,17 @@ class CoreDataManager {
             }
         }
     }
+    
+    func addNote() {
+        let newNote = NoteEntity(context: CoreDataManager.shared.mainContext)
+        newNote.contents = "test"
+        newNote.createDate = Date()
+        newNote.updateDate = Date()
+        newNote.isDeletedNote = false
+        
+        saveMainContext()
+        print("Add")
+    }
 }
+
+

@@ -24,6 +24,7 @@ class NoteEditorViewController: UIViewController {
     // MARK: VCLifeCycle
     override func viewWillDisappear(_ animated: Bool) {
         // TODO: - 나가지면 note를 저장하는 코드를 구현해야합니다.
+        CoreDataManager.shared.addNote()
     }
     
     override func viewDidLoad() {
