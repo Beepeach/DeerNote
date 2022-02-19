@@ -13,7 +13,7 @@ class CoreDataManagerTests: XCTestCase {
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = CoreDataManager.shared
+        sut = MockCoreDataManager()
     }
 
     override func tearDownWithError() throws {
@@ -21,4 +21,7 @@ class CoreDataManagerTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func test_whenInit_mainContextIsNotNil() {
+        XCTAssertNotNil(sut.mainContext)
+    }
 }
