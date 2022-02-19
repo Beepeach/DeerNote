@@ -408,7 +408,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="설정" id="Yp4-ry-gLW">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="JYd-qu-xPd">
+                                        <barButtonItem key="rightBarButtonItem" style="done" id="JYd-qu-xPd">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="HXh-kX-6IE">
                                                 <rect key="frame" x="302" y="10.5" width="92" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
