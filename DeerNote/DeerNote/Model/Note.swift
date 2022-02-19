@@ -20,7 +20,7 @@ struct Note {
 extension Note {
     init() {
         contents = ""
-        tag = []
+        tag = [Tag()]
         date = Date()
         updatedDate = date
         isDeleted = false
