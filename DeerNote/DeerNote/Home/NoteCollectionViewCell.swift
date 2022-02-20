@@ -46,7 +46,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     }
     
     func setGradationBackgroundColor() {
-        self.contentView.setGradationBackgroundColor(colors: cellColor ?? GradationColors().kindaBlue)
+        self.contentView.setGradationBackgroundColor(colors: cellColor ?? GradationColor.blue)
     }
     
     func startShakeAnimation() {

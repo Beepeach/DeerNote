@@ -8,12 +8,12 @@
 import XCTest
 @testable import DeerNote
 
-class GradationColorsTest: XCTestCase {
-    var sut: GradationColors!
+class GradationColorTest: XCTestCase {
+    var sut: GradationColor!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = GradationColors()
+        sut = GradationColor()
     }
 
     override func tearDownWithError() throws {

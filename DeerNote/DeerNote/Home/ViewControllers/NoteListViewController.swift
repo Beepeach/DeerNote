@@ -189,7 +189,7 @@ extension NoteListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.cellColor = GradationColors().getRandomColor()
+        cell.cellColor = GradationColor.shared.getRandomColor()
         cell.contentsLabel.text = dummyNote[indexPath.item].contents
         
         startOrStopShakeAnimation(cell)
