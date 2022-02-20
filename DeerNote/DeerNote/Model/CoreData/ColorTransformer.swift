@@ -47,3 +47,14 @@ final class ColorTransformer: ValueTransformer {
         }
     }
 }
+
+
+// TODO: - Appdelegate에서 init을 호출하고 등록해야하는데 등록 안해도 사용이 가능합니다? 자세히 알아보고 필요없을시 해당 코드를 삭제하세요.
+extension ColorTransformer {
+    static let name = NSValueTransformerName(rawValue: String(describing: ColorTransformer.self))
+    
+    static func register() {
+        let transformer = ColorTransformer()
+        setValueTransformer(transformer, forName: name)
+    }
+}

@@ -54,6 +54,8 @@ class CoreDataManager {
         newNote.createDate = Date()
         newNote.updateDate = Date()
         newNote.isDeletedNote = false
+        newNote.fromColor = GradationColor.red.from
+        newNote.toColor = GradationColor.red.to
         
         saveMainContext()
         print("Add")

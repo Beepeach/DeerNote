@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="GradientColor" representedClassName="GradientColorEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="from" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer"/>
-        <attribute name="to" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer"/>
-        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="gradientColor" inverseEntity="Note"/>
-    </entity>
-    <entity name="Note" representedClassName="NoteEntity" syncable="YES" codeGenerationType="class">
+    <entity name="Note" representedClassName="NoteEntity" syncable="YES">
         <attribute name="contents" optional="YES" attributeType="String"/>
         <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fromColor" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" customClassName=".UIColor"/>
         <attribute name="isDeletedNote" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="toColor" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" customClassName="UIColor"/>
         <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="gradientColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradientColor" inverseName="notes" inverseEntity="GradientColor"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="notes" inverseEntity="Tag"/>
     </entity>
-    <entity name="Tag" representedClassName="TagEntity" syncable="YES" codeGenerationType="class">
+    <entity name="Tag" representedClassName="TagEntity" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="notes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
     <elements>
-        <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="133"/>
-        <element name="Tag" positionX="-49.1796875" positionY="-251.7890625" width="128" height="73"/>
-        <element name="GradientColor" positionX="-1134.84765625" positionY="306.61328125" width="128" height="88"/>
+        <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="134"/>
+        <element name="Tag" positionX="-49.1796875" positionY="-251.7890625" width="128" height="59"/>
     </elements>
 </model>

@@ -26,6 +26,10 @@
 		EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */; };
 		EEDD186F27BFAEF500DAAA52 /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */; };
 		EEDD187127C10E9800DAAA52 /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */; };
+		EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */; };
+		EEDD187D27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187B27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift */; };
+		EEDD188027C27F0400DAAA52 /* TagEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187E27C27F0400DAAA52 /* TagEntity+CoreDataClass.swift */; };
+		EEDD188127C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187F27C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift */; };
 		EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */; };
 		EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */; };
 		EEF2DFA627A4660C00CA9CA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFA427A4660C00CA9CA0 /* Main.storyboard */; };
@@ -73,6 +77,10 @@
 		EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
 		EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
 		EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTransformer.swift; sourceTree = "<group>"; };
+		EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EEDD187B27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EEDD187E27C27F0400DAAA52 /* TagEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EEDD187F27C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeerNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +170,7 @@
 		EE97D0EC27BF951D0095A517 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				EEDD188227C27F5F00DAAA52 /* Entity */,
 				EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */,
 				EE97D0ED27BF952D0095A517 /* CoreDataManager.swift */,
 				EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */,
@@ -213,6 +222,17 @@
 				EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		EEDD188227C27F5F00DAAA52 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				EEDD187E27C27F0400DAAA52 /* TagEntity+CoreDataClass.swift */,
+				EEDD187F27C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift */,
+				EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */,
+				EEDD187B27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		EEF2DF9227A4660C00CA9CA0 = {
@@ -401,9 +421,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEDD188127C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift in Sources */,
 				EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */,
 				EEDD187127C10E9800DAAA52 /* ColorTransformer.swift in Sources */,
 				EEB76A0227AC168900BCB4B6 /* GradationColor.swift in Sources */,
+				EEDD188027C27F0400DAAA52 /* TagEntity+CoreDataClass.swift in Sources */,
 				EE145B8727B9012B008EAA35 /* TagCreatorCollectionViewCell.swift in Sources */,
 				EE13B1A727A7C75A0060589B /* Tag.swift in Sources */,
 				EE145B8527B8EA84008EAA35 /* TagCollectionViewCell.swift in Sources */,
@@ -417,9 +439,11 @@
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
 				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,
 				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,
+				EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */,
 				EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */,
 				EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */,
 				EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */,
+				EEDD187D27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
