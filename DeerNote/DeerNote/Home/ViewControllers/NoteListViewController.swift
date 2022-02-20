@@ -15,9 +15,7 @@ protocol NoteListViewControllerDelegate: AnyObject {
 
 class NoteListViewController: UIViewController {
     // MARK: Properties
-    var dummyNote: [NoteEntity] = [
-        
-    ]
+    private var allNote: [NoteEntity] = []
     weak var delegate: NoteListViewControllerDelegate?
     private var isLongPressed: Bool = false
     private let backgroundSerialQueue: OperationQueue = {
@@ -41,24 +39,15 @@ class NoteListViewController: UIViewController {
         setupSearchBar()
         setupDoneBarButtonHidden()
         stopShakeAnimationWhenNoEdit()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(#function)
-        
-        func fetch() {
-            let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-            do {
-                dummyNote = try CoreDataManager.shared.mainContext.fetch(fetchRequest)
-            } catch {
-                print(error.localizedDescription)
-            }
+        let modifiedAscendSortDescriptor = NSSortDescriptor(key: "modifiedDate", ascending: false)
+        guard let fetchedNote = NoteManager.shared.fetchAllNote(with: [modifiedAscendSortDescriptor]) else {
+            return
         }
-        
-        fetch()
+        allNote = fetchedNote
     }
+
     
+   
     private func setdimmingView() {
         dimmingView.alpha = 0.0
     }
@@ -181,7 +170,7 @@ class NoteListViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension NoteListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummyNote.count
+        return allNote.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -189,8 +178,8 @@ extension NoteListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.cellColor = (dummyNote[indexPath.item].fromColor ?? GradationColor.blue.from, dummyNote[indexPath.item].toColor ?? GradationColor.blue.to)
-        cell.contentsLabel.text = dummyNote[indexPath.item].contents
+        cell.cellColor = (allNote[indexPath.item].fromColor ?? GradationColor.blue.from, allNote[indexPath.item].toColor ?? GradationColor.blue.to)
+        cell.contentsLabel.text = allNote[indexPath.item].contents
         
         startOrStopShakeAnimation(cell)
         
@@ -216,8 +205,9 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         print("source: \(sourceIndexPath)")
         print("destination: \(destinationIndexPath)")
-        let note = dummyNote.remove(at: sourceIndexPath.item)
-        dummyNote.insert(note, at: destinationIndexPath.item)
+        // TODO: - CoreData에서도 삭제를 해야합니다.
+//        let note = CoreDataManager.shared.allNotes.remove(at: sourceIndexPath.item)
+//        CoreDataManager.shared.allNotes.insert(note, at: destinationIndexPath.item)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

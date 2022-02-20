@@ -30,6 +30,7 @@
 		EEDD187D27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187B27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift */; };
 		EEDD188027C27F0400DAAA52 /* TagEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187E27C27F0400DAAA52 /* TagEntity+CoreDataClass.swift */; };
 		EEDD188127C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187F27C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift */; };
+		EEDD188427C28C2600DAAA52 /* NoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD188327C28C2600DAAA52 /* NoteManager.swift */; };
 		EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */; };
 		EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */; };
 		EEF2DFA627A4660C00CA9CA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFA427A4660C00CA9CA0 /* Main.storyboard */; };
@@ -81,6 +82,7 @@
 		EEDD187B27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EEDD187E27C27F0400DAAA52 /* TagEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EEDD187F27C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EEDD188327C28C2600DAAA52 /* NoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManager.swift; sourceTree = "<group>"; };
 		EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeerNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				EEDD188227C27F5F00DAAA52 /* Entity */,
 				EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */,
+				EEDD188327C28C2600DAAA52 /* NoteManager.swift */,
 				EE97D0ED27BF952D0095A517 /* CoreDataManager.swift */,
 				EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */,
 			);
@@ -442,6 +445,7 @@
 				EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */,
 				EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */,
 				EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */,
+				EEDD188427C28C2600DAAA52 /* NoteManager.swift in Sources */,
 				EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */,
 				EEDD187D27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift in Sources */,
 			);

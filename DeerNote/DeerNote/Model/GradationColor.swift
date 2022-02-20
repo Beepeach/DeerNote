@@ -62,8 +62,8 @@ class GradationColor {
         self.colorTable.append((fromColor, toColor))
     }
     
-    func getRandomColor() -> (UIColor, UIColor) {
-        let randomColor: (UIColor, UIColor) = colorTable.randomElement() ?? GradationColor.blue
+    func getRandomColor() -> (from: UIColor, to: UIColor) {
+        let randomColor = colorTable.randomElement() ?? GradationColor.blue
         return randomColor
     }
     

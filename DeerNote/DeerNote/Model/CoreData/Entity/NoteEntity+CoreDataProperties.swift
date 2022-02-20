@@ -17,11 +17,11 @@ extension NoteEntity {
     }
 
     @NSManaged public var contents: String?
-    @NSManaged public var createDate: Date?
+    @NSManaged public var createdDate: Date?
     @NSManaged public var fromColor: UIColor?
     @NSManaged public var isDeletedNote: Bool
     @NSManaged public var toColor: UIColor?
-    @NSManaged public var updateDate: Date?
+    @NSManaged public var modifiedDate: Date?
     @NSManaged public var tags: NSSet?
 
 }
