@@ -25,6 +25,15 @@ class NoteListViewController: UIViewController {
         return queue
     }()
     
+    lazy var fetchedResultsController: NSFetchedResultsController<NoteEntity> = {
+        let fetchedResultsController: NSFetchedResultsController<NoteEntity> = NSFetchedResultsController(fetchRequest: NoteManager.shared.fetchRequest(), managedObjectContext: CoreDataManager.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
+    
+    deinit {
+        fetchedResultsController.delegate = nil
+    }
     
     // MARK: @IBOutlet
     @IBOutlet weak var noteListCollectionView: UICollectionView!
@@ -39,15 +48,15 @@ class NoteListViewController: UIViewController {
         setupSearchBar()
         setupDoneBarButtonHidden()
         stopShakeAnimationWhenNoEdit()
-        let modifiedAscendSortDescriptor = NSSortDescriptor(key: "modifiedDate", ascending: false)
-        guard let fetchedNote = NoteManager.shared.fetchAllNote(with: [modifiedAscendSortDescriptor]) else {
-            return
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            // TODO: Fetch에 실패할 경우 에러처리 코드가 들어가야합니다.
+            print(#function, print(error.localizedDescription))
         }
-        allNote = fetchedNote
     }
 
-    
-   
     private func setdimmingView() {
         dimmingView.alpha = 0.0
     }
@@ -170,7 +179,13 @@ class NoteListViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension NoteListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allNote.count
+        guard let sections = fetchedResultsController.sections else {
+            return 0
+        }
+        
+        let sectionInfo = sections[section]
+        
+        return sectionInfo.numberOfObjects
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -178,8 +193,11 @@ extension NoteListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.cellColor = (allNote[indexPath.item].fromColor ?? GradationColor.blue.from, allNote[indexPath.item].toColor ?? GradationColor.blue.to)
-        cell.contentsLabel.text = allNote[indexPath.item].contents
+        let targetNote = fetchedResultsController.object(at: indexPath)
+    
+        cell.cellColor = (targetNote.fromColor ?? GradationColor.blue.from, targetNote.toColor ?? GradationColor.blue.to)
+        cell.contentsLabel.text = targetNote.contents
+        // TODO: - DateLabel을 추가시켜줘야합니다.
         
         startOrStopShakeAnimation(cell)
         
@@ -252,4 +270,20 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Notification
 extension Notification.Name {
     static let noteDidLongPressed = Self(rawValue: "noteDidLongPressed")
+}
+
+
+// MARK: - NSFetchedResultsControllerDelegate
+extension NoteListViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+    }
 }

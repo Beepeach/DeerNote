@@ -27,6 +27,16 @@ class NoteManager {
         }
     }
     
+    func fetchRequest() -> NSFetchRequest<NoteEntity> {
+        let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+        let modifiedAscendSortDescriptor = NSSortDescriptor(key: "modifiedDate", ascending: false)
+        request.predicate = NSPredicate(format: "isDeletedNote == false")
+        request.sortDescriptors = [modifiedAscendSortDescriptor]
+        request.fetchBatchSize = 20
+        
+        return request
+    }
+    
     private func update(note: NoteEntity, contents: String) {
         note.contents = contents
         note.modifiedDate = Date()
