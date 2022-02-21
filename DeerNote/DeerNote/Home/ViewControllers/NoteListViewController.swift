@@ -30,10 +30,15 @@ class NoteListViewController: UIViewController {
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
+    private var collectionViewEditOperations: [BlockOperation] = []
+    private var shouldReloadCollectionView: Bool = false
+    private let fetchedResultsQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .userInteractive
+        
+        return queue
+    }()
     
-    deinit {
-        fetchedResultsController.delegate = nil
-    }
     
     // MARK: @IBOutlet
     @IBOutlet weak var noteListCollectionView: UICollectionView!
@@ -56,7 +61,7 @@ class NoteListViewController: UIViewController {
             print(#function, print(error.localizedDescription))
         }
     }
-
+    
     private func setdimmingView() {
         dimmingView.alpha = 0.0
     }
@@ -161,28 +166,44 @@ class NoteListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "toEditorVCSegue":
-            let vc = segue.destination as! NoteEditorViewController
-            vc.title = "Edit"
-            
+            guard let vc = segue.destination as? NoteEditorViewController else {
+                return
+            }
             guard let cell = sender as? NoteCollectionViewCell else {
                 return
             }
+            guard let index = noteListCollectionView.indexPath(for: cell) else {
+                return
+            }
+            let target = fetchedResultsController.object(at: index)
+            vc.title = "Edit"
+            vc.targetNote = target
             
-            vc.contents = cell.contentsLabel.text
+            vc.contents = target.contents
         default:
             break
         }
+    }
+    
+    // MARK: Deinitializer
+    deinit {
+        fetchedResultsController.delegate = nil
+        fetchedResultsQueue.cancelAllOperations()
+        collectionViewEditOperations.removeAll()
     }
 }
 
 
 // MARK: - UICollectionViewDataSource
 extension NoteListViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return fetchedResultsController.sections?.count ?? 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let sections = fetchedResultsController.sections else {
             return 0
         }
-        
         let sectionInfo = sections[section]
         
         return sectionInfo.numberOfObjects
@@ -192,9 +213,8 @@ extension NoteListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoteCollectionViewCell", for: indexPath) as? NoteCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         let targetNote = fetchedResultsController.object(at: indexPath)
-    
+        
         cell.cellColor = (targetNote.fromColor ?? GradationColor.blue.from, targetNote.toColor ?? GradationColor.blue.to)
         cell.contentsLabel.text = targetNote.contents
         // TODO: - DateLabel을 추가시켜줘야합니다.
@@ -223,7 +243,7 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         print("source: \(sourceIndexPath)")
         print("destination: \(destinationIndexPath)")
-        // TODO: - CoreData에서도 삭제를 해야합니다.
+        // TODO: - fetchedResultsController에서 reordering을 구현하는 방법
 //        let note = CoreDataManager.shared.allNotes.remove(at: sourceIndexPath.item)
 //        CoreDataManager.shared.allNotes.insert(note, at: destinationIndexPath.item)
     }
@@ -275,15 +295,102 @@ extension Notification.Name {
 
 // MARK: - NSFetchedResultsControllerDelegate
 extension NoteListViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
-    }
-    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
+        switch type {
+        case .insert:
+            guard let newIndexPath = newIndexPath else {
+                return
+            }
+            
+            if noteListCollectionView.numberOfSections > 0 {
+                if noteListCollectionView.numberOfItems(inSection: newIndexPath.section) == 0{
+                    self.shouldReloadCollectionView = true
+                } else {
+                    collectionViewEditOperations.append(
+                        BlockOperation{ [weak self] in
+                            if let strongSelf = self {
+                                DispatchQueue.main.async {
+                                    strongSelf.noteListCollectionView.insertItems(at: [newIndexPath])
+                                }
+                            }
+                        }
+                    )
+                }
+            } else {
+                self.shouldReloadCollectionView = true
+            }
+            print("Insert Obejct: \(newIndexPath)")
+        case .update:
+            guard let indexPath = indexPath else {
+                return
+            }
+            
+            collectionViewEditOperations.append(
+                BlockOperation { [weak self] in
+                    if let strongSelf = self {
+                        DispatchQueue.main.async {
+                            strongSelf.noteListCollectionView.reloadItems(at: [indexPath])
+                        }
+                    }
+                    
+                }
+            )
+            print("Updata Object: \(indexPath)")
+        case .move:
+            guard let indexPath = indexPath,
+                  let newIndexPath = newIndexPath else {
+                      return
+                  }
+            
+            collectionViewEditOperations.append(
+                BlockOperation { [weak self] in
+                    if let strongSelf = self {
+                        DispatchQueue.main.async {
+                            strongSelf.noteListCollectionView.moveItem(at: indexPath, to: newIndexPath)
+                        }
+                    }
+                }
+            )
+            print("Move Object: \(indexPath)")
+        case .delete:
+            guard let indexPath = indexPath else {
+                return
+            }
+            
+            if noteListCollectionView.numberOfItems(inSection: indexPath.section) == 1 {
+                self.shouldReloadCollectionView = true
+            } else {
+                collectionViewEditOperations.append(
+                    BlockOperation { [weak self] in
+                        if let strongSelf = self {
+                            strongSelf.noteListCollectionView.deleteItems(at: [indexPath])
+                        }
+                        
+                    }
+                )
+            }
+            print("Delete Object: \(indexPath)")
+        default:
+            break
+        }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if self.shouldReloadCollectionView {
+            DispatchQueue.main.async {
+                self.noteListCollectionView.reloadData()
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.noteListCollectionView.performBatchUpdates {
+                    for operation in self.collectionViewEditOperations {
+                        self.fetchedResultsQueue.addOperation(operation)
+                    }
+                } completion: { finished in
+                    self.collectionViewEditOperations.removeAll()
+                }
+            }
+        }
         
     }
 }

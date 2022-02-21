@@ -11,7 +11,7 @@ import CoreData
 class NoteManager {
     static let shared: NoteManager = NoteManager()
     
-    var allNotes: [NoteEntity] = []
+    private var allNotes: [NoteEntity] = []
     private let coredataManager = CoreDataManager.shared
     
     func fetchAllNote(with sortDescriptors: [NSSortDescriptor]) -> [NoteEntity]? {
@@ -37,17 +37,8 @@ class NoteManager {
         return request
     }
     
-    private func update(note: NoteEntity, contents: String) {
-        note.contents = contents
-        note.modifiedDate = Date()
-        
-        if coredataManager.mainContext.hasChanges {
-            coredataManager.saveMainContext()
-            print("Edit Note")
-        }
-    }
-    
-    private func addNote(contents: String) {
+    func addNote(contents: String) {
+        // TODO: - Tag를 추가하는 코드가 들어가야합니다.
         let newNote = NoteEntity(context: CoreDataManager.shared.mainContext)
         let currentData = Date()
         let randomColor = GradationColor.shared.getRandomColor()
@@ -63,6 +54,19 @@ class NoteManager {
             coredataManager.saveMainContext()
         }
         print("Add Note")
+    }
+    
+    func update(_ note: NoteEntity, contents: String) {
+        guard note.contents != contents else {
+            return
+        }
+        note.contents = contents
+        note.modifiedDate = Date()
+        
+        if coredataManager.mainContext.hasChanges {
+            coredataManager.saveMainContext()
+            print("Edit Note")
+        }
     }
     
     func moveTrash(note: NoteEntity) {

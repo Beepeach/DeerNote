@@ -25,7 +25,16 @@ class NoteEditorViewController: UIViewController {
     
     // MARK: VCLifeCycle
     override func viewWillDisappear(_ animated: Bool) {
-        // TODO: - 나가지면 note를 저장하는 코드를 구현해야합니다.
+        // TODO: - Tag를 추가하는 코드가 들어가야합니다.
+        guard let contents = contentTextView.text, contents.count > 0 else {
+            return
+        }
+
+        if let targetNote = targetNote {
+            NoteManager.shared.update(targetNote, contents: contents)
+        } else {
+            NoteManager.shared.addNote(contents: contents)
+        }
     }
     
     override func viewDidLoad() {
