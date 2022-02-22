@@ -16,6 +16,7 @@ class PopoverViewController: UIViewController {
     @IBOutlet weak var pinSelectLabel: UILabel!
     
     @IBAction func tapPinButton(_ sender: UIButton) {
+        // TODO: - Pin유무에 따라 note에 표시가 되는 기능을 추가하면 좋습니다!
         guard let targetNote = targetNote else {
             return
         }
