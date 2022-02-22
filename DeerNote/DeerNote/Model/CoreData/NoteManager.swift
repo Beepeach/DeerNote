@@ -66,8 +66,10 @@ class NoteManager {
     }
     
     func updateWithNoSave(_ note: NoteEntity, sortIndex: Int) {
-        note.customSortIndex = Int64(sortIndex)
-        print("Only customSortIndex update with no save")
+        if note.customSortIndex != Int64(sortIndex) {
+            note.customSortIndex = Int64(sortIndex)
+            print("Only customSortIndex\(sortIndex) update with no save")
+        }
     }
     
     func moveTrash(note: NoteEntity) {
