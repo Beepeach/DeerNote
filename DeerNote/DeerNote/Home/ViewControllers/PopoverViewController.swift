@@ -14,6 +14,13 @@ class PopoverViewController: UIViewController {
     @IBAction func tapPinButton(_ sender: UIButton) {
         // TODO: - pin꼽기
         print("Pin")
+        guard let targetNote = targetNote else {
+            return
+        }
+
+        NoteManager.shared.update(targetNote, sortIndex: -1)
+        NotificationCenter.default.post(name: .noteDidPinned, object: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func tapInfoButton(_ sender: UIButton) {
@@ -52,4 +59,9 @@ class PopoverViewController: UIViewController {
 
 extension Notification.Name {
     static let mainContextDidChange = Notification.Name("mainContextDidChange")
+    static let noteDidPinned = Notification.Name("noteDidPinned")
+}
+
+extension NoteListViewController {
+    static let selectedNoteIndexUserInfoKey: String = "index"
 }

@@ -65,6 +65,15 @@ class NoteManager {
         }
     }
     
+    func update(_ note: NoteEntity, sortIndex: Int) {
+        note.customSortIndex = Int64(sortIndex)
+        
+        if coredataManager.mainContext.hasChanges {
+            coredataManager.saveMainContext()
+            print("Update customSortIndex \(sortIndex)")
+        }
+    }
+    
     func updateWithNoSave(_ note: NoteEntity, sortIndex: Int) {
         if note.customSortIndex != Int64(sortIndex) {
             note.customSortIndex = Int64(sortIndex)

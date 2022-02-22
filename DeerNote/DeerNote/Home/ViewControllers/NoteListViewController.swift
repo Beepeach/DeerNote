@@ -49,7 +49,7 @@ class NoteListViewController: UIViewController {
                 return
             }
             
-            guard let targetIndex = userInfo["index"] as? Int else {
+            guard let targetIndex = userInfo[NoteListViewController.selectedNoteIndexUserInfoKey] as? Int else {
                 return
             }
             
@@ -58,6 +58,11 @@ class NoteListViewController: UIViewController {
             (targetIndex ..< self.notes.count).forEach {
                 self.noteListCollectionView.reloadItems(at: [IndexPath(item: $0, section: 0)])
             }
+        }
+        
+        NotificationCenter.default.addObserver(forName: .noteDidPinned, object: nil, queue: .main) { _ in
+            self.fetchAllNote()
+            self.noteListCollectionView.reloadData()
         }
     }
     
