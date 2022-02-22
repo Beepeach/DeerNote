@@ -231,6 +231,16 @@ extension NoteListViewController: UICollectionViewDataSource {
     }
 }
 
+extension NoteListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if self.isLongPressed == true {
+            return false
+        }
+        
+        return true
+    }
+}
+
 
 //MARK: - UICollectionViewDelegate
 extension NoteListViewController: UICollectionViewDelegateFlowLayout {
