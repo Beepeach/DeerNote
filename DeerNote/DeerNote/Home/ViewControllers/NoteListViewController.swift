@@ -149,6 +149,17 @@ class NoteListViewController: UIViewController {
             noteListCollectionView.endInteractiveMovement()
             
             guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
+                if let visibleCells = noteListCollectionView.visibleCells as? [NoteCollectionViewCell] {
+                    visibleCells.forEach {
+                        if $0.contentView.alpha != 1.0 {
+                            $0.contentView.alpha = 1.0
+                        }
+                        
+                        if $0.isAnimating == false {
+                            $0.startShakeAnimation()
+                        }
+                    }
+                }
                 return
             }
             
