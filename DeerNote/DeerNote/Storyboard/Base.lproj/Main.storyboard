@@ -105,6 +105,7 @@
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="contentsLabel" destination="EBm-p0-rje" id="Aiz-7j-FDB"/>
+                                            <outlet property="modifiedDateLabel" destination="DKG-Qa-rYu" id="JoP-LC-SAa"/>
                                             <segue destination="hco-nt-dVO" kind="show" identifier="toEditorVCSegue" id="uwn-Si-vGD"/>
                                         </connections>
                                     </collectionViewCell>

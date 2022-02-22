@@ -188,7 +188,15 @@ extension NoteListViewController: UICollectionViewDataSource {
         
         cell.cellColor = (targetNote.fromColor ?? GradationColor.blue.from, targetNote.toColor ?? GradationColor.blue.to)
         cell.contentsLabel.text = targetNote.contents
-        // TODO: - DateLabel을 추가시켜줘야합니다.
+        // TODO: - DateFormatter분리
+        let dateFormatter: DateFormatter = {
+           let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy. MM. dd"
+            
+            return dateFormatter
+        }()
+        cell.modifiedDateLabel.text = dateFormatter.string(for: targetNote.modifiedDate)
+        
         
         startOrStopShakeAnimation(cell)
         

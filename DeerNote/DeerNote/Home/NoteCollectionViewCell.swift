@@ -13,6 +13,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     
     // MARK: @IBOutlet
     @IBOutlet weak var contentsLabel: UILabel!
+    @IBOutlet weak var modifiedDateLabel: UILabel!
     
     // MARK: ViewLifeCycle
     override func awakeFromNib() {
