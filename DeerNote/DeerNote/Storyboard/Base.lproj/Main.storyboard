@@ -426,7 +426,7 @@
                                                 </collectionViewCellContentView>
                                                 <connections>
                                                     <outlet property="tagNameLabel" destination="s5I-ZI-tYJ" id="xgP-Gq-zzl"/>
-                                                    <outlet property="tagremoveButton" destination="VcF-rt-0XW" id="dWs-ds-gaX"/>
+                                                    <outlet property="tagRemoveButton" destination="VcF-rt-0XW" id="dWs-ds-gaX"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

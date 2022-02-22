@@ -10,7 +10,7 @@ import UIKit
 class TagCollectionViewCell: UICollectionViewCell {
     // MARK: @IBOutlet
     @IBOutlet weak var tagNameLabel: UILabel!
-    @IBOutlet weak var tagremoveButton: UIButton!
+    @IBOutlet weak var tagRemoveButton: UIButton!
     
     
     // MARK: ViewLayout
@@ -29,14 +29,14 @@ class TagCollectionViewCell: UICollectionViewCell {
         guard let name = tagNameLabel.text else {
             return
         }
-        NotificationCenter.default.post(name: .tapRemoveButtonDidTapped, object: nil, userInfo: ["tagName": name])
+        NotificationCenter.default.post(name: .tagRemoveButtonDidTapped, object: nil, userInfo: ["tagName": name])
     }
 }
 
 
 // MARK: - Notification
 extension Notification.Name {
-    static let tapRemoveButtonDidTapped = Notification.Name(rawValue: "tapRemoveButtonDidTapped")
+    static let tagRemoveButtonDidTapped = Notification.Name(rawValue: "tapRemoveButtonDidTapped")
 }
 
 

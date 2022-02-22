@@ -88,7 +88,7 @@ class NoteEditorViewController: UIViewController {
     }
     
     private func observeTagRemoveButtonTapped() {
-        NotificationCenter.default.addObserver(forName: .tapRemoveButtonDidTapped, object: nil, queue: .main) { [weak self] noti in
+        NotificationCenter.default.addObserver(forName: .tagRemoveButtonDidTapped, object: nil, queue: .main) { [weak self] noti in
             guard let userInfo = noti.userInfo else {
                 return
             }
