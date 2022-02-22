@@ -67,13 +67,13 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="pin.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1if-lc-0La">
                                         <rect key="frame" x="12" y="12" width="26" height="26.5"/>
-                                        <color key="tintColor" systemColor="systemTealColor"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor"/>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상단 고정" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nY-7w-WLy">
                                         <rect key="frame" x="46" y="15" width="142" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" systemColor="systemOrangeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlI-q3-lAx">
@@ -191,6 +191,10 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="pinImageView" destination="1if-lc-0La" id="ARc-mD-bMX"/>
+                        <outlet property="pinSelectLabel" destination="2nY-7w-WLy" id="Vha-0T-H3A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jMD-63-lIn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -891,6 +895,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

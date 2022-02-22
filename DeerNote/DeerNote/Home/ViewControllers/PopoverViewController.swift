@@ -10,16 +10,26 @@ import UIKit
 class PopoverViewController: UIViewController {
     var targetNote: NoteEntity?
     var index: Int?
+    var isPinned: Bool?
+    
+    @IBOutlet weak var pinImageView: UIImageView!
+    @IBOutlet weak var pinSelectLabel: UILabel!
     
     @IBAction func tapPinButton(_ sender: UIButton) {
-        // TODO: - pin꼽기
-        print("Pin")
         guard let targetNote = targetNote else {
             return
         }
-
-        NoteManager.shared.update(targetNote, sortIndex: -1)
-        NotificationCenter.default.post(name: .noteDidPinned, object: nil)
+        guard let isPinned = isPinned else {
+            return
+        }
+        
+        if isPinned == true {
+            NoteManager.shared.update(targetNote, sortIndex: 0)
+        } else {
+            NoteManager.shared.update(targetNote, sortIndex: -1)
+        }
+        
+        NotificationCenter.default.post(name: .notePinButtonDidTapped, object: nil)
         dismiss(animated: true, completion: nil)
     }
     
@@ -50,6 +60,19 @@ class PopoverViewController: UIViewController {
     
     override func viewDidLoad() {
         self.preferredContentSize = CGSize(width: 200, height: 150)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if isPinned == true {
+            pinSelectLabel.text = "상단 고정 해제"
+            pinSelectLabel.textColor = .systemRed
+            pinImageView.image = UIImage(systemName: "pin.slash")
+            pinImageView.tintColor = .systemRed
+        } else {
+            pinSelectLabel.text = "상단 고정"
+            pinImageView.image = UIImage(systemName: "pin.circle")
+        }
     }
     
     deinit {
@@ -59,7 +82,7 @@ class PopoverViewController: UIViewController {
 
 extension Notification.Name {
     static let mainContextDidChange = Notification.Name("mainContextDidChange")
-    static let noteDidPinned = Notification.Name("noteDidPinned")
+    static let notePinButtonDidTapped = Notification.Name("noteDidPinned")
 }
 
 extension NoteListViewController {

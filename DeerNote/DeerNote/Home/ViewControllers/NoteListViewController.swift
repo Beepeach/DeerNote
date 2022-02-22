@@ -60,7 +60,7 @@ class NoteListViewController: UIViewController {
             }
         }
         
-        NotificationCenter.default.addObserver(forName: .noteDidPinned, object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: .notePinButtonDidTapped, object: nil, queue: .main) { _ in
             self.fetchAllNote()
             self.noteListCollectionView.reloadData()
         }
@@ -346,6 +346,7 @@ extension NoteListViewController: NoteCollectionViewCellDelegate {
         let targetNote = notes[selectdIndex]
         popoverVC.targetNote = targetNote
         popoverVC.index = button.tag
+        popoverVC.isPinned = targetNote.customSortIndex < 0 ? true : false
     }
 }
 
