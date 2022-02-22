@@ -42,11 +42,26 @@ class NoteListViewController: UIViewController {
         setupDoneBarButtonHidden()
         stopShakeAnimationWhenNoEdit()
         
-        let sortDesciptor = NSSortDescriptor(key: "modifiedDate", ascending: false)
-        guard let allNotes = NoteManager.shared.fetchAllNote(with: [sortDesciptor]) else {
+        fetchAllNote()
+    }
+    
+    private func fetchAllNote() {
+        let modifiedDateDSCE = NSSortDescriptor(key: "modifiedDate", ascending: false)
+        let customSortIndexASCE = NSSortDescriptor(key: "customSortIndex", ascending: true)
+        let request = NoteManager.shared.setupAllNoteFetchRequest(sort: [customSortIndexASCE, modifiedDateDSCE])
+        guard let allNotes = NoteManager.shared.fetchNotes(with: request) else {
             return
         }
         notes = allNotes
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print(#function)
+        super.viewWillAppear(animated)
+        if CoreDataManager.shared.mainContext.hasChanges {
+            fetchAllNote()
+            noteListCollectionView.reloadData()
+        }
     }
     
     private func setdimmingView() {
@@ -85,6 +100,10 @@ class NoteListViewController: UIViewController {
         noteListCollectionView.reloadData()
         setupDoneBarButtonHidden()
         backgroundSerialQueue.cancelAllOperations()
+        
+        if CoreDataManager.shared.mainContext.hasChanges {
+            CoreDataManager.shared.saveMainContext()
+        }
     }
     
     @IBAction func tapDimmingView(_ sender: Any) {
@@ -222,9 +241,18 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         print("source: \(sourceIndexPath)")
         print("destination: \(destinationIndexPath)")
-        // TODO: - fetchedResultsController에서 reordering을 구현하는 방법
-//        let note = CoreDataManager.shared.allNotes.remove(at: sourceIndexPath.item)
-//        CoreDataManager.shared.allNotes.insert(note, at: destinationIndexPath.item)
+        
+        // note 데이터 수정
+        let note = notes.remove(at: sourceIndexPath.item)
+        notes.insert(note, at: destinationIndexPath.item)
+        
+        
+        // customindex 부여
+        var count: Int = 0
+        notes.forEach {
+            NoteManager.shared.updateWithNoSave($0, sortIndex: count)
+            count += 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

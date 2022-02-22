@@ -67,27 +67,27 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="edY-Bz-Lx7">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="195" height="126"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="12" minY="12" maxX="12" maxY="12"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoteCollectionViewCell" id="6Jd-bv-aL3" customClass="NoteCollectionViewCell" customModule="DeerNote" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="12" width="128" height="128"/>
+                                        <rect key="frame" x="109.5" y="12" width="195" height="126"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RAS-hc-oA7">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="195" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여기에는 메모에 앞글자가 나타나게 됩니다. 너무 길면 이건 끊겨서 나타야하므로 어디서 끊어야 되는지 애매하군요." lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBm-p0-rje">
-                                                    <rect key="frame" x="8" y="8" width="112" height="74"/>
+                                                    <rect key="frame" x="8" y="8" width="179" height="72"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="2022. 01. 01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKG-Qa-rYu">
-                                                    <rect key="frame" x="30" y="102" width="90" height="18"/>
+                                                    <rect key="frame" x="97" y="100" width="90" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" systemColor="systemGray5Color"/>
                                                     <nil key="highlightedColor"/>
@@ -103,6 +103,7 @@
                                                 <constraint firstItem="EBm-p0-rje" firstAttribute="leading" secondItem="RAS-hc-oA7" secondAttribute="leading" constant="8" id="wpT-jp-IcA"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="195" height="126"/>
                                         <connections>
                                             <outlet property="contentsLabel" destination="EBm-p0-rje" id="Aiz-7j-FDB"/>
                                             <outlet property="modifiedDateLabel" destination="DKG-Qa-rYu" id="JoP-LC-SAa"/>

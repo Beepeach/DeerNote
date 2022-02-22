@@ -14,12 +14,9 @@ class NoteManager {
     private var allNotes: [NoteEntity] = []
     private let coredataManager = CoreDataManager.shared
     
-    func fetchAllNote(with sortDescriptors: [NSSortDescriptor]) -> [NoteEntity]? {
-        let allNotefetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-        allNotefetchRequest.sortDescriptors = sortDescriptors
-        
+    func fetchNotes(with request: NSFetchRequest<NoteEntity>) -> [NoteEntity]? {
         do {
-            return try coredataManager.mainContext.fetch(allNotefetchRequest)
+            return try coredataManager.mainContext.fetch(request)
         } catch {
             // TODO: - fetch실패시 에러처리를 해야합니다.
             print(#function, print(error.localizedDescription))
@@ -27,11 +24,10 @@ class NoteManager {
         }
     }
     
-    func fetchRequest() -> NSFetchRequest<NoteEntity> {
+    func setupAllNoteFetchRequest(sort sortDescriptors: [NSSortDescriptor]) -> NSFetchRequest<NoteEntity> {
         let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-        let modifiedAscendSortDescriptor = NSSortDescriptor(key: "modifiedDate", ascending: false)
         request.predicate = NSPredicate(format: "isDeletedNote == false")
-        request.sortDescriptors = [modifiedAscendSortDescriptor]
+        request.sortDescriptors = sortDescriptors
         request.fetchBatchSize = 20
         
         return request
@@ -67,6 +63,11 @@ class NoteManager {
             coredataManager.saveMainContext()
             print("Edit Note")
         }
+    }
+    
+    func updateWithNoSave(_ note: NoteEntity, sortIndex: Int) {
+        note.customSortIndex = Int64(sortIndex)
+        print("Only customSortIndex update with no save")
     }
     
     func moveTrash(note: NoteEntity) {

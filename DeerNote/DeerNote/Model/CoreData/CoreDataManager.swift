@@ -40,6 +40,7 @@ class CoreDataManager {
             if self.mainContext.hasChanges {
                 do {
                     try self.mainContext.save()
+                    print("Save Main Context")
                 } catch {
                     // TODO: - SaveError처리 코드를 넣어줍시다.
                     print(error.localizedDescription)

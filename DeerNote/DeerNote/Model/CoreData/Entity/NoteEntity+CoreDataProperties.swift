@@ -23,6 +23,7 @@ extension NoteEntity {
     @NSManaged public var toColor: UIColor?
     @NSManaged public var modifiedDate: Date?
     @NSManaged public var tags: NSSet?
+    @NSManaged public var customSortIndex: Int64
 
 }
 

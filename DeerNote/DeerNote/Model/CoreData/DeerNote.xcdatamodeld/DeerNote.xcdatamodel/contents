@@ -3,6 +3,7 @@
     <entity name="Note" representedClassName="NoteEntity" syncable="YES">
         <attribute name="contents" optional="YES" attributeType="String"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="customSortIndex" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="fromColor" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" customClassName=".UIColor"/>
         <attribute name="isDeletedNote" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -14,7 +15,7 @@
         <relationship name="notes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
     <elements>
-        <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="134"/>
+        <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="149"/>
         <element name="Tag" positionX="-49.1796875" positionY="-251.7890625" width="128" height="59"/>
     </elements>
 </model>
