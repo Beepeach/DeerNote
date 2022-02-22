@@ -249,6 +249,10 @@ extension NoteListViewController: UICollectionViewDataSource {
         cell.delegate = self
         cell.optionsButton.tag = indexPath.item
         
+        
+        cell.optionsButton.isEnabled = !isLongPressed
+        
+        
         startOrStopShakeAnimation(cell)
         
         return cell
