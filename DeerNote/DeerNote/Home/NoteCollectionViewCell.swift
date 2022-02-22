@@ -14,6 +14,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     // MARK: @IBOutlet
     @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var modifiedDateLabel: UILabel!
+    @IBOutlet weak var optionsButton: UIButton!
     
     // MARK: ViewLifeCycle
     override func awakeFromNib() {
@@ -21,6 +22,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
         setCellShadow()
         setCellCorner()
         contentsLabel.textColor = .white
+        optionsButton.tintColor = .white
     }
     
     override func layoutSubviews() {
