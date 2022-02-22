@@ -26,7 +26,7 @@ class NoteListViewController: UIViewController {
     }()
     
     private var notes: [NoteEntity] = []
-
+    
     
     // MARK: @IBOutlet
     @IBOutlet weak var noteListCollectionView: UICollectionView!
@@ -43,6 +43,22 @@ class NoteListViewController: UIViewController {
         stopShakeAnimationWhenNoEdit()
         
         fetchAllNote()
+        
+        NotificationCenter.default.addObserver(forName: .mainContextDidChange, object: nil, queue: .main) { noti in
+            guard let userInfo = noti.userInfo else {
+                return
+            }
+            
+            guard let targetIndex = userInfo["index"] as? Int else {
+                return
+            }
+            
+            self.notes.remove(at: targetIndex)
+            self.noteListCollectionView.deleteItems(at: [IndexPath(item: targetIndex, section: 0)])
+            (targetIndex ..< self.notes.count).forEach {
+                self.noteListCollectionView.reloadItems(at: [IndexPath(item: $0, section: 0)])
+            }
+        }
     }
     
     private func fetchAllNote() {
@@ -109,7 +125,6 @@ class NoteListViewController: UIViewController {
     @IBAction func tapDimmingView(_ sender: Any) {
         delegate?.didTapDimmingView(self)
     }
-    
     
     @IBAction func pressNoteListCell(_ sender: UILongPressGestureRecognizer) {
         switch sender.state {
@@ -209,13 +224,14 @@ extension NoteListViewController: UICollectionViewDataSource {
         cell.contentsLabel.text = targetNote.contents
         // TODO: - DateFormatter분리
         let dateFormatter: DateFormatter = {
-           let dateFormatter = DateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy. MM. dd"
             
             return dateFormatter
         }()
         cell.modifiedDateLabel.text = dateFormatter.string(for: targetNote.modifiedDate)
-        
+        cell.delegate = self
+        cell.optionsButton.tag = indexPath.item
         
         startOrStopShakeAnimation(cell)
         
@@ -307,4 +323,30 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Notification
 extension Notification.Name {
     static let noteDidLongPressed = Self(rawValue: "noteDidLongPressed")
+}
+
+
+// MARK: - NoteCollectionViewDeleagte
+extension NoteListViewController: NoteCollectionViewCellDelegate {
+    func optionbuttonDidTapped(_ button: UIButton, selectdIndex: Int) {
+        print(selectdIndex)
+        guard let popoverVC = storyboard?.instantiateViewController(withIdentifier: "PopoverViewController") as? PopoverViewController else {
+            return
+        }
+        popoverVC.modalPresentationStyle = .popover
+        popoverVC.popoverPresentationController?.sourceView = button
+        popoverVC.popoverPresentationController?.delegate = self
+        present(popoverVC, animated: true, completion: nil)
+        
+        let targetNote = notes[selectdIndex]
+        popoverVC.targetNote = targetNote
+        popoverVC.index = button.tag
+    }
+}
+
+// MARK: - UIPopoverPresentationCOntrollerDelegate
+extension NoteListViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
 }

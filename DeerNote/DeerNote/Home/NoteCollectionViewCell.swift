@@ -7,14 +7,24 @@
 
 import UIKit
 
+protocol NoteCollectionViewCellDelegate: AnyObject {
+    func optionbuttonDidTapped(_ button: UIButton, selectdIndex: Int)
+}
+
 class NoteCollectionViewCell: UICollectionViewCell {
     var isAnimating: Bool = true
     var cellColor: (UIColor, UIColor)?
+    weak var delegate: NoteCollectionViewCellDelegate?
     
     // MARK: @IBOutlet
     @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var modifiedDateLabel: UILabel!
     @IBOutlet weak var optionsButton: UIButton!
+    
+    // MARK: @IBAction
+    @IBAction func tapOptionsButton(_ sender: UIButton) {
+        delegate?.optionbuttonDidTapped(sender, selectdIndex: sender.tag)
+    }
     
     // MARK: ViewLifeCycle
     override func awakeFromNib() {
