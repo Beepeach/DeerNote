@@ -248,6 +248,7 @@ extension NoteListViewController: UICollectionViewDataSource {
         cell.modifiedDateLabel.text = dateFormatter.string(for: targetNote.modifiedDate)
         cell.delegate = self
         cell.optionsButton.tag = indexPath.item
+        cell.pinImageView.isHidden = targetNote.customSortIndex < 0 ? false : true
         
         
         cell.optionsButton.isEnabled = !isLongPressed

@@ -20,6 +20,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var modifiedDateLabel: UILabel!
     @IBOutlet weak var optionsButton: UIButton!
+    @IBOutlet weak var pinImageView: UIImageView!
     
     // MARK: @IBAction
     @IBAction func tapOptionsButton(_ sender: UIButton) {
@@ -33,6 +34,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
         setCellCorner()
         contentsLabel.textColor = .white
         optionsButton.tintColor = .white
+        pinImageView.isHidden = true
     }
     
     override func layoutSubviews() {

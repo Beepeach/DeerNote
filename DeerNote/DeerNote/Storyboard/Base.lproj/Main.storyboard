@@ -396,6 +396,10 @@
                                                         <action selector="tapOptionsButton:" destination="6Jd-bv-aL3" eventType="touchUpInside" id="a8Z-ey-1vF"/>
                                                     </connections>
                                                 </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qti-cx-3Mp">
+                                                    <rect key="frame" x="171" y="4.5" width="20" height="19"/>
+                                                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="kQJ-iH-t4i" firstAttribute="firstBaseline" secondItem="DKG-Qa-rYu" secondAttribute="firstBaseline" id="4O7-6L-DTV"/>
@@ -403,6 +407,8 @@
                                                 <constraint firstItem="EBm-p0-rje" firstAttribute="top" secondItem="RAS-hc-oA7" secondAttribute="top" constant="8" id="7fu-kC-T4R"/>
                                                 <constraint firstItem="kQJ-iH-t4i" firstAttribute="leading" secondItem="EBm-p0-rje" secondAttribute="leading" id="I3D-Cr-3vR"/>
                                                 <constraint firstAttribute="bottom" secondItem="DKG-Qa-rYu" secondAttribute="bottom" constant="8" id="V0X-4e-vnu"/>
+                                                <constraint firstItem="qti-cx-3Mp" firstAttribute="top" secondItem="RAS-hc-oA7" secondAttribute="top" constant="4" id="WiU-h2-g8y"/>
+                                                <constraint firstAttribute="trailing" secondItem="qti-cx-3Mp" secondAttribute="trailing" constant="4" id="XjN-WX-aOx"/>
                                                 <constraint firstAttribute="trailing" secondItem="DKG-Qa-rYu" secondAttribute="trailing" constant="8" id="Zm4-OZ-1Jh"/>
                                                 <constraint firstItem="DKG-Qa-rYu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EBm-p0-rje" secondAttribute="bottom" constant="20" id="gPT-L1-XSD"/>
                                                 <constraint firstAttribute="trailing" secondItem="EBm-p0-rje" secondAttribute="trailing" constant="8" id="nad-FK-xdF"/>
@@ -414,6 +420,7 @@
                                             <outlet property="contentsLabel" destination="EBm-p0-rje" id="Aiz-7j-FDB"/>
                                             <outlet property="modifiedDateLabel" destination="DKG-Qa-rYu" id="JoP-LC-SAa"/>
                                             <outlet property="optionsButton" destination="kQJ-iH-t4i" id="xKc-ee-NyN"/>
+                                            <outlet property="pinImageView" destination="qti-cx-3Mp" id="hdW-54-tHS"/>
                                             <segue destination="hco-nt-dVO" kind="show" identifier="toEditorVCSegue" id="uwn-Si-vGD"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1031,6 +1038,7 @@
         <image name="pencil.slash" catalog="system" width="128" height="113"/>
         <image name="pin" catalog="system" width="119" height="128"/>
         <image name="pin.circle" catalog="system" width="128" height="121"/>
+        <image name="pin.circle.fill" catalog="system" width="128" height="121"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="tag.slash" catalog="system" width="128" height="119"/>
         <image name="trash" catalog="system" width="121" height="128"/>
