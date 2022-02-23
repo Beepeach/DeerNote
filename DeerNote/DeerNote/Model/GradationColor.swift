@@ -8,9 +8,9 @@
 import UIKit
 
 class GradationColor {
+    // MARK: Properties
     // Default값은 blue와 같습니다.
     static let shared: GradationColor = GradationColor()
-    
     var from: UIColor
     var to: UIColor
     
@@ -58,6 +58,7 @@ class GradationColor {
                                                       to: UIColor(red: 0.8123683333, green: 0.1657164991, blue: 0.5003474355, alpha: 1))
     
     
+    // MARK: Methods
     func append(fromColor: UIColor, toColor: UIColor) {
         self.colorTable.append((fromColor, toColor))
     }
@@ -71,6 +72,7 @@ class GradationColor {
         return colorTable.count
     }
     
+    // MARK: Initializer
     init() {
         self.from = UIColor(red: 0.1774400771, green: 0.466574192, blue: 0.8732826114, alpha: 1)
         self.to = UIColor(red: 0.00491155684, green: 0.287129879, blue: 0.7411141396, alpha: 1)
