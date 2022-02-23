@@ -17,10 +17,11 @@ class NoteEditorViewController: UIViewController {
     
     // MARK: @IBOutlet
     @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var noteInfoBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var endEditBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var tagViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagCollectionView: UICollectionView!
-
+    
     // MARK: @IBAction
     @IBAction func tapEndEditButton(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
@@ -60,7 +61,7 @@ class NoteEditorViewController: UIViewController {
         resetApperanceWhenKeyboardHide()
         observeTagRemoveButtonTapped()
     }
-        
+    
     private func setupDefaultApperance() {
         navigationController?.navigationBar.tintColor = .systemTeal
         contentTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
@@ -70,7 +71,13 @@ class NoteEditorViewController: UIViewController {
         } else {
             contentTextView.text = nil
             contentTextView.becomeFirstResponder()
+            hideNoteInfoButton()
         }
+    }
+    
+    private func hideNoteInfoButton() {
+        noteInfoBarButtonItem.isEnabled = false
+        noteInfoBarButtonItem.tintColor = .clear
     }
     
     private func adjustApperanceWhenKeyboardShow() {
@@ -166,7 +173,7 @@ extension NoteEditorViewController: UICollectionViewDataSource {
 extension NoteEditorViewController: TagCreatorCollectionViewCellDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text, text.count > 0 else {
-                  return false
+            return false
         }
         
         if tags.contains(where: { $0.name == text }) {
@@ -178,7 +185,7 @@ extension NoteEditorViewController: TagCreatorCollectionViewCellDelegate {
         
         textField.text = nil
         textField.becomeFirstResponder()
-      
+        
         tagCollectionView.reloadSections(IndexSet(integer: 1))
         return true
     }
@@ -186,21 +193,21 @@ extension NoteEditorViewController: TagCreatorCollectionViewCellDelegate {
     // TODO: - 왜 크기가 안바뀔까?? 다이나믹하게 바뀌도록 만들어야합니다.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         /*
-        if textField.text != nil {
-            guard let text = textField.text else {
-                return true
-            }
-            
-            let nsText = text as NSString
-            let finalString = nsText.replacingCharacters(in: range, with: string)
-            textField.frame.size.width = getWidth(text: finalString)
-            self.view.layoutIfNeeded()
-        }
-        */
+         if textField.text != nil {
+         guard let text = textField.text else {
+         return true
+         }
+         
+         let nsText = text as NSString
+         let finalString = nsText.replacingCharacters(in: range, with: string)
+         textField.frame.size.width = getWidth(text: finalString)
+         self.view.layoutIfNeeded()
+         }
+         */
         
         return true
     }
-
+    
     private func getWidth(text: String) -> CGFloat {
         let dummyTextField = UITextField(frame: .zero)
         dummyTextField.text = text
