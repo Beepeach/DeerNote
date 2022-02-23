@@ -42,27 +42,17 @@ class NoteListViewController: UIViewController {
         setupDoneBarButtonHidden()
         stopShakeAnimationWhenNoEdit()
         
+        observeMainContextChanged()
+        observeNotePinState()
+        
         fetchAllNote()
-        
-        NotificationCenter.default.addObserver(forName: .mainContextDidChange, object: nil, queue: .main) { noti in
-            guard let userInfo = noti.userInfo else {
-                return
-            }
-            
-            guard let targetIndex = userInfo[NoteListViewController.selectedNoteIndexUserInfoKey] as? Int else {
-                return
-            }
-            
-            self.notes.remove(at: targetIndex)
-            self.noteListCollectionView.deleteItems(at: [IndexPath(item: targetIndex, section: 0)])
-            (targetIndex ..< self.notes.count).forEach {
-                self.noteListCollectionView.reloadItems(at: [IndexPath(item: $0, section: 0)])
-            }
-        }
-        
-        NotificationCenter.default.addObserver(forName: .notePinButtonDidTapped, object: nil, queue: .main) { _ in
-            self.fetchAllNote()
-            self.noteListCollectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if CoreDataManager.shared.mainContext.hasChanges {
+            fetchAllNote()
+            noteListCollectionView.reloadData()
         }
     }
     
@@ -74,15 +64,6 @@ class NoteListViewController: UIViewController {
             return
         }
         notes = allNotes
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print(#function)
-        super.viewWillAppear(animated)
-        if CoreDataManager.shared.mainContext.hasChanges {
-            fetchAllNote()
-            noteListCollectionView.reloadData()
-        }
     }
     
     private func setdimmingView() {
@@ -109,6 +90,35 @@ class NoteListViewController: UIViewController {
         }
     }
     
+    private func observeNotePinState() {
+        NotificationCenter.default.addObserver(forName: .notePinButtonDidTapped, object: nil, queue: .main) { _ in
+            self.fetchAllNote()
+            self.noteListCollectionView.reloadData()
+        }
+    }
+    
+    private func observeMainContextChanged() {
+        NotificationCenter.default.addObserver(forName: .mainContextDidChange, object: nil, queue: .main) { noti in
+            guard let userInfo = noti.userInfo else {
+                return
+            }
+            guard let targetIndex = userInfo[NoteListViewController.selectedNoteIndexUserInfoKey] as? Int else {
+                return
+            }
+            
+            self.removeNote(at: targetIndex)
+        }
+    }
+    
+    private func removeNote(at targetIndex: Int) {
+        self.notes.remove(at: targetIndex)
+        self.noteListCollectionView.deleteItems(at: [IndexPath(item: targetIndex, section: 0)])
+        
+        (targetIndex ..< self.notes.count).forEach {
+            self.noteListCollectionView.reloadItems(at: [IndexPath(item: $0, section: 0)])
+        }
+    }
+    
     
     // MARK: @IBAction
     @IBAction func tapMenu(_ sender: UIBarButtonItem) {
@@ -122,9 +132,7 @@ class NoteListViewController: UIViewController {
         setupDoneBarButtonHidden()
         backgroundSerialQueue.cancelAllOperations()
         
-        if CoreDataManager.shared.mainContext.hasChanges {
-            CoreDataManager.shared.saveMainContext()
-        }
+        CoreDataManager.shared.saveMainContext()
     }
     
     @IBAction func tapDimmingView(_ sender: Any) {
@@ -149,17 +157,7 @@ class NoteListViewController: UIViewController {
             noteListCollectionView.endInteractiveMovement()
             
             guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
-                if let visibleCells = noteListCollectionView.visibleCells as? [NoteCollectionViewCell] {
-                    visibleCells.forEach {
-                        if $0.contentView.alpha != 1.0 {
-                            $0.contentView.alpha = 1.0
-                        }
-                        
-                        if $0.isAnimating == false {
-                            $0.startShakeAnimation()
-                        }
-                    }
-                }
+                resetCellWhenPressEndAmbiguousPosition()
                 return
             }
             
@@ -185,6 +183,27 @@ class NoteListViewController: UIViewController {
         setupDoneBarButtonVisible()
     }
     
+    private func resetCellWhenPressEndAmbiguousPosition() {
+        if let visibleCells = noteListCollectionView.visibleCells as? [NoteCollectionViewCell] {
+            visibleCells.forEach {
+                resetAlpha(cell: $0)
+                resetAnimation(cell: $0)
+            }
+        }
+    }
+    
+    private func resetAlpha(cell: NoteCollectionViewCell) {
+        if cell.contentView.alpha != 1.0 {
+            cell.contentView.alpha = 1.0
+        }
+    }
+    
+    private func resetAnimation(cell: NoteCollectionViewCell) {
+        if cell.isAnimating == false {
+            cell.startShakeAnimation()
+        }
+    }
+    
     private func setupTranslucent(with selectedCell: NoteCollectionViewCell) {
         UIView.animate(withDuration: 0.3) {
             selectedCell.contentView.alpha = selectedCell.contentView.alpha == 1.0 ? 0.75 : 1.0
@@ -203,7 +222,7 @@ class NoteListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "toEditorVCSegue":
-            guard let vc = segue.destination as? NoteEditorViewController else {
+            guard let noteEditorVC = segue.destination as? NoteEditorViewController else {
                 return
             }
             guard let cell = sender as? NoteCollectionViewCell else {
@@ -212,14 +231,17 @@ class NoteListViewController: UIViewController {
             guard let index = noteListCollectionView.indexPath(for: cell) else {
                 return
             }
-            let target = notes[index.item]
-            vc.title = "Edit"
-            vc.targetNote = target
-            
-            vc.contents = target.contents
+            setupData(noteEditorVC, noteIndex: index)
         default:
             break
         }
+    }
+    
+    private func setupData(_ vc: NoteEditorViewController, noteIndex: IndexPath) {
+        let note = notes[noteIndex.item]
+        vc.title = "Edit"
+        vc.targetNote = note
+        vc.contents = note.contents
     }
 }
 
@@ -234,29 +256,26 @@ extension NoteListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoteCollectionViewCell", for: indexPath) as? NoteCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let targetNote = notes[indexPath.item]
         
-        cell.cellColor = (targetNote.fromColor ?? GradationColor.blue.from, targetNote.toColor ?? GradationColor.blue.to)
-        cell.contentsLabel.text = targetNote.contents
-        // TODO: - DateFormatter분리
-        let dateFormatter: DateFormatter = {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy. MM. dd"
-            
-            return dateFormatter
-        }()
-        cell.modifiedDateLabel.text = dateFormatter.string(for: targetNote.modifiedDate)
         cell.delegate = self
-        cell.optionsButton.tag = indexPath.item
-        cell.pinImageView.isHidden = targetNote.customSortIndex < 0 ? false : true
-        
-        
-        cell.optionsButton.isEnabled = !isLongPressed
-        
-        
+        setupCell(cell, at: indexPath)
         startOrStopShakeAnimation(cell)
         
         return cell
+    }
+    
+    private func setupCell(_ cell: NoteCollectionViewCell, at indexPath: IndexPath) {
+        let targetNote = notes[indexPath.item]
+        
+        cell.cellColor = (targetNote.fromColor ?? GradationColor.blue.from, targetNote.toColor ?? GradationColor.blue.to)
+        
+        cell.contentsLabel.text = targetNote.contents
+        cell.modifiedDateLabel.text = shortDateFormatter.string(for: targetNote.modifiedDate)
+        
+        cell.optionsButton.tag = indexPath.item
+        cell.optionsButton.isEnabled = !isLongPressed
+        
+        cell.pinImageView.isHidden = targetNote.customSortIndex < 0 ? false : true
     }
     
     private func startOrStopShakeAnimation(_ cell: NoteCollectionViewCell) {
@@ -266,8 +285,33 @@ extension NoteListViewController: UICollectionViewDataSource {
             cell.stopShakeAnimation()
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        updateData(remove: sourceIndexPath, insert: destinationIndexPath)
+        updateCustomSortIndex()
+    }
+    
+    private func updateData(remove source: IndexPath, insert destination: IndexPath) {
+        let note = notes.remove(at: source.item)
+        notes.insert(note, at: destination.item)
+    }
+    
+    private func updateCustomSortIndex() {
+        var count: Int = 0
+        
+        notes.forEach {
+            NoteManager.shared.updateWithNoSave($0, sortIndex: count)
+            count += 1
+        }
+    }
 }
 
+
+// MARK: - UICollectionViewDelegate
 extension NoteListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if self.isLongPressed == true {
@@ -279,29 +323,8 @@ extension NoteListViewController: UICollectionViewDelegate {
 }
 
 
-//MARK: - UICollectionViewDelegate
+//MARK: - UICollectionViewDelegateFlowLayout
 extension NoteListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("source: \(sourceIndexPath)")
-        print("destination: \(destinationIndexPath)")
-        
-        // note 데이터 수정
-        let note = notes.remove(at: sourceIndexPath.item)
-        notes.insert(note, at: destinationIndexPath.item)
-        
-        
-        // customindex 부여
-        var count: Int = 0
-        notes.forEach {
-            NoteManager.shared.updateWithNoSave($0, sortIndex: count)
-            count += 1
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
             return .zero
@@ -341,32 +364,32 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 
-// MARK: - Notification
-extension Notification.Name {
-    static let noteDidLongPressed = Self(rawValue: "noteDidLongPressed")
-}
-
-
 // MARK: - NoteCollectionViewDeleagte
 extension NoteListViewController: NoteCollectionViewCellDelegate {
-    func optionbuttonDidTapped(_ button: UIButton, selectdIndex: Int) {
-        print(selectdIndex)
+    func optionbuttonDidTapped(_ button: UIButton, selectedIndex: Int) {
         guard let popoverVC = storyboard?.instantiateViewController(withIdentifier: "PopoverViewController") as? PopoverViewController else {
             return
         }
-        popoverVC.modalPresentationStyle = .popover
-        popoverVC.popoverPresentationController?.sourceView = button
-        popoverVC.popoverPresentationController?.delegate = self
+        setupVC(popoverVC, source: button)
+        setupVCData(popoverVC, at: selectedIndex, source: button)
         present(popoverVC, animated: true, completion: nil)
-        
-        let targetNote = notes[selectdIndex]
+        print(selectedIndex)
+    }
+    private func setupVC(_ popoverVC: PopoverViewController, source: UIButton) {
+        popoverVC.modalPresentationStyle = .popover
+        popoverVC.popoverPresentationController?.sourceView = source
+        popoverVC.popoverPresentationController?.delegate = self
+    }
+    
+    private func setupVCData(_ popoverVC: PopoverViewController, at selectedIndex: Int, source: UIButton) {
+        let targetNote = notes[selectedIndex]
         popoverVC.targetNote = targetNote
-        popoverVC.index = button.tag
+        popoverVC.index = source.tag
         popoverVC.isPinned = targetNote.customSortIndex < 0 ? true : false
     }
 }
 
-// MARK: - UIPopoverPresentationCOntrollerDelegate
+// MARK: - UIPopoverPresentationControllerDelegate
 extension NoteListViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none

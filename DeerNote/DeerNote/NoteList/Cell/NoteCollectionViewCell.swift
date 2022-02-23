@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NoteCollectionViewCellDelegate: AnyObject {
-    func optionbuttonDidTapped(_ button: UIButton, selectdIndex: Int)
+    func optionbuttonDidTapped(_ button: UIButton, selectedIndex: Int)
 }
 
 class NoteCollectionViewCell: UICollectionViewCell {
@@ -24,7 +24,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     
     // MARK: @IBAction
     @IBAction func tapOptionsButton(_ sender: UIButton) {
-        delegate?.optionbuttonDidTapped(sender, selectdIndex: sender.tag)
+        delegate?.optionbuttonDidTapped(sender, selectedIndex: sender.tag)
     }
     
     // MARK: ViewLifeCycle
