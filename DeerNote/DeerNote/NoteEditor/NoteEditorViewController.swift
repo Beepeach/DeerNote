@@ -43,9 +43,12 @@ class NoteEditorViewController: UIViewController {
         adjustApperanceWhenKeyboardShow()
         resetApperanceWhenKeyboardHide()
         observeTagRemoveButtonTapped()
-        contentTextView.becomeFirstResponder()
-        
-        contentTextView.text = contents
+        if let _ = targetNote {
+            contentTextView.text = contents
+        } else {
+            contentTextView.text = nil
+            contentTextView.becomeFirstResponder()
+        }
     }
     
     deinit {
