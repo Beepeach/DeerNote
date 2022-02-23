@@ -22,6 +22,16 @@ class NoteEditorViewController: UIViewController {
     @IBOutlet weak var tagViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagCollectionView: UICollectionView!
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let noteInfoVC = segue.destination as? NoteInfoTableViewController else {
+            return
+        }
+        guard let targetNote = targetNote else {
+            return
+        }
+        
+        noteInfoVC.targetNote = targetNote
+    }
     
     // MARK: VCLifeCycle
     override func viewWillDisappear(_ animated: Bool) {
