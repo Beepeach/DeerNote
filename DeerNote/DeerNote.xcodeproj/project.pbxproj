@@ -27,6 +27,7 @@
 		EEBFCDF327C6974800A70B1C /* UIViewController+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */; };
 		EEBFCDF527C69C2200A70B1C /* Notification+NoteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */; };
 		EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */; };
+		EEBFCDFB27C6A96800A70B1C /* Notification+NoteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDFA27C6A96800A70B1C /* Notification+NoteInfo.swift */; };
 		EEDD186F27BFAEF500DAAA52 /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */; };
 		EEDD187127C10E9800DAAA52 /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */; };
 		EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */; };
@@ -86,6 +87,7 @@
 		EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DateFormatter.swift"; sourceTree = "<group>"; };
 		EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteList.swift"; sourceTree = "<group>"; };
 		EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteEditor.swift"; sourceTree = "<group>"; };
+		EEBFCDFA27C6A96800A70B1C /* Notification+NoteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteInfo.swift"; sourceTree = "<group>"; };
 		EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
 		EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTransformer.swift; sourceTree = "<group>"; };
 		EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				EE023C5327B02104004833A8 /* UINavigationController + shouldAutoroate.swift */,
+				EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -239,7 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */,
-				EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */,
 				EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */,
 			);
 			path = Extension;
@@ -249,6 +251,14 @@
 			isa = PBXGroup;
 			children = (
 				EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		EEBFCDF927C6A95C00A70B1C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EEBFCDFA27C6A96800A70B1C /* Notification+NoteInfo.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -267,6 +277,7 @@
 		EEDD18B127C5FE6700DAAA52 /* NoteInfo */ = {
 			isa = PBXGroup;
 			children = (
+				EEBFCDF927C6A95C00A70B1C /* Extension */,
 				EEDD18B227C5FE8900DAAA52 /* NoteInfoTableViewController.swift */,
 			);
 			path = NoteInfo;
@@ -495,6 +506,7 @@
 				EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */,
 				EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */,
 				EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */,
+				EEBFCDFB27C6A96800A70B1C /* Notification+NoteInfo.swift in Sources */,
 				EEDD188427C28C2600DAAA52 /* NoteManager.swift in Sources */,
 				EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */,
 				EEDD187D27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift in Sources */,

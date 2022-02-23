@@ -15,4 +15,11 @@ extension UIViewController {
         
         return dateFormatter
     }
+    
+    var longDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy. MM. dd  HH:mm:ss"
+        
+        return formatter
+    }
 }
