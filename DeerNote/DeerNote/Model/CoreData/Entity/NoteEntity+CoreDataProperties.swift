@@ -20,6 +20,7 @@ extension NoteEntity {
     @NSManaged public var createdDate: Date?
     @NSManaged public var fromColor: UIColor?
     @NSManaged public var isDeletedNote: Bool
+    @NSManaged public var deletedDate: Date?
     @NSManaged public var toColor: UIColor?
     @NSManaged public var modifiedDate: Date?
     @NSManaged public var tags: NSSet?

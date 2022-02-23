@@ -86,6 +86,7 @@ class NoteManager {
     
     func moveTrash(note: NoteEntity) {
         note.isDeletedNote = true
+        note.deletedDate = Date()
         
         coredataManager.saveMainContext()
         print("Move Trash")
