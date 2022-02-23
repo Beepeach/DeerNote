@@ -12,6 +12,13 @@ class TagCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tagNameLabel: UILabel!
     @IBOutlet weak var tagRemoveButton: UIButton!
     
+    // MARK: @IBAction
+    @IBAction func tapTagRemoveButton(_ sender: UIButton) {
+        guard let name = tagNameLabel.text else {
+            return
+        }
+        NotificationCenter.default.post(name: .tagRemoveButtonDidTapped, object: nil, userInfo: ["tagName": name])
+    }
     
     // MARK: ViewLayout
     override func awakeFromNib() {
@@ -23,24 +30,4 @@ class TagCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.borderWidth = 0.5
         self.contentView.layer.cornerRadius = 3
     }
-    
-    // MARK: @IBAction
-    @IBAction func tapTagRemoveButton(_ sender: UIButton) {
-        guard let name = tagNameLabel.text else {
-            return
-        }
-        NotificationCenter.default.post(name: .tagRemoveButtonDidTapped, object: nil, userInfo: ["tagName": name])
-    }
 }
-
-
-// MARK: - Notification
-extension Notification.Name {
-    static let tagRemoveButtonDidTapped = Notification.Name(rawValue: "tapRemoveButtonDidTapped")
-}
-
-
-extension TagCollectionViewCell {
-    static let removedTagNameUserInfoKey: String = "tagName"
-}
-

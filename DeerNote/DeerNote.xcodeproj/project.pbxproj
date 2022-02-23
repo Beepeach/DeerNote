@@ -25,7 +25,8 @@
 		EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */; };
 		EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */; };
 		EEBFCDF327C6974800A70B1C /* UIViewController+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */; };
-		EEBFCDF527C69C2200A70B1C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF427C69C2200A70B1C /* Notification.swift */; };
+		EEBFCDF527C69C2200A70B1C /* Notification+NoteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */; };
+		EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */; };
 		EEDD186F27BFAEF500DAAA52 /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */; };
 		EEDD187127C10E9800DAAA52 /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */; };
 		EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */; };
@@ -83,7 +84,8 @@
 		EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		EEBA7DA727A5B4FD00DB4824 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
 		EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DateFormatter.swift"; sourceTree = "<group>"; };
-		EEBFCDF427C69C2200A70B1C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteList.swift"; sourceTree = "<group>"; };
+		EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteEditor.swift"; sourceTree = "<group>"; };
 		EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
 		EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTransformer.swift; sourceTree = "<group>"; };
 		EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		EE145B8127B7FEA5008EAA35 /* NoteEditor */ = {
 			isa = PBXGroup;
 			children = (
+				EEBFCDF627C6A71000A70B1C /* Extension */,
 				EE145B8227B7FED1008EAA35 /* NoteEditorViewController.swift */,
 				EE145B8427B8EA84008EAA35 /* TagCollectionViewCell.swift */,
 				EE145B8627B9012B008EAA35 /* TagCreatorCollectionViewCell.swift */,
@@ -237,7 +240,15 @@
 			children = (
 				EEB76A0627AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift */,
 				EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */,
-				EEBFCDF427C69C2200A70B1C /* Notification.swift */,
+				EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		EEBFCDF627C6A71000A70B1C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -475,10 +486,11 @@
 				EE1970D227BA48590026CE19 /* DeletedNoteTableViewCell.swift in Sources */,
 				EEBFCDF327C6974800A70B1C /* UIViewController+DateFormatter.swift in Sources */,
 				EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */,
-				EEBFCDF527C69C2200A70B1C /* Notification.swift in Sources */,
+				EEBFCDF527C69C2200A70B1C /* Notification+NoteList.swift in Sources */,
 				EE023C5427B02104004833A8 /* UINavigationController + shouldAutoroate.swift in Sources */,
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
 				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,
+				EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */,
 				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,
 				EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */,
 				EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */,
