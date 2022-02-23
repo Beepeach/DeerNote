@@ -29,6 +29,10 @@ class NoteInfoTableViewController: UITableViewController {
     @IBOutlet weak var pinSwitch: UISwitch!
     
     // MARK: @IBAction
+    @IBAction func tapDonButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func tapPinSwitch(_ sender: UISwitch) {
         // TODO: - 스위치에 따라 pin을 하고 coredata업데이트
         guard let targetNote = targetNote else {
