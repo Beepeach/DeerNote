@@ -25,9 +25,13 @@ class NoteManager {
         }
     }
     
-    func setupAllNoteFetchRequest(sort sortDescriptors: [NSSortDescriptor]) -> NSFetchRequest<NoteEntity> {
+    func setupAllNoteFetchRequest(sort sortDescriptors: [NSSortDescriptor], trash: Bool) -> NSFetchRequest<NoteEntity> {
         let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "isDeletedNote == false")
+        if trash == true {
+            request.predicate = NSPredicate(format: "isDeletedNote == true")
+        } else {
+            request.predicate = NSPredicate(format: "isDeletedNote == false")
+        }
         request.sortDescriptors = sortDescriptors
         request.fetchBatchSize = 20
         

@@ -59,7 +59,7 @@ class NoteListViewController: UIViewController {
     private func fetchAllNote() {
         let modifiedDateDSCE = NSSortDescriptor(key: "modifiedDate", ascending: false)
         let customSortIndexASCE = NSSortDescriptor(key: "customSortIndex", ascending: true)
-        let request = NoteManager.shared.setupAllNoteFetchRequest(sort: [customSortIndexASCE, modifiedDateDSCE])
+        let request = NoteManager.shared.setupAllNoteFetchRequest(sort: [customSortIndexASCE, modifiedDateDSCE], trash: false)
         guard let allNotes = NoteManager.shared.fetchNotes(with: request) else {
             return
         }
