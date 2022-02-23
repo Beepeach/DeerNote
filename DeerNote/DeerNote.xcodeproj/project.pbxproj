@@ -33,6 +33,8 @@
 		EEDD188427C28C2600DAAA52 /* NoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD188327C28C2600DAAA52 /* NoteManager.swift */; };
 		EEDD18B027C526F300DAAA52 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18AF27C526F300DAAA52 /* PopoverViewController.swift */; };
 		EEDD18B327C5FE8900DAAA52 /* NoteInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18B227C5FE8900DAAA52 /* NoteInfoTableViewController.swift */; };
+		EEDD18D527C672EE00DAAA52 /* NoteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18D427C672EE00DAAA52 /* NoteManagerTests.swift */; };
+		EEDD18D727C6732700DAAA52 /* MockNoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18D627C6732700DAAA52 /* MockNoteManager.swift */; };
 		EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */; };
 		EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */; };
 		EEF2DFA627A4660C00CA9CA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFA427A4660C00CA9CA0 /* Main.storyboard */; };
@@ -87,6 +89,8 @@
 		EEDD188327C28C2600DAAA52 /* NoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManager.swift; sourceTree = "<group>"; };
 		EEDD18AF27C526F300DAAA52 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		EEDD18B227C5FE8900DAAA52 /* NoteInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInfoTableViewController.swift; sourceTree = "<group>"; };
+		EEDD18D427C672EE00DAAA52 /* NoteManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManagerTests.swift; sourceTree = "<group>"; };
+		EEDD18D627C6732700DAAA52 /* MockNoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNoteManager.swift; sourceTree = "<group>"; };
 		EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeerNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 				EEB76A0B27AC226600BCB4B6 /* GradationColorsTests.swift */,
 				EE97D0EA27BF94580095A517 /* CoreDataManagerTests.swift */,
 				EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */,
+				EEDD18D427C672EE00DAAA52 /* NoteManagerTests.swift */,
+				EEDD18D627C6732700DAAA52 /* MockNoteManager.swift */,
 			);
 			path = DeerNoteTests;
 			sourceTree = "<group>";
@@ -472,6 +478,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE97D0EB27BF94580095A517 /* CoreDataManagerTests.swift in Sources */,
+				EEDD18D727C6732700DAAA52 /* MockNoteManager.swift in Sources */,
+				EEDD18D527C672EE00DAAA52 /* NoteManagerTests.swift in Sources */,
 				EEDD186F27BFAEF500DAAA52 /* MockCoreDataManager.swift in Sources */,
 				EEB76A0C27AC226600BCB4B6 /* GradationColorsTests.swift in Sources */,
 			);

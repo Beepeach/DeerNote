@@ -12,7 +12,7 @@ class NoteManager {
     // MARK: Properties
     static let shared: NoteManager = NoteManager()
     private var allNotes: [NoteEntity] = []
-    private let coredataManager = CoreDataManager.shared
+    var coredataManager = CoreDataManager.shared
     
     // MARK: Methods
     func fetchNotes(with request: NSFetchRequest<NoteEntity>) -> [NoteEntity]? {
