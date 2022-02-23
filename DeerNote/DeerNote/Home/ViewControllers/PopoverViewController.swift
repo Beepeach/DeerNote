@@ -34,9 +34,15 @@ class PopoverViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func tapInfoButton(_ sender: UIButton) {
-        // TODO: - 정보창 modal로 표시
-        print("Info")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let noteInfoVC = segue.destination as? NoteInfoTableViewController else {
+            return
+        }
+        guard let targetNote = targetNote else {
+            return
+        }
+        
+        noteInfoVC.targetNote = targetNote
     }
     
     @IBAction func tapTrashButton(_ sender: UIButton) {
