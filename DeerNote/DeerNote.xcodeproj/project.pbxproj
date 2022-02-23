@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EE023C5427B02104004833A8 /* UINavigationController + shouldAutoroate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE023C5327B02104004833A8 /* UINavigationController + shouldAutoroate.swift */; };
-		EE13B1A527A7C62A0060589B /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A427A7C62A0060589B /* Note.swift */; };
 		EE13B1A727A7C75A0060589B /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A627A7C75A0060589B /* Tag.swift */; };
 		EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */; };
 		EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE145B8227B7FED1008EAA35 /* NoteEditorViewController.swift */; };
@@ -68,7 +67,6 @@
 
 /* Begin PBXFileReference section */
 		EE023C5327B02104004833A8 /* UINavigationController + shouldAutoroate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + shouldAutoroate.swift"; sourceTree = "<group>"; };
-		EE13B1A427A7C62A0060589B /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		EE13B1A627A7C75A0060589B /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE145B8227B7FED1008EAA35 /* NoteEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorViewController.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				EE97D0EC27BF951D0095A517 /* CoreData */,
-				EE13B1A427A7C62A0060589B /* Note.swift */,
 				EE13B1A627A7C75A0060589B /* Tag.swift */,
 				EEB76A0127AC168900BCB4B6 /* GradationColor.swift */,
 			);
@@ -493,7 +490,6 @@
 				EE1970CF27BA44930026CE19 /* TrashViewController.swift in Sources */,
 				EE97D0EE27BF952D0095A517 /* CoreDataManager.swift in Sources */,
 				EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */,
-				EE13B1A527A7C62A0060589B /* Note.swift in Sources */,
 				EE1970D227BA48590026CE19 /* DeletedNoteTableViewCell.swift in Sources */,
 				EEBFCDF327C6974800A70B1C /* UIViewController+DateFormatter.swift in Sources */,
 				EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */,
