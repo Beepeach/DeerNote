@@ -9,13 +9,9 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
+    // MARK: Properties
     static let shared: CoreDataManager = CoreDataManager()
-    
-    // UITest를 위해서 private 제거
-    init() { }
-    
     var container: NSPersistentContainer?
-    
     var mainContext: NSManagedObjectContext {
         guard let context = container?.viewContext else {
             // TODO: - Error처리 코드를 넣어줍시다.
@@ -25,6 +21,11 @@ class CoreDataManager {
         return context
     }
     
+    // MARK: Initializer
+    // UITest를 위해서 private 제거
+    init() { }
+    
+    // MARK: Methods
     func setup(modelName: String) {
         container = NSPersistentContainer(name: "DeerNote")
         container?.loadPersistentStores(completionHandler: { storeDescription, error in
@@ -36,16 +37,20 @@ class CoreDataManager {
     }
     
     func saveMainContext() {
-        mainContext.perform {
-            if self.mainContext.hasChanges {
-                do {
-                    try self.mainContext.save()
-                    print("Save Main Context")
-                } catch {
-                    // TODO: - SaveError처리 코드를 넣어줍시다.
-                    print(error.localizedDescription)
-                }
+        mainContext.perform { [weak self] in
+            if self?.mainContext.hasChanges ?? false {
+                self?.saveContext()
             }
+        }
+    }
+    
+    private func saveContext() {
+        do {
+            try mainContext.save()
+            print("Save Main Context")
+        } catch {
+            // TODO: - SaveError처리 코드를 넣어줍시다.
+            print(error.localizedDescription)
         }
     }
 }
