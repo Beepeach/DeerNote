@@ -12,7 +12,6 @@ class NoteEditorViewController: UIViewController {
     // MARK: Properties
     var tags: [Tag] = [
     ]
-    
     var contents: String?
     var targetNote: NoteEntity?
     
@@ -22,6 +21,11 @@ class NoteEditorViewController: UIViewController {
     @IBOutlet weak var tagViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagCollectionView: UICollectionView!
 
+    // MARK: @IBAction
+    @IBAction func tapEndEditButton(_ sender: UIBarButtonItem) {
+        self.view.endEditing(true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let noteInfoVC = segue.destination as? NoteInfoTableViewController else {
             return
@@ -29,7 +33,6 @@ class NoteEditorViewController: UIViewController {
         guard let targetNote = targetNote else {
             return
         }
-        
         noteInfoVC.targetNote = targetNote
     }
     
@@ -39,7 +42,10 @@ class NoteEditorViewController: UIViewController {
         guard let contents = contentTextView.text, contents.count > 0 else {
             return
         }
-
+        upsertNote(contents: contents)
+    }
+    
+    private func upsertNote(contents: String) {
         if let targetNote = targetNote {
             NoteManager.shared.update(targetNote, contents: contents)
         } else {
@@ -53,6 +59,12 @@ class NoteEditorViewController: UIViewController {
         adjustApperanceWhenKeyboardShow()
         resetApperanceWhenKeyboardHide()
         observeTagRemoveButtonTapped()
+    }
+        
+    private func setupDefaultApperance() {
+        navigationController?.navigationBar.tintColor = .systemTeal
+        contentTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
+        
         if let _ = targetNote {
             contentTextView.text = contents
         } else {
@@ -61,22 +73,11 @@ class NoteEditorViewController: UIViewController {
         }
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print(#function)
-    }
-        
-    private func setupDefaultApperance() {
-        navigationController?.navigationBar.tintColor = .systemTeal
-        contentTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
-    }
-    
     private func adjustApperanceWhenKeyboardShow() {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { [weak self] noti in
             guard let userInfo = noti.userInfo else {
                 return
             }
-            
             guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
                 return
             }
@@ -122,10 +123,10 @@ class NoteEditorViewController: UIViewController {
         self.tagCollectionView.deleteItems(at: [IndexPath(item: targetIndex, section: 1)])
     }
     
-    
-    // MARK: @IBAction
-    @IBAction func tapEndEditButton(_ sender: UIBarButtonItem) {
-        self.view.endEditing(true)
+    // MARK: Deinitializer
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        print(#function)
     }
 }
 
@@ -167,7 +168,9 @@ extension NoteEditorViewController: TagCreatorCollectionViewCellDelegate {
         guard let text = textField.text, text.count > 0 else {
                   return false
         }
-        guard !isExistingTag(name: text) else {
+        
+        if tags.contains(where: { $0.name == text }) {
+            textField.text = nil
             return false
         }
         
@@ -178,14 +181,6 @@ extension NoteEditorViewController: TagCreatorCollectionViewCellDelegate {
       
         tagCollectionView.reloadSections(IndexSet(integer: 1))
         return true
-    }
-    
-    private func isExistingTag(name: String) -> Bool {
-        if tags.contains(where: { $0.name == name }) {
-            return true
-        }
-        
-        return false
     }
     
     // TODO: - 왜 크기가 안바뀔까?? 다이나믹하게 바뀌도록 만들어야합니다.
