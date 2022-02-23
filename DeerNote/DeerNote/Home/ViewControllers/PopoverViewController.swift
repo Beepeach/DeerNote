@@ -41,7 +41,6 @@ class PopoverViewController: UIViewController {
         guard let targetNote = targetNote else {
             return
         }
-        
         noteInfoVC.targetNote = targetNote
     }
     
@@ -67,7 +66,11 @@ class PopoverViewController: UIViewController {
     
     override func viewDidLoad() {
         self.preferredContentSize = CGSize(width: 200, height: 150)
-        
+     
+        //TODO: - 현재 noti를 이용해서 dismiss 시키고 있는 어떻게 해야 더 효율적인지 생각해봅시다.
+        NotificationCenter.default.addObserver(forName: .noteInfoVCWillDisappear, object: nil, queue: .main) { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

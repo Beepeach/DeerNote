@@ -54,6 +54,11 @@ class NoteInfoTableViewController: UITableViewController {
         setupPinSwitch()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: .noteInfoVCWillDisappear, object: nil)
+    }
+    
     private func setupDateLables() {
         createdDateLabel.text = dateFormatter.string(for: targetNote?.createdDate)
         modifiedDateLabel.text = dateFormatter.string(for: targetNote?.modifiedDate)
@@ -95,4 +100,9 @@ class NoteInfoTableViewController: UITableViewController {
             // TODO: - 삭제하고 dismiss 구현
         }
     }
+}
+
+
+extension Notification.Name {
+    static let noteInfoVCWillDisappear = Notification.Name("noteInfoVCWillDisappear")
 }
