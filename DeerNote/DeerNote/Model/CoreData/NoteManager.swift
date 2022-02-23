@@ -9,11 +9,12 @@ import Foundation
 import CoreData
 
 class NoteManager {
+    // MARK: Properties
     static let shared: NoteManager = NoteManager()
-    
     private var allNotes: [NoteEntity] = []
     private let coredataManager = CoreDataManager.shared
     
+    // MARK: Methods
     func fetchNotes(with request: NSFetchRequest<NoteEntity>) -> [NoteEntity]? {
         do {
             return try coredataManager.mainContext.fetch(request)
@@ -35,6 +36,13 @@ class NoteManager {
     
     func addNote(contents: String) {
         // TODO: - Tag를 추가하는 코드가 들어가야합니다.
+        createNewNote(contents)
+        
+        coredataManager.saveMainContext()
+        print("Add Note")
+    }
+    
+    private func createNewNote(_ contents: String) {
         let newNote = NoteEntity(context: CoreDataManager.shared.mainContext)
         let currentData = Date()
         let randomColor = GradationColor.shared.getRandomColor()
@@ -45,11 +53,6 @@ class NoteManager {
         newNote.isDeletedNote = false
         newNote.fromColor = randomColor.from
         newNote.toColor = randomColor.to
-        
-        if coredataManager.mainContext.hasChanges {
-            coredataManager.saveMainContext()
-        }
-        print("Add Note")
     }
     
     func update(_ note: NoteEntity, contents: String) {
@@ -59,19 +62,15 @@ class NoteManager {
         note.contents = contents
         note.modifiedDate = Date()
         
-        if coredataManager.mainContext.hasChanges {
-            coredataManager.saveMainContext()
-            print("Edit Note")
-        }
+        coredataManager.saveMainContext()
+        print("Edit Note")
     }
     
     func update(_ note: NoteEntity, sortIndex: Int) {
         note.customSortIndex = Int64(sortIndex)
         
-        if coredataManager.mainContext.hasChanges {
-            coredataManager.saveMainContext()
-            print("Update customSortIndex \(sortIndex)")
-        }
+        coredataManager.saveMainContext()
+        print("Update customSortIndex \(sortIndex)")
     }
     
     func updateWithNoSave(_ note: NoteEntity, sortIndex: Int) {
@@ -84,9 +83,8 @@ class NoteManager {
     func moveTrash(note: NoteEntity) {
         note.isDeletedNote = true
         
-        if coredataManager.mainContext.hasChanges {
-            coredataManager.saveMainContext()
-        }
+        coredataManager.saveMainContext()
+        print("Move Trash")
     }
 }
 
