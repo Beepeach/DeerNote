@@ -9,12 +9,10 @@ import UIKit
 
 extension UINavigationController {
     open override var shouldAutorotate: Bool {
-        get {
-            if let visibleVC = visibleViewController {
-                return visibleVC.shouldAutorotate
-            }
-            
-            return super.shouldAutorotate
+        if let visibleVC = visibleViewController {
+            return visibleVC.shouldAutorotate
         }
+        
+        return super.shouldAutorotate
     }
 }
