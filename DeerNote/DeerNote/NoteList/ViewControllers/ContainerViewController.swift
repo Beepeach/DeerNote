@@ -98,12 +98,11 @@ class ContainerViewController: UIViewController {
             }
             let translation: CGPoint = sender.translation(in: targetView)
             
-            if checkNoteListNavCanMoving(from: translation) {
+            if canMovecheckNoteListNav(from: translation) {
                 moveNoteList(from: translation)
                 setDynamicDimmingViewAlpha()
             }
             sender.setTranslation(.zero, in: targetView)
-            
         case .ended, .cancelled, .failed:
             switch menuState {
             case .opened:
@@ -120,17 +119,15 @@ class ContainerViewController: UIViewController {
         differenceFromFirstTouch = 0.0
     }
     
-    private func checkNoteListNavCanMoving(from translation: CGPoint) -> Bool {
+    private func canMovecheckNoteListNav(from translation: CGPoint) -> Bool {
         if isWrong(touch: translation) {
             return false
         }
-        
         let isCorrectMoveBound: Bool = noteListNav.view.frame.origin.x >= 0 && noteListNav.view.frame.origin.x <= menuVCWidth
         
         if isCorrectMoveBound {
             return true
         }
-        
         return false
     }
     
@@ -238,7 +235,6 @@ extension ContainerViewController: MenuViewControllerDeleagete {
             guard let tagNoteVC = noteListVC.children.first as? NoteListViewController else {
                 return
             }
-            
             tagNoteVC.view.removeFromSuperview()
             tagNoteVC.removeFromParent()
             
@@ -264,7 +260,6 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         guard let tagNoteListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoteListViewController") as? NoteListViewController else {
             return
         }
-        
         noteListVC.addChild(tagNoteListVC)
         noteListVC.view.addSubview(tagNoteListVC.view)
         tagNoteListVC.didMove(toParent: noteListVC)
@@ -279,11 +274,9 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         if noteListVC.title == tag.name {
             return
         }
-        
         guard let _ = noteListVC.children.first as? NoteListViewController else {
             return
         }
-        
         noteListVC.title = tag.name
         
         // TODO: - Tag에 해당하는 데이터를 불러오는 작업이 추가되어야합니다.
@@ -298,11 +291,9 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
         guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
             return false
         }
-        
         guard isNoteListVC() else {
             return false
         }
-        
         let translation = panGestureRecognizer.translation(in: view)
         let isAlomstHorizontalPanning: Bool = abs(translation.x) > abs(translation.y)
         if isAlomstHorizontalPanning {
