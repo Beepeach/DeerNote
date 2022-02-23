@@ -190,14 +190,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		EEB769FA27ABAED600BCB4B6 /* Home */ = {
+		EEB769FA27ABAED600BCB4B6 /* NoteList */ = {
 			isa = PBXGroup;
 			children = (
 				EE7933A327B4FC110004BEF8 /* ViewControllers */,
+				EEDD18D827C6788800DAAA52 /* Cell */,
 				EEB76A0527AC1D4800BCB4B6 /* Extension */,
-				EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */,
 			);
-			path = Home;
+			path = NoteList;
 			sourceTree = "<group>";
 		};
 		EEB769FB27ABAF2B00BCB4B6 /* Menu */ = {
@@ -255,6 +255,14 @@
 			path = NoteInfo;
 			sourceTree = "<group>";
 		};
+		EEDD18D827C6788800DAAA52 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EE13B1A827A7C90E0060589B /* NoteCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		EEF2DF9227A4660C00CA9CA0 = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +290,7 @@
 				EEB769FD27ABAF5100BCB4B6 /* Storyboard */,
 				EEB769FC27ABAF3700BCB4B6 /* Predicated */,
 				EE13B1A327A7C5F70060589B /* Model */,
-				EEB769FA27ABAED600BCB4B6 /* Home */,
+				EEB769FA27ABAED600BCB4B6 /* NoteList */,
 				EEB769FB27ABAF2B00BCB4B6 /* Menu */,
 				EE145B8127B7FEA5008EAA35 /* NoteEditor */,
 				EEDD18B127C5FE6700DAAA52 /* NoteInfo */,
