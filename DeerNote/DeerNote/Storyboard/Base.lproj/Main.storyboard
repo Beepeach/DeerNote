@@ -272,6 +272,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IfE-1T-Jm2">
                                                     <rect key="frame" x="353" y="8.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="tapPinSwitch:" destination="Rbo-P8-AMc" eventType="valueChanged" id="fHe-jY-s1E"/>
+                                                    </connections>
                                                 </switch>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="F3Q-73-ZcK">
                                                     <rect key="frame" x="12" y="13.5" width="20" height="21.5"/>

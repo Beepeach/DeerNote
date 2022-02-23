@@ -28,6 +28,25 @@ class NoteInfoTableViewController: UITableViewController {
     @IBOutlet weak var modifiedDateLabel: UILabel!
     @IBOutlet weak var pinSwitch: UISwitch!
     
+    // MARK: @IBAction
+    @IBAction func tapPinSwitch(_ sender: UISwitch) {
+        // TODO: - 스위치에 따라 pin을 하고 coredata업데이트
+        guard let targetNote = targetNote else {
+            return
+        }
+        guard let isPinned = isPinned else {
+            return
+        }
+        
+        if isPinned == true {
+            NoteManager.shared.update(targetNote, sortIndex: 0)
+        } else {
+            NoteManager.shared.update(targetNote, sortIndex: -1)
+        }
+        
+        NotificationCenter.default.post(name: .notePinButtonDidTapped, object: nil)
+    }
+    
     // MARK: VCLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +83,16 @@ class NoteInfoTableViewController: UITableViewController {
             return 1
         default:
             return 0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 2 ? true : false
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            // TODO: - 삭제하고 dismiss 구현
         }
     }
 }
