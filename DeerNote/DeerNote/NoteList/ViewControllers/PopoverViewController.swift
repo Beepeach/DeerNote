@@ -63,7 +63,7 @@ class PopoverViewController: UIViewController {
     
     private func moveTrash(targetNote: NoteEntity, at index: Int) {
         NoteManager.shared.moveTrash(note: targetNote)
-        NotificationCenter.default.post(name: .mainContextDidChange, object: nil, userInfo: ["index": index])
+        NotificationCenter.default.post(name: .noteDidMoveTrash, object: nil, userInfo: ["index": index])
         dismiss(animated: true, completion: nil)
     }
     

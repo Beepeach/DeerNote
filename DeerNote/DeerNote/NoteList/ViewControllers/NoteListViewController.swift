@@ -42,7 +42,7 @@ class NoteListViewController: UIViewController {
         setupDoneBarButtonHidden()
         stopShakeAnimationWhenNoEdit()
         
-        observeMainContextChanged()
+        observeNoteDidMoveTrash()
         observeNotePinState()
         
         fetchAllNote()
@@ -97,8 +97,8 @@ class NoteListViewController: UIViewController {
         }
     }
     
-    private func observeMainContextChanged() {
-        NotificationCenter.default.addObserver(forName: .mainContextDidChange, object: nil, queue: .main) { noti in
+    private func observeNoteDidMoveTrash() {
+        NotificationCenter.default.addObserver(forName: .noteDidMoveTrash, object: nil, queue: .main) { noti in
             guard let userInfo = noti.userInfo else {
                 return
             }

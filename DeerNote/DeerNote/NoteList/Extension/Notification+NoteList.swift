@@ -15,7 +15,7 @@ extension Notification.Name {
 
 // MARK: PopoverViewController
 extension Notification.Name {
-    static let mainContextDidChange = Notification.Name("mainContextDidChange")
+    static let noteDidMoveTrash = Notification.Name("noteDidMoveTrash")
     static let notePinButtonDidTapped = Notification.Name("noteDidPinned")
 }
 
