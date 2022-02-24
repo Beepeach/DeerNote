@@ -371,16 +371,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy0-ca-Xm9" userLabel="Dimming View">
-                                <rect key="frame" x="0.0" y="540" width="414" height="356"/>
-                                <color key="backgroundColor" systemColor="systemGrayColor"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="n51-2c-0H2" appends="YES" id="fTg-34-BZI"/>
-                                </connections>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-Di-WE9">
-                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="edY-Bz-Lx7">
@@ -453,6 +445,14 @@
                                     <outletCollection property="gestureRecognizers" destination="ti9-15-Wql" appends="YES" id="fxh-9m-oM2"/>
                                 </connections>
                             </collectionView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy0-ca-Xm9" userLabel="Dimming View">
+                                <rect key="frame" x="0.0" y="488" width="414" height="408"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="n51-2c-0H2" appends="YES" id="fTg-34-BZI"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FjG-bC-dcK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1049,7 +1049,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="uwn-Si-vGD"/>
-        <segue reference="bPr-D1-JuP"/>
+        <segue reference="60S-Ik-l0g"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="cancel" width="256" height="256"/>
