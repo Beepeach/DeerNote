@@ -74,6 +74,7 @@ class NoteListViewController: UIViewController {
     private func setupSearchBar() {
         let searchBar = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchBar
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func setupDoneBarButtonHidden() {
