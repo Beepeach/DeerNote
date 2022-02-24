@@ -30,7 +30,6 @@ class NoteCollectionViewCell: UICollectionViewCell {
     // MARK: ViewLifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        setCellShadow()
         setCellCorner()
         contentsLabel.textColor = .white
         optionsButton.tintColor = .white
@@ -49,15 +48,17 @@ class NoteCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setCellShadow() {
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 100, height: 100)
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowRadius = 0.5
-    }
-    
     private func setCellCorner() {
         self.layer.cornerRadius = 12
+    }
+    
+    // TODO: 필요하다면 호출. 현재는 사용하지 않도록 합니다.
+    private func setCellShadow() {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 20)
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowRadius = 12
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.layer.bounds, cornerRadius: self.layer.cornerRadius).cgPath
     }
     
     func setGradationBackgroundColor() {
