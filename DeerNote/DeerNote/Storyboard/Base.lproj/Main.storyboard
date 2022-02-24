@@ -614,7 +614,7 @@
                                     <constraint firstAttribute="trailing" secondItem="S4m-DV-lDy" secondAttribute="trailing" id="vSj-8C-ean"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="여기에 노트 작성" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="teu-dj-Hhj">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="teu-dj-Hhj">
                                 <rect key="frame" x="12" y="100" width="402" height="712"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
