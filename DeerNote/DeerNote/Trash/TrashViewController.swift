@@ -25,15 +25,16 @@ class TrashViewController: UIViewController {
     // MARK: VCLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        performFetch()
+    }
+    
+    private func performFetch() {
         do {
             try fetchedResultsController.performFetch()
         } catch {
             print(error.localizedDescription)
         }
     }
-    
-    
     
     // MARK: @IBAction
     @IBAction func tapEmptyTrash(_ sender: Any) {
@@ -44,7 +45,7 @@ class TrashViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: "휴지통을 모두 비우시겠어요?\n휴지통에서 삭제하면 더 이상 복구할 수 없습니다.", preferredStyle: .alert)
         let actions = createActions()
         actions.forEach { alertController.addAction($0) }
-
+        
         present(alertController, animated: true, completion: nil)
     }
     
@@ -61,15 +62,21 @@ class TrashViewController: UIViewController {
         guard let deletedNotesCount = fetchedResultsController.sections?.first?.numberOfObjects else {
             return
         }
-        (0 ..< deletedNotesCount).forEach {
+        
+        removeNotesWithNoSave(count: deletedNotesCount)
+        CoreDataManager.shared.saveMainContext()
+    }
+    
+    private func removeNotesWithNoSave(count: Int) {
+        (0 ..< count).forEach {
             guard let note = fetchedResultsController.sections?.first?.objects?[$0] as? NoteEntity else {
                 return
             }
             NoteManager.shared.deleteWithNoSave(note: note)
         }
-        CoreDataManager.shared.saveMainContext()
     }
     
+    // MARK: Deinitializer
     deinit {
         print(#function, "TrashVC")
         fetchedResultsController.delegate = nil
@@ -91,11 +98,14 @@ extension TrashViewController: UITableViewDataSource {
             return DeletedNoteTableViewCell()
         }
         let targetNote = fetchedResultsController.object(at: indexPath)
-        // TODO: 이후에 deprecated된다면 변경해야합니다.
+        setupCellText(cell, with: targetNote)
+        return cell
+    }
+    
+    private func setupCellText(_ cell: DeletedNoteTableViewCell, with targetNote: NoteEntity) {
         cell.contentLabel.text = targetNote.contents
         cell.deletedDdayLabel.text = shortDateFormatter.string(for: targetNote.deletedDate)
         cell.detailTextLabel?.textColor = .systemRed
-        return cell
     }
 }
 
@@ -106,35 +116,40 @@ extension TrashViewController: UITableViewDelegate {
         let deleteAction = setupDeleteAction(at: indexPath)
         let restoreAction = setupRestoreAction(at: indexPath)
         let configuration = UISwipeActionsConfiguration(actions: [restoreAction, deleteAction])
+        configuration.performsFirstActionWithFullSwipe = true
         
         return configuration
     }
     
     private func setupDeleteAction(at indexPath: IndexPath) -> UIContextualAction {
         let deleteAction = UIContextualAction(style: .destructive, title: "삭제") {[weak self] action, view, completion in
-            if let targetNote = self?.fetchedResultsController.object(at: indexPath) {
-                NoteManager.shared.delete(note: targetNote)
-                completion(true)
-            }
-            completion(false)
+            self?.deleteNote(at: indexPath, completion: completion)
         }
         deleteAction.image = UIImage(systemName: "trash.slash")
         
         return deleteAction
     }
     
+    private func deleteNote(at indexPath: IndexPath, completion: (Bool) -> Void) {
+        let targetNote = fetchedResultsController.object(at: indexPath)
+        NoteManager.shared.delete(note: targetNote)
+        completion(true)
+    }
+    
     private func setupRestoreAction(at indexPath: IndexPath) -> UIContextualAction {
         let restoreAction = UIContextualAction(style: .normal, title: "복구") { [weak self] action, view, completion in
-            if let targetNote = self?.fetchedResultsController.object(at: indexPath) {
-                NoteManager.shared.restore(note: targetNote)
-                completion(true)
-            }
-            completion(false)
+            self?.restoreNote(at: indexPath, completion: completion)
         }
         restoreAction.backgroundColor = .systemGreen
         restoreAction.image = UIImage(systemName: "arrow.clockwise")
         
         return restoreAction
+    }
+    
+    private func restoreNote(at indexPath: IndexPath, completion: (Bool) -> Void) {
+        let targetNote = fetchedResultsController.object(at: indexPath)
+        NoteManager.shared.restore(note: targetNote)
+        completion(true)
     }
 }
 
