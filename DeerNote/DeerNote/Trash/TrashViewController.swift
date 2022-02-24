@@ -149,6 +149,7 @@ extension TrashViewController: UITableViewDelegate {
     private func restoreNote(at indexPath: IndexPath, completion: (Bool) -> Void) {
         let targetNote = fetchedResultsController.object(at: indexPath)
         NoteManager.shared.restore(note: targetNote)
+        NotificationCenter.default.post(name: .noteDidRestore, object: nil)
         completion(true)
     }
 }

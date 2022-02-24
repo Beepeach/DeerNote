@@ -27,6 +27,7 @@
 		EEBFCDF527C69C2200A70B1C /* Notification+NoteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */; };
 		EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */; };
 		EEBFCDFB27C6A96800A70B1C /* Notification+NoteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDFA27C6A96800A70B1C /* Notification+NoteInfo.swift */; };
+		EEBFCDFF27C760D900A70B1C /* Notification+TrashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDFE27C760D900A70B1C /* Notification+TrashVC.swift */; };
 		EEDD186F27BFAEF500DAAA52 /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */; };
 		EEDD187127C10E9800DAAA52 /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */; };
 		EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */; };
@@ -86,6 +87,7 @@
 		EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteList.swift"; sourceTree = "<group>"; };
 		EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteEditor.swift"; sourceTree = "<group>"; };
 		EEBFCDFA27C6A96800A70B1C /* Notification+NoteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteInfo.swift"; sourceTree = "<group>"; };
+		EEBFCDFE27C760D900A70B1C /* Notification+TrashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+TrashVC.swift"; sourceTree = "<group>"; };
 		EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
 		EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTransformer.swift; sourceTree = "<group>"; };
 		EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		EE1970CD27BA44730026CE19 /* Trash */ = {
 			isa = PBXGroup;
 			children = (
+				EEBFCDFD27C760C300A70B1C /* Extension */,
 				EE1970CE27BA44930026CE19 /* TrashViewController.swift */,
 				EE1970D127BA48590026CE19 /* DeletedNoteTableViewCell.swift */,
 			);
@@ -256,6 +259,14 @@
 			isa = PBXGroup;
 			children = (
 				EEBFCDFA27C6A96800A70B1C /* Notification+NoteInfo.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		EEBFCDFD27C760C300A70B1C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EEBFCDFE27C760D900A70B1C /* Notification+TrashVC.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -489,6 +500,7 @@
 				EE145B8527B8EA84008EAA35 /* TagCollectionViewCell.swift in Sources */,
 				EE1970CF27BA44930026CE19 /* TrashViewController.swift in Sources */,
 				EE97D0EE27BF952D0095A517 /* CoreDataManager.swift in Sources */,
+				EEBFCDFF27C760D900A70B1C /* Notification+TrashVC.swift in Sources */,
 				EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */,
 				EE1970D227BA48590026CE19 /* DeletedNoteTableViewCell.swift in Sources */,
 				EEBFCDF327C6974800A70B1C /* UIViewController+DateFormatter.swift in Sources */,

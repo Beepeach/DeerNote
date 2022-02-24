@@ -42,6 +42,7 @@ class NoteListViewController: UIViewController {
         setupDoneBarButtonHidden()
         stopShakeAnimationWhenNoEdit()
         
+        observeNoteDidRestore()
         observeNoteDidMoveTrash()
         observeNotePinState()
         
@@ -87,6 +88,13 @@ class NoteListViewController: UIViewController {
                     self?.tapDoneButton(UIBarButtonItem())
                 }
             })
+        }
+    }
+    
+    private func observeNoteDidRestore() {
+        NotificationCenter.default.addObserver(forName: .noteDidRestore, object: nil, queue: .main) { _ in
+            self.fetchAllNote()
+            self.noteListCollectionView.reloadData()
         }
     }
     
