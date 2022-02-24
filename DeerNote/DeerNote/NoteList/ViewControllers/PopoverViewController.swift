@@ -79,9 +79,9 @@ class PopoverViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if isPinned == true {
-            setupPinOptionButton(text: "상단 고정 해제", image: UIImage(systemName: "pin.slash"))
+            setupPinOptionButton(text: "상단 고정 해제", image: UIImage(named: "unpin"))
         } else {
-            setupPinOptionButton(text: "상단 고정", image: UIImage(systemName: "pin.circle"))
+            setupPinOptionButton(text: "상단 고정", image: UIImage(named: "pin"))
         }
     }
     

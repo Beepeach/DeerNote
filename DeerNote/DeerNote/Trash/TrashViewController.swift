@@ -25,6 +25,7 @@ class TrashViewController: UIViewController {
     // MARK: VCLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = .systemTeal
         performFetch()
     }
     
