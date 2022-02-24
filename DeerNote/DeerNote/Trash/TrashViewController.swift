@@ -58,13 +58,16 @@ class TrashViewController: UIViewController {
     }
     
     private func removeAllTrash() {
-//        let deletedNotesCount = self.deletedNotes.count
-//        self.deletedNotesTableView.performBatchUpdates {
-//            for i in 0 ..< deletedNotesCount {
-//                self.deletedNotes.removeFirst()
-//                self.deletedNotesTableView.deleteRows(at: [IndexPath(item: i, section: 0)], with: .automatic)
-//            }
-//        }
+        guard let deletedNotesCount = fetchedResultsController.sections?.first?.numberOfObjects else {
+            return
+        }
+        (0 ..< deletedNotesCount).forEach {
+            guard let note = fetchedResultsController.sections?.first?.objects?[$0] as? NoteEntity else {
+                return
+            }
+            NoteManager.shared.deleteWithNoSave(note: note)
+        }
+        CoreDataManager.shared.saveMainContext()
     }
     
     deinit {
@@ -88,7 +91,10 @@ extension TrashViewController: UITableViewDataSource {
             return DeletedNoteTableViewCell()
         }
         let targetNote = fetchedResultsController.object(at: indexPath)
-        cell.contentsLabel.text = targetNote.contents
+        // TODO: 이후에 deprecated된다면 변경해야합니다.
+        cell.contentLabel.text = targetNote.contents
+        cell.deletedDdayLabel.text = shortDateFormatter.string(for: targetNote.deletedDate)
+        cell.detailTextLabel?.textColor = .systemRed
         return cell
     }
 }
@@ -105,11 +111,12 @@ extension TrashViewController: UITableViewDelegate {
     }
     
     private func setupDeleteAction(at indexPath: IndexPath) -> UIContextualAction {
-        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
-//            self.deletedNotes.remove(at: indexPath.row)
-            self.deletedNotesTableView.deleteRows(at: [indexPath], with: .automatic)
-            // TODO: - CoreData에서 삭제하는 코드가 들어가야합니다.
-            completion(true)
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") {[weak self] action, view, completion in
+            if let targetNote = self?.fetchedResultsController.object(at: indexPath) {
+                NoteManager.shared.delete(note: targetNote)
+                completion(true)
+            }
+            completion(false)
         }
         deleteAction.image = UIImage(systemName: "trash.slash")
         
@@ -117,12 +124,12 @@ extension TrashViewController: UITableViewDelegate {
     }
     
     private func setupRestoreAction(at indexPath: IndexPath) -> UIContextualAction {
-        let restoreAction = UIContextualAction(style: .normal, title: "복구") { action, view, completion in
-//            self.deletedNotes[indexPath.row].isDeleted = false
-//            self.deletedNotes.remove(at: indexPath.row)
-            self.deletedNotesTableView.deleteRows(at: [indexPath], with: .automatic)
-            // TODO: - CoreData에 deleted 속성을 변경시키는 코드가 들어가야합니다.
-            completion(true)
+        let restoreAction = UIContextualAction(style: .normal, title: "복구") { [weak self] action, view, completion in
+            if let targetNote = self?.fetchedResultsController.object(at: indexPath) {
+                NoteManager.shared.restore(note: targetNote)
+                completion(true)
+            }
+            completion(false)
         }
         restoreAction.backgroundColor = .systemGreen
         restoreAction.image = UIImage(systemName: "arrow.clockwise")
@@ -131,8 +138,36 @@ extension TrashViewController: UITableViewDelegate {
     }
 }
 
-
+// MARK: - NSFetchedResultsControllerDelegate
 extension TrashViewController: NSFetchedResultsControllerDelegate {
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        deletedNotesTableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let insertIndex = newIndexPath {
+                deletedNotesTableView.insertRows(at: [insertIndex], with: .automatic)
+            }
+        case .delete:
+            if let deletedIndex = indexPath {
+                deletedNotesTableView.deleteRows(at: [deletedIndex], with: .fade)
+            }
+        case .move:
+            if let sourceIndex = indexPath, let destinationIndex = newIndexPath {
+                deletedNotesTableView.moveRow(at: sourceIndex, to: destinationIndex)
+            }
+        case .update:
+            if let updatedIndex = newIndexPath {
+                deletedNotesTableView.reloadRows(at: [updatedIndex], with: .fade)
+            }
+        @unknown default:
+            break
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        deletedNotesTableView.endUpdates()
     }
 }

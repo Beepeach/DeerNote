@@ -278,24 +278,24 @@
                             <tableViewSection headerTitle="옵션" id="Xe5-jG-CQe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DPH-GM-5pv">
-                                        <rect key="frame" x="0.0" y="230.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="230.5" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DPH-GM-5pv" id="orB-xp-Dfy">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IfE-1T-Jm2">
-                                                    <rect key="frame" x="353" y="8.5" width="51" height="31"/>
+                                                    <rect key="frame" x="353" y="8" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="tapPinSwitch:" destination="Rbo-P8-AMc" eventType="valueChanged" id="fHe-jY-s1E"/>
                                                     </connections>
                                                 </switch>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="F3Q-73-ZcK">
-                                                    <rect key="frame" x="12" y="13.5" width="20" height="21.5"/>
+                                                    <rect key="frame" x="12" y="13" width="20" height="21.5"/>
                                                     <color key="tintColor" systemColor="systemTealColor"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상단 고정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9FR-e7-wM3">
-                                                    <rect key="frame" x="44" y="13" width="64" height="21.5"/>
+                                                    <rect key="frame" x="44" y="13" width="64" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -318,18 +318,18 @@
                             <tableViewSection headerTitle="삭제" id="z0D-ml-1EQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0OQ-4U-xZA">
-                                        <rect key="frame" x="0.0" y="324" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="323.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0OQ-4U-xZA" id="8de-QH-oac">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6EI-9s-DPM">
-                                                    <rect key="frame" x="12" y="12.5" width="19.5" height="20.5"/>
+                                                    <rect key="frame" x="12" y="13" width="19.5" height="20.5"/>
                                                     <color key="tintColor" systemColor="systemTealColor"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴지통으로" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSO-tc-chg">
-                                                    <rect key="frame" x="43.5" y="13" width="74" height="21"/>
+                                                    <rect key="frame" x="43.5" y="13" width="74" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
@@ -671,32 +671,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QEF-qc-A7X">
-                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeletedNoteCell" rowHeight="92" id="Q8w-nk-p4V" customClass="DeletedNoteTableViewCell" customModule="DeerNote" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="92"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeletedNoteCell" rowHeight="87" id="Q8w-nk-p4V" customClass="DeletedNoteTableViewCell" customModule="DeerNote" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q8w-nk-p4V" id="hwD-Cw-qg5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="삭제된 노트의 내용" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGj-Eb-vt0">
-                                                    <rect key="frame" x="20" y="23" width="374" height="46"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2B-wA-vbG">
+                                                    <rect key="frame" x="20" y="32.5" width="59" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="D-30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpg-ix-4FK">
+                                                    <rect key="frame" x="353" y="35" width="41" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="iGj-Eb-vt0" firstAttribute="trailing" secondItem="hwD-Cw-qg5" secondAttribute="trailingMargin" id="4D4-X3-Fss"/>
-                                                <constraint firstItem="iGj-Eb-vt0" firstAttribute="leading" secondItem="hwD-Cw-qg5" secondAttribute="leadingMargin" id="fWA-1q-2Xh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="iGj-Eb-vt0" secondAttribute="bottom" constant="12" id="mLN-fE-e72"/>
-                                                <constraint firstItem="iGj-Eb-vt0" firstAttribute="top" secondItem="hwD-Cw-qg5" secondAttribute="topMargin" constant="12" id="ySw-8s-fhD"/>
+                                                <constraint firstItem="b2B-wA-vbG" firstAttribute="centerY" secondItem="Rpg-ix-4FK" secondAttribute="centerY" id="B2u-D7-pOz"/>
+                                                <constraint firstItem="Rpg-ix-4FK" firstAttribute="top" secondItem="hwD-Cw-qg5" secondAttribute="topMargin" constant="24" id="KYC-TV-Lbi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Rpg-ix-4FK" secondAttribute="trailing" id="aEZ-gz-08r"/>
+                                                <constraint firstItem="b2B-wA-vbG" firstAttribute="leading" secondItem="hwD-Cw-qg5" secondAttribute="leadingMargin" id="atW-K6-GFm"/>
+                                                <constraint firstItem="Rpg-ix-4FK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="b2B-wA-vbG" secondAttribute="trailing" constant="24" id="r7P-wi-adi"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Rpg-ix-4FK" secondAttribute="bottom" constant="25" id="wfi-CJ-vvv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="contentsLabel" destination="iGj-Eb-vt0" id="qQB-Sd-6cO"/>
+                                            <outlet property="contentLabel" destination="b2B-wA-vbG" id="lka-6A-MYd"/>
+                                            <outlet property="deletedDdayLabel" destination="Rpg-ix-4FK" id="ZaO-qP-qQM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -715,7 +724,7 @@
                             <constraint firstAttribute="bottom" secondItem="QEF-qc-A7X" secondAttribute="bottom" id="t6H-IX-Bbd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="휴지통" id="ZVs-10-WR9">
+                    <navigationItem key="navigationItem" title="휴지통" largeTitleDisplayMode="never" id="ZVs-10-WR9">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="eCq-lP-Ugn">
                             <connections>
                                 <action selector="tapEmptyTrash:" destination="Dfc-bu-Oqp" id="Z1M-RW-4Do"/>

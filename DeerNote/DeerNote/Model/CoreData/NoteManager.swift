@@ -84,12 +84,31 @@ class NoteManager {
         }
     }
     
+    func delete(note: NoteEntity) {
+        coredataManager.mainContext.delete(note)
+        coredataManager.saveMainContext()
+        print("Delete note")
+    }
+    
+    func deleteWithNoSave(note: NoteEntity) {
+        coredataManager.mainContext.delete(note)
+        print("Delete note with no save")
+    }
+    
     func moveTrash(note: NoteEntity) {
         note.isDeletedNote = true
         note.deletedDate = Date()
+        note.customSortIndex = 0
         
         coredataManager.saveMainContext()
         print("Move Trash")
+    }
+    
+    func restore(note: NoteEntity) {
+        note.isDeletedNote = false
+        note.deletedDate = nil
+        coredataManager.saveMainContext()
+        print("Restore note")
     }
 }
 

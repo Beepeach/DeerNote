@@ -8,8 +8,8 @@
 import UIKit
 
 class DeletedNoteTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var contentsLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var deletedDdayLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
