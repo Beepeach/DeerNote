@@ -71,7 +71,7 @@ class TrashViewController: UIViewController {
     }
     
     deinit {
-        print(#function)
+        print(#function, "TrashVC")
         fetchedResultsController.delegate = nil
     }
 }
