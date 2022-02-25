@@ -139,7 +139,7 @@ class NoteEditorViewController: UIViewController {
                 targetNote.removeFromTags(targetTagEntity)
                 targetTagEntity.removeFromNotes(targetNote)
                 self?.isTagChanged = true
-                print("remove relation \(targetNote.contents) \(targetTagEntity.name)")
+                print("remove relation \(targetNote.contents ?? "") \(targetTagEntity.name ?? "")")
             }
         }
     }
