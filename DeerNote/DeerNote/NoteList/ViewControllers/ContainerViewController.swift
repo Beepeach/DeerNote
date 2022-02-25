@@ -219,13 +219,13 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         case .settings:
             performSegue(mainMenu: mainMenu)
         case .untagged:
-            showTagNoteListVC(tag: Tag())
+            showTagNoteListVC(tag: nil)
         }
         
         toggleSideMenu(completion: nil)
     }
     
-    func didTap(_ vc: MenuViewController, tag: Tag) {
+    func didTap(_ vc: MenuViewController, tag: TagEntity) {
         toggleSideMenu(completion: nil)
         showTagNoteListVC(tag: tag)
     }
@@ -248,7 +248,7 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         noteListVC.performSegue(withIdentifier: segueID, sender: nil)
     }
     
-    private func showTagNoteListVC(tag: Tag) {
+    private func showTagNoteListVC(tag: TagEntity?) {
         if noteListVC.children.isEmpty {
             addTagNoteListVC(tag: tag)
         } else {
@@ -256,7 +256,7 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         }
     }
     
-    private func addTagNoteListVC(tag: Tag) {
+    private func addTagNoteListVC(tag: TagEntity?) {
         guard let tagNoteListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoteListViewController") as? NoteListViewController else {
             return
         }
@@ -264,20 +264,25 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         noteListVC.view.addSubview(tagNoteListVC.view)
         tagNoteListVC.didMove(toParent: noteListVC)
         
-        noteListVC.title = tag.name
+        if let tag = tag {
+            noteListVC.title = tag.name
+        } else {
+            noteListVC.title = "Untagged"
+        }
+        
         
         // TODO: - Tag에 해당하는 데이터를 불러오는 작업이 추가되어야합니다.
         print("Add TagNoteListVC")
     }
     
-    private func replaceTagNoteListVC(tag: Tag) {
-        if noteListVC.title == tag.name {
+    private func replaceTagNoteListVC(tag: TagEntity?) {
+        if noteListVC.title == tag?.name ?? "Untagged" {
             return
         }
         guard let _ = noteListVC.children.first as? NoteListViewController else {
             return
         }
-        noteListVC.title = tag.name
+        noteListVC.title = tag?.name ?? "Untagged"
         
         // TODO: - Tag에 해당하는 데이터를 불러오는 작업이 추가되어야합니다.
         print("Replace TagNoteListVC")

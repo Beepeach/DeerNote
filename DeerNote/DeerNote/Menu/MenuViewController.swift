@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
 protocol MenuViewControllerDeleagete: AnyObject {
     func didTap(_ vc: MenuViewController, mainMenu: MenuViewController.MainMenu)
-    func didTap(_ vc: MenuViewController, tag: Tag)
+    func didTap(_ vc: MenuViewController, tag: TagEntity)
 }
 
 class MenuViewController: UIViewController {
@@ -23,11 +24,15 @@ class MenuViewController: UIViewController {
     
     
     // MARK: Properties
+    lazy var fetchedResultsController: NSFetchedResultsController<TagEntity> = {
+        let tagNameASCESortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let fetchRequest: NSFetchRequest<TagEntity> = TagManager.shared.setupAllTagsFetchRequest(sort: [tagNameASCESortDescriptor])
+        let controller: NSFetchedResultsController<TagEntity> = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = self
+        
+        return controller
+    }()
     weak var delegate: MenuViewControllerDeleagete?
-    var tags: [Tag] = [
-        Tag(name: "아무거나"),
-        Tag(name: "내맘내맘")
-    ]
     
     
     // MARK: @IBOutlet
@@ -38,6 +43,11 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     
@@ -63,7 +73,10 @@ class MenuViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tags.count
+        guard let sections = fetchedResultsController.sections else {
+            return 0
+        }
+        return sections[section].numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,7 +84,7 @@ extension MenuViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.textLabel?.text = tags[indexPath.row].name
+        cell.textLabel?.text = fetchedResultsController.object(at: indexPath).name
         
         return cell
     }
@@ -81,7 +94,22 @@ extension MenuViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didTap(self, tag: tags[indexPath.row])
+        delegate?.didTap(self, tag: fetchedResultsController.object(at: indexPath))
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+
+extension MenuViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
     }
 }
