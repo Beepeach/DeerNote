@@ -67,6 +67,11 @@ class MenuViewController: UIViewController {
     @IBAction func tapUntagged(_ sender: UIButton) {
         delegate?.didTap(self, mainMenu: .untagged)
     }
+    
+    @IBAction func tapTagEditButton(_ sender: Any) {
+        // TODO: tableView Editing mode
+        print("tap")
+    }
 }
 
 
