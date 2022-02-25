@@ -272,6 +272,7 @@ extension ContainerViewController: MenuViewControllerDeleagete {
             tagNoteListVC.isTagVC = true
         }
         
+        tagNoteListVC.delegate = self
         noteListVC.addChild(tagNoteListVC)
         noteListVC.view.addSubview(tagNoteListVC.view)
         tagNoteListVC.didMove(toParent: noteListVC)
