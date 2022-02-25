@@ -15,7 +15,7 @@ protocol NoteListViewControllerDelegate: AnyObject {
 
 class NoteListViewController: UIViewController {
     // MARK: Properties
-    private var allNote: [NoteEntity] = []
+    private var notes: [NoteEntity] = []
     weak var delegate: NoteListViewControllerDelegate?
     private var isLongPressed: Bool = false
     private let backgroundSerialQueue: OperationQueue = {
@@ -24,8 +24,6 @@ class NoteListViewController: UIViewController {
         
         return queue
     }()
-    
-    private var notes: [NoteEntity] = []
     
     
     // MARK: @IBOutlet

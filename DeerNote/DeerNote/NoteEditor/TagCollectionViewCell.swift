@@ -8,6 +8,9 @@
 import UIKit
 
 class TagCollectionViewCell: UICollectionViewCell {
+    // MARK: Properties
+    var isEditMode: Bool = false
+    
     // MARK: @IBOutlet
     @IBOutlet weak var tagNameLabel: UILabel!
     @IBOutlet weak var tagRemoveButton: UIButton!

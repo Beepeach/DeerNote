@@ -10,10 +10,11 @@ import CoreData
 
 class NoteEditorViewController: UIViewController {
     // MARK: Properties
-    var tags: [Tag] = [
-    ]
+    var tags: [Tag] = []
+    var tagEntities: Set<TagEntity> = []
     var contents: String?
     var targetNote: NoteEntity?
+    var isTagChanged: Bool = false
     
     // MARK: @IBOutlet
     @IBOutlet weak var contentTextView: UITextView!
@@ -47,13 +48,12 @@ class NoteEditorViewController: UIViewController {
             TagManager.shared.createNewTags(name: $0.name)
         }
         
-        // TODO: - updata일때 구현해야합니다.
-        upsertNote(contents: contents, tags: tags)
+        upsertNote(contents: contents)
     }
     
-    private func upsertNote(contents: String, tags: [Tag]) {
+    private func upsertNote(contents: String) {
         if let targetNote = targetNote {
-            NoteManager.shared.update(targetNote, contents: contents)
+            NoteManager.shared.update(targetNote, contents: contents, tags: tags, isChanged: isTagChanged)
         } else {
             NoteManager.shared.addNote(contents: contents, tags: tags)
         }
@@ -71,8 +71,13 @@ class NoteEditorViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .systemTeal
         contentTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
         
-        if let _ = targetNote {
+        if let targetNote = targetNote {
             contentTextView.text = contents
+            guard let entities = targetNote.tags as? Set<TagEntity> else {
+                return
+            }
+            tagEntities = entities
+            tags = tagEntities.map { Tag(name: $0.name ?? "") }.sorted { $0.name < $1.name }
         } else {
             contentTextView.text = nil
             contentTextView.becomeFirstResponder()
@@ -124,9 +129,18 @@ class NoteEditorViewController: UIViewController {
             guard let targetIndex = self?.tags.firstIndex(where: {$0.name == targetTag}) else {
                 return
             }
-
             self?.removeTag(at: targetIndex)
             self?.tagCollectionView.reloadSections(IndexSet(integer: 1))
+            
+            if let targetNote = self?.targetNote {
+                guard let targetTagEntity = self?.tagEntities.first(where: { tagEntity in
+                    tagEntity.name == targetTag
+                }) else { return }
+                targetNote.removeFromTags(targetTagEntity)
+                targetTagEntity.removeFromNotes(targetNote)
+                self?.isTagChanged = true
+                print("remove relation \(targetNote.contents) \(targetTagEntity.name)")
+            }
         }
     }
     
@@ -168,6 +182,10 @@ extension NoteEditorViewController: UICollectionViewDataSource {
             }
             cell.tagNameLabel.text = tags[indexPath.item].name
             
+            if let _ = targetNote {
+                cell.isEditMode = true
+            }
+            
             return cell
         }
     }
@@ -189,8 +207,12 @@ extension NoteEditorViewController: TagCreatorCollectionViewCellDelegate {
         tags.append(Tag(name: text))
         textField.text = nil
         textField.becomeFirstResponder()
-        
         tagCollectionView.reloadSections(IndexSet(integer: 1))
+        
+        if let _ = targetNote {
+            isTagChanged = true
+        }
+        
         return true
     }
     

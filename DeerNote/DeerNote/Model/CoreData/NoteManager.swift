@@ -48,13 +48,19 @@ class NoteManager {
     private func connectTagAndNote(tags: [Tag], note: NoteEntity) {
         tags.forEach {
             let fetchRequest = TagManager.shared.setupTargetTagFetchRequest(name: $0.name)
-            guard let tag = TagManager.shared.fetchTags(with: fetchRequest).first else {
+            guard let tagEntity = TagManager.shared.fetchTags(with: fetchRequest).first else {
                 return
             }
-            note.addToTags(tag)
-            tag.addToNotes(note)
-            print("Add \(tag.name) to Note")
-            print("Add \(note.contents) \(note.id) to Tag")
+            
+            if note.tags?.contains(tagEntity) ?? true  {
+                print("Already connet note to tag")
+               return
+            }
+            
+            note.addToTags(tagEntity)
+            tagEntity.addToNotes(note)
+            print("Add \(tagEntity.name ?? "") to Note")
+            print("Add \(note.contents ?? "") \(note.id) to Tag")
         }
     }
     
@@ -74,13 +80,16 @@ class NoteManager {
         return newNote
     }
     
-    func update(_ note: NoteEntity, contents: String) {
-        guard note.contents != contents else {
-            return
+    func update(_ note: NoteEntity, contents: String, tags: [Tag], isChanged: Bool) {
+        if note.contents != contents {
+            note.contents = contents
+            note.modifiedDate = Date()
         }
-        note.contents = contents
-        note.modifiedDate = Date()
         
+        if isChanged == true {
+            connectTagAndNote(tags: tags, note: note)
+        }
+
         coredataManager.saveMainContext()
         print("Edit Note")
     }
