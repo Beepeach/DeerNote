@@ -39,18 +39,23 @@ class NoteEditorViewController: UIViewController {
     
     // MARK: VCLifeCycle
     override func viewWillDisappear(_ animated: Bool) {
-        // TODO: - Tag를 추가하는 코드가 들어가야합니다.
         guard let contents = contentTextView.text, contents.count > 0 else {
             return
         }
-        upsertNote(contents: contents)
+        
+        tags.forEach {
+            TagManager.shared.createNewTags(name: $0.name)
+        }
+        
+        // TODO: - updata일때 구현해야합니다.
+        upsertNote(contents: contents, tags: tags)
     }
     
-    private func upsertNote(contents: String) {
+    private func upsertNote(contents: String, tags: [Tag]) {
         if let targetNote = targetNote {
             NoteManager.shared.update(targetNote, contents: contents)
         } else {
-            NoteManager.shared.addNote(contents: contents)
+            NoteManager.shared.addNote(contents: contents, tags: tags)
         }
     }
     
@@ -119,7 +124,7 @@ class NoteEditorViewController: UIViewController {
             guard let targetIndex = self?.tags.firstIndex(where: {$0.name == targetTag}) else {
                 return
             }
-            
+
             self?.removeTag(at: targetIndex)
             self?.tagCollectionView.reloadSections(IndexSet(integer: 1))
         }
@@ -182,7 +187,6 @@ extension NoteEditorViewController: TagCreatorCollectionViewCellDelegate {
         }
         
         tags.append(Tag(name: text))
-        
         textField.text = nil
         textField.becomeFirstResponder()
         

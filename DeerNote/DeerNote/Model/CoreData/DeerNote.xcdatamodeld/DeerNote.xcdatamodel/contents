@@ -13,7 +13,7 @@
     </entity>
     <entity name="Tag" representedClassName="TagEntity" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="notes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
     <elements>
         <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="164"/>

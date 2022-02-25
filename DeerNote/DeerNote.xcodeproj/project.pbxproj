@@ -28,12 +28,11 @@
 		EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */; };
 		EEBFCDFB27C6A96800A70B1C /* Notification+NoteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDFA27C6A96800A70B1C /* Notification+NoteInfo.swift */; };
 		EEBFCDFF27C760D900A70B1C /* Notification+TrashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDFE27C760D900A70B1C /* Notification+TrashVC.swift */; };
+		EED986C627C7E44F0077B54D /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED986C527C7E44F0077B54D /* TagManager.swift */; };
 		EEDD186F27BFAEF500DAAA52 /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */; };
 		EEDD187127C10E9800DAAA52 /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */; };
 		EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */; };
 		EEDD187D27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187B27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift */; };
-		EEDD188027C27F0400DAAA52 /* TagEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187E27C27F0400DAAA52 /* TagEntity+CoreDataClass.swift */; };
-		EEDD188127C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD187F27C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift */; };
 		EEDD188427C28C2600DAAA52 /* NoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD188327C28C2600DAAA52 /* NoteManager.swift */; };
 		EEDD18B027C526F300DAAA52 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18AF27C526F300DAAA52 /* PopoverViewController.swift */; };
 		EEDD18B327C5FE8900DAAA52 /* NoteInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18B227C5FE8900DAAA52 /* NoteInfoTableViewController.swift */; };
@@ -47,6 +46,8 @@
 		EEF2DFAE27A4660C00CA9CA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFAC27A4660C00CA9CA0 /* LaunchScreen.storyboard */; };
 		EEF2DFC327A4660D00CA9CA0 /* DeerNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */; };
 		EEF2DFC527A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */; };
+		EEFE3AE627C8B63700043DBA /* TagEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFE3AE427C8B63700043DBA /* TagEntity+CoreDataClass.swift */; };
+		EEFE3AE727C8B63700043DBA /* TagEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFE3AE527C8B63700043DBA /* TagEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,12 +89,11 @@
 		EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteEditor.swift"; sourceTree = "<group>"; };
 		EEBFCDFA27C6A96800A70B1C /* Notification+NoteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteInfo.swift"; sourceTree = "<group>"; };
 		EEBFCDFE27C760D900A70B1C /* Notification+TrashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+TrashVC.swift"; sourceTree = "<group>"; };
+		EED986C527C7E44F0077B54D /* TagManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
 		EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
 		EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTransformer.swift; sourceTree = "<group>"; };
 		EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EEDD187B27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		EEDD187E27C27F0400DAAA52 /* TagEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		EEDD187F27C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EEDD188327C28C2600DAAA52 /* NoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManager.swift; sourceTree = "<group>"; };
 		EEDD18AF27C526F300DAAA52 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		EEDD18B227C5FE8900DAAA52 /* NoteInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInfoTableViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +111,8 @@
 		EEF2DFBE27A4660D00CA9CA0 /* DeerNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeerNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteUITests.swift; sourceTree = "<group>"; };
 		EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EEFE3AE427C8B63700043DBA /* TagEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		EEFE3AE527C8B63700043DBA /* TagEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 			children = (
 				EEDD188227C27F5F00DAAA52 /* Entity */,
 				EEF2DFA727A4660C00CA9CA0 /* DeerNote.xcdatamodeld */,
+				EED986C527C7E44F0077B54D /* TagManager.swift */,
 				EEDD188327C28C2600DAAA52 /* NoteManager.swift */,
 				EE97D0ED27BF952D0095A517 /* CoreDataManager.swift */,
 				EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */,
@@ -274,8 +277,8 @@
 		EEDD188227C27F5F00DAAA52 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				EEDD187E27C27F0400DAAA52 /* TagEntity+CoreDataClass.swift */,
-				EEDD187F27C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift */,
+				EEFE3AE427C8B63700043DBA /* TagEntity+CoreDataClass.swift */,
+				EEFE3AE527C8B63700043DBA /* TagEntity+CoreDataProperties.swift */,
 				EEDD187A27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift */,
 				EEDD187B27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift */,
 			);
@@ -488,13 +491,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEDD188127C27F0400DAAA52 /* TagEntity+CoreDataProperties.swift in Sources */,
 				EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */,
+				EEFE3AE627C8B63700043DBA /* TagEntity+CoreDataClass.swift in Sources */,
 				EEDD18B027C526F300DAAA52 /* PopoverViewController.swift in Sources */,
 				EEDD18B327C5FE8900DAAA52 /* NoteInfoTableViewController.swift in Sources */,
 				EEDD187127C10E9800DAAA52 /* ColorTransformer.swift in Sources */,
 				EEB76A0227AC168900BCB4B6 /* GradationColor.swift in Sources */,
-				EEDD188027C27F0400DAAA52 /* TagEntity+CoreDataClass.swift in Sources */,
 				EE145B8727B9012B008EAA35 /* TagCreatorCollectionViewCell.swift in Sources */,
 				EE13B1A727A7C75A0060589B /* Tag.swift in Sources */,
 				EE145B8527B8EA84008EAA35 /* TagCollectionViewCell.swift in Sources */,
@@ -508,6 +510,7 @@
 				EEBFCDF527C69C2200A70B1C /* Notification+NoteList.swift in Sources */,
 				EE023C5427B02104004833A8 /* UINavigationController + shouldAutoroate.swift in Sources */,
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
+				EED986C627C7E44F0077B54D /* TagManager.swift in Sources */,
 				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,
 				EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */,
 				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,
@@ -515,6 +518,7 @@
 				EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */,
 				EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */,
 				EEBFCDFB27C6A96800A70B1C /* Notification+NoteInfo.swift in Sources */,
+				EEFE3AE727C8B63700043DBA /* TagEntity+CoreDataProperties.swift in Sources */,
 				EEDD188427C28C2600DAAA52 /* NoteManager.swift in Sources */,
 				EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */,
 				EEDD187D27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift in Sources */,

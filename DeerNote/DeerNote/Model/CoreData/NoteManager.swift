@@ -38,15 +38,28 @@ class NoteManager {
         return request
     }
     
-    func addNote(contents: String) {
-        // TODO: - Tag를 추가하는 코드가 들어가야합니다.
-        createNewNote(contents)
-        
+    func addNote(contents: String, tags: [Tag]) {
+        let newNote = createNewNote(contents)
+        connectTagAndNote(tags: tags, note: newNote)
         coredataManager.saveMainContext()
         print("Add Note")
     }
     
-    private func createNewNote(_ contents: String) {
+    private func connectTagAndNote(tags: [Tag], note: NoteEntity) {
+        tags.forEach {
+            let fetchRequest = TagManager.shared.setupTargetTagFetchRequest(name: $0.name)
+            guard let tag = TagManager.shared.fetchTags(with: fetchRequest).first else {
+                return
+            }
+            note.addToTags(tag)
+            tag.addToNotes(note)
+            print("Add \(tag.name) to Note")
+            print("Add \(note.contents) \(note.id) to Tag")
+        }
+    }
+    
+    @discardableResult
+    private func createNewNote(_ contents: String) -> NoteEntity {
         let newNote = NoteEntity(context: CoreDataManager.shared.mainContext)
         let currentData = Date()
         let randomColor = GradationColor.shared.getRandomColor()
@@ -57,6 +70,8 @@ class NoteManager {
         newNote.isDeletedNote = false
         newNote.fromColor = randomColor.from
         newNote.toColor = randomColor.to
+        
+        return newNote
     }
     
     func update(_ note: NoteEntity, contents: String) {
