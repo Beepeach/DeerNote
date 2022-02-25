@@ -100,16 +100,41 @@ extension MenuViewController: UITableViewDelegate {
 }
 
 
+// MARK: - NSFetchedResultsControllerDelegate
 extension MenuViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
+        tagTableView.beginUpdates()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
+        switch type {
+        case .insert:
+            guard let insertIndex = newIndexPath else {
+                return
+            }
+            tagTableView.insertRows(at: [insertIndex], with: .automatic)
+        case .delete:
+            guard let deletedIndex = indexPath else {
+                return
+            }
+            tagTableView.deleteRows(at: [deletedIndex], with: .fade)
+        case .move:
+            guard let sourceIndex = indexPath,
+                  let destinationIndex = newIndexPath else {
+                      return
+                  }
+            tagTableView.moveRow(at: sourceIndex, to: destinationIndex)
+        case .update:
+            guard let updatedIndex = newIndexPath else {
+                return
+            }
+            tagTableView.reloadRows(at: [updatedIndex], with: .fade)
+        @unknown default:
+            break
+        }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
+        tagTableView.endUpdates()
     }
 }
