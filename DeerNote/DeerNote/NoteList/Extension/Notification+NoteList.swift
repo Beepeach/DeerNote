@@ -13,7 +13,7 @@ extension Notification.Name {
 }
 
 
-// MARK: PopoverViewController
+// MARK: - PopoverViewController
 extension Notification.Name {
     static let noteDidMoveTrash = Notification.Name("noteDidMoveTrash")
     static let notePinButtonDidTapped = Notification.Name("noteDidPinned")
@@ -21,4 +21,10 @@ extension Notification.Name {
 
 extension NoteListViewController {
     static let selectedNoteIndexUserInfoKey: String = "index"
+}
+
+
+// MARK: - ContainerViewController
+extension Notification.Name {
+    static let tagNoteVCWillReplaced = Notification.Name(rawValue: "tagNoteVCWillReplaced")
 }

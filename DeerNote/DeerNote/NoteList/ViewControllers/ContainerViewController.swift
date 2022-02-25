@@ -239,6 +239,8 @@ extension ContainerViewController: MenuViewControllerDeleagete {
             tagNoteVC.removeFromParent()
             
             noteListVC.title = "All"
+            noteListVC.tag = nil
+            noteListVC.isTagVC = false
         }
         print("Delete TagVC")
     }
@@ -260,18 +262,19 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         guard let tagNoteListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoteListViewController") as? NoteListViewController else {
             return
         }
-        noteListVC.addChild(tagNoteListVC)
-        noteListVC.view.addSubview(tagNoteListVC.view)
-        tagNoteListVC.didMove(toParent: noteListVC)
         
         if let tag = tag {
             noteListVC.title = tag.name
+            tagNoteListVC.tag = tag
+            tagNoteListVC.isTagVC = true
         } else {
             noteListVC.title = "Untagged"
+            tagNoteListVC.isTagVC = true
         }
         
-        
-        // TODO: - Tag에 해당하는 데이터를 불러오는 작업이 추가되어야합니다.
+        noteListVC.addChild(tagNoteListVC)
+        noteListVC.view.addSubview(tagNoteListVC.view)
+        tagNoteListVC.didMove(toParent: noteListVC)
         print("Add TagNoteListVC")
     }
     
@@ -279,12 +282,13 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         if noteListVC.title == tag?.name ?? "Untagged" {
             return
         }
-        guard let _ = noteListVC.children.first as? NoteListViewController else {
+        guard let targetNoteListVC = noteListVC.children.first as? NoteListViewController else {
             return
         }
         noteListVC.title = tag?.name ?? "Untagged"
-        
-        // TODO: - Tag에 해당하는 데이터를 불러오는 작업이 추가되어야합니다.
+        targetNoteListVC.tag = tag
+        targetNoteListVC.isTagVC = true
+        NotificationCenter.default.post(name: .tagNoteVCWillReplaced, object: nil)
         print("Replace TagNoteListVC")
     }
 }
@@ -315,3 +319,6 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
         return false
     }
 }
+
+
+

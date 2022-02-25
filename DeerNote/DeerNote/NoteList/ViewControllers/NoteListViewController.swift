@@ -24,6 +24,8 @@ class NoteListViewController: UIViewController {
         
         return queue
     }()
+    var tag: TagEntity?
+    var isTagVC: Bool = false
     
     
     // MARK: @IBOutlet
@@ -44,25 +46,44 @@ class NoteListViewController: UIViewController {
         observeNoteDidMoveTrash()
         observeNotePinState()
         
-        fetchAllNote()
+        fetchAppropriateNote()
+        
+        NotificationCenter.default.addObserver(forName: .tagNoteVCWillReplaced, object: nil, queue: .main) { [weak self] _ in
+            self?.fetchAppropriateNote()
+            self?.noteListCollectionView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if CoreDataManager.shared.mainContext.hasChanges {
-            fetchAllNote()
+            fetchAppropriateNote()
             noteListCollectionView.reloadData()
         }
     }
     
-    private func fetchAllNote() {
+    private func fetchAppropriateNote() {
         let modifiedDateDSCE = NSSortDescriptor(key: "modifiedDate", ascending: false)
         let customSortIndexASCE = NSSortDescriptor(key: "customSortIndex", ascending: true)
         let request = NoteManager.shared.setupAllNoteFetchRequest(sort: [customSortIndexASCE, modifiedDateDSCE], trash: false)
         guard let allNotes = NoteManager.shared.fetchNotes(with: request) else {
             return
         }
-        notes = allNotes
+        
+        if isTagVC == false {
+            notes = allNotes
+        } else if let tag = tag, isTagVC == true {
+            // Tag Note
+            notes = allNotes.filter {
+                guard let tags = $0.tags as? Set<TagEntity> else {
+                    return false
+                }
+                return tags.contains(tag)
+            }
+        } else if tag == nil, isTagVC == true {
+            // untagged
+            notes = allNotes.filter { $0.tags?.count == 0 }
+        }
     }
     
     private func setdimmingView() {
@@ -92,14 +113,14 @@ class NoteListViewController: UIViewController {
     
     private func observeNoteDidRestore() {
         NotificationCenter.default.addObserver(forName: .noteDidRestore, object: nil, queue: .main) { _ in
-            self.fetchAllNote()
+            self.fetchAppropriateNote()
             self.noteListCollectionView.reloadData()
         }
     }
     
     private func observeNotePinState() {
         NotificationCenter.default.addObserver(forName: .notePinButtonDidTapped, object: nil, queue: .main) { _ in
-            self.fetchAllNote()
+            self.fetchAppropriateNote()
             self.noteListCollectionView.reloadData()
         }
     }
