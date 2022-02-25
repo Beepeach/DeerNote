@@ -411,7 +411,7 @@
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="qti-cx-3Mp">
                                                     <rect key="frame" x="31" y="99.5" width="20" height="20"/>
-                                                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
