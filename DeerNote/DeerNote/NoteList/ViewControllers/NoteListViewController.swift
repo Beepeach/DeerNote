@@ -18,6 +18,7 @@ class NoteListViewController: UIViewController {
     private var notes: [NoteEntity] = []
     weak var delegate: NoteListViewControllerDelegate?
     private var isLongPressed: Bool = false
+    var pressStartLocation: CGPoint?
     private let backgroundSerialQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -26,7 +27,6 @@ class NoteListViewController: UIViewController {
     }()
     var tag: TagEntity?
     var isTagVC: Bool = false
-    
     
     // MARK: @IBOutlet
     @IBOutlet weak var noteListCollectionView: UICollectionView!
@@ -170,6 +170,7 @@ class NoteListViewController: UIViewController {
     @IBAction func pressNoteListCell(_ sender: UILongPressGestureRecognizer) {
         switch sender.state {
         case .began:
+            pressStartLocation = sender.location(in: noteListCollectionView)
             guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
                 return
             }
@@ -227,6 +228,9 @@ class NoteListViewController: UIViewController {
     }
     
     private func resetAnimation(cell: NoteCollectionViewCell) {
+        guard let _ = noteListCollectionView.indexPathForItem(at: pressStartLocation ?? .zero) else {
+            return
+        }
         if cell.isAnimating == false {
             cell.startShakeAnimation()
         }

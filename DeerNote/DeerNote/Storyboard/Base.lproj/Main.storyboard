@@ -277,24 +277,24 @@
                             <tableViewSection headerTitle="옵션" id="Xe5-jG-CQe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DPH-GM-5pv">
-                                        <rect key="frame" x="0.0" y="230.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="230.5" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DPH-GM-5pv" id="orB-xp-Dfy">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IfE-1T-Jm2">
-                                                    <rect key="frame" x="353" y="8.5" width="51" height="31"/>
+                                                    <rect key="frame" x="353" y="8" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="tapPinSwitch:" destination="Rbo-P8-AMc" eventType="valueChanged" id="fHe-jY-s1E"/>
                                                     </connections>
                                                 </switch>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="F3Q-73-ZcK">
-                                                    <rect key="frame" x="12" y="14" width="20" height="20"/>
+                                                    <rect key="frame" x="12" y="13.5" width="20" height="20"/>
                                                     <color key="tintColor" systemColor="systemTealColor"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상단 고정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9FR-e7-wM3">
-                                                    <rect key="frame" x="44" y="13" width="64" height="21.5"/>
+                                                    <rect key="frame" x="44" y="13" width="64" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -317,18 +317,18 @@
                             <tableViewSection headerTitle="삭제" id="z0D-ml-1EQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0OQ-4U-xZA">
-                                        <rect key="frame" x="0.0" y="324" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="323.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0OQ-4U-xZA" id="8de-QH-oac">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" translatesAutoresizingMaskIntoConstraints="NO" id="6EI-9s-DPM">
-                                                    <rect key="frame" x="12" y="13.5" width="20" height="20"/>
+                                                    <rect key="frame" x="12" y="14" width="20" height="20"/>
                                                     <color key="tintColor" systemColor="systemTealColor"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴지통으로" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSO-tc-chg">
-                                                    <rect key="frame" x="44" y="13" width="74" height="21"/>
+                                                    <rect key="frame" x="44" y="13" width="74" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
@@ -371,7 +371,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-Di-WE9">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="edY-Bz-Lx7">
@@ -463,8 +463,8 @@
                             <constraint firstItem="cTV-Di-WE9" firstAttribute="trailing" secondItem="FjG-bC-dcK" secondAttribute="trailing" id="j8D-9N-GE6"/>
                             <constraint firstItem="cy0-ca-Xm9" firstAttribute="leading" secondItem="FjG-bC-dcK" secondAttribute="leading" id="mm1-cw-NlG"/>
                             <constraint firstItem="cTV-Di-WE9" firstAttribute="leading" secondItem="FjG-bC-dcK" secondAttribute="leading" id="tvl-21-B2U"/>
-                            <constraint firstItem="cTV-Di-WE9" firstAttribute="top" secondItem="FjG-bC-dcK" secondAttribute="top" id="uaY-OL-pYb"/>
                             <constraint firstItem="cy0-ca-Xm9" firstAttribute="trailing" secondItem="FjG-bC-dcK" secondAttribute="trailing" id="y4u-QL-pSi"/>
+                            <constraint firstItem="cTV-Di-WE9" firstAttribute="top" secondItem="MNf-5Z-om8" secondAttribute="top" id="z1b-dI-5e9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All" id="Xne-do-Cb4">
