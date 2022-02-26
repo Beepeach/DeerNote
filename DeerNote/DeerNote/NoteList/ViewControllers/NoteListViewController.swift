@@ -222,8 +222,8 @@ class NoteListViewController: UIViewController {
     
     private func startShakeAnimationWithVisibleCell(without selectedCell: NoteCollectionViewCell) {
         noteListCollectionView.visibleCells.map { $0 as? NoteCollectionViewCell }.forEach { $0?.startShakeAnimation() }
-        
         selectedCell.stopShakeAnimation()
+        selectedCell.optionsButton.isEnabled = false
         setupTranslucent(with: selectedCell)
         setupDoneBarButtonVisible()
     }
@@ -321,8 +321,6 @@ extension NoteListViewController: UICollectionViewDataSource {
         cell.modifiedDateLabel.text = shortDateFormatter.string(for: targetNote.modifiedDate)
         
         cell.optionsButton.tag = indexPath.item
-        cell.optionsButton.isEnabled = !isLongPressed
-        
         cell.pinImageView.isHidden = targetNote.pinnedDate == nil ? true : false
     }
     
@@ -418,8 +416,8 @@ extension NoteListViewController: UICollectionViewDelegateFlowLayout {
 
 
 // MARK: - NoteCollectionViewDeleagte
-extension NoteListViewController: NoteCollectionViewCellDelegate {
-    func optionbuttonDidTapped(_ button: UIButton, selectedIndex: Int) {
+extension NoteListViewController: NoteCollectionViewCellDelegate {    
+    func optionsbuttonDidTapped(_ button: UIButton, selectedIndex: Int) {
         guard let popoverVC = storyboard?.instantiateViewController(withIdentifier: "PopoverViewController") as? PopoverViewController else {
             return
         }

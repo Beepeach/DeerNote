@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NoteCollectionViewCellDelegate: AnyObject {
-    func optionbuttonDidTapped(_ button: UIButton, selectedIndex: Int)
+    func optionsbuttonDidTapped(_ button: UIButton, selectedIndex: Int)
 }
 
 class NoteCollectionViewCell: UICollectionViewCell {
@@ -24,7 +24,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     
     // MARK: @IBAction
     @IBAction func tapOptionsButton(_ sender: UIButton) {
-        delegate?.optionbuttonDidTapped(sender, selectedIndex: sender.tag)
+        delegate?.optionsbuttonDidTapped(sender, selectedIndex: sender.tag)
     }
     
     // MARK: ViewLifeCycle
@@ -70,6 +70,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
         self.layer.add(shakeAnimation, forKey: "shakeAnimation")
         
         isAnimating = true
+        optionsButton.isEnabled = false
     }
     
     private func setupShakeAnimation() -> CABasicAnimation {
@@ -91,6 +92,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     func stopShakeAnimation() {
         self.layer.removeAnimation(forKey: "shakeAnimation")
         isAnimating = false
+        optionsButton.isEnabled = true
     }
     
     deinit {
