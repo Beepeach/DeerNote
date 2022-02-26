@@ -10,7 +10,6 @@ import UIKit
 class PopoverViewController: UIViewController {
     // MARK: Properties
     var targetNote: NoteEntity?
-    var index: Int?
     var isPinned: Bool?
     
     // MARK: @IBOutlet
@@ -49,19 +48,15 @@ class PopoverViewController: UIViewController {
         guard let targetNote = targetNote else {
             return
         }
-        guard let index = index else {
-            return
-        }
-        
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         let removeAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
-            self.moveTrash(targetNote: targetNote, at: index)
+            self.moveTrash(targetNote: targetNote)
         }
         controller.addAction(cancelAction)
         controller.addAction(removeAction)
     }
     
-    private func moveTrash(targetNote: NoteEntity, at index: Int) {
+    private func moveTrash(targetNote: NoteEntity) {
         NoteManager.shared.moveTrash(note: targetNote)
         NotificationCenter.default.post(name: .noteDidMoveTrash, object: nil, userInfo: ["id": targetNote.objectID])
         dismiss(animated: true, completion: nil)
