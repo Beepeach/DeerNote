@@ -70,7 +70,7 @@ class MenuViewController: UIViewController {
     
     @IBAction func tapTagEditButton(_ sender: Any) {
         // TODO: tableView Editing mode
-        print("tap")
+        tagTableView.setEditing(true, animated: true)
     }
 }
 
@@ -93,6 +93,10 @@ extension MenuViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
 
 
@@ -101,6 +105,21 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didTap(self, tag: fetchedResultsController.object(at: indexPath))
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            let targetTagEntity = fetchedResultsController.object(at: indexPath)
+            TagManager.shared.delete(tag: targetTagEntity)
+            NotificationCenter.default.post(name: .tagDidRemoved, object: nil)
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        return
     }
 }
 

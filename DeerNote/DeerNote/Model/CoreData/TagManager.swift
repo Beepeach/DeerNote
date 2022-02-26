@@ -62,4 +62,20 @@ class TagManager {
         
         return newTag
     }
+    
+    func delete(tag: TagEntity) {
+        coredataManager.mainContext.delete(tag)
+        coredataManager.saveMainContext()
+        
+        guard let taggedNotes = tag.notes as? Set<NoteEntity> else {
+            return
+        }
+        taggedNotes.forEach { delete(tag: tag, in: $0) }
+    }
+    
+    func delete(tag: TagEntity, in note: NoteEntity) {
+        note.removeFromTags(tag)
+        tag.removeFromNotes(note)
+        print("remove relation \(note.contents ?? "") \(tag.name ?? "")")
+    }
 }

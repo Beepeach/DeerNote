@@ -123,30 +123,31 @@ class NoteEditorViewController: UIViewController {
             guard let userInfo = noti.userInfo else {
                 return
             }
-            guard let targetTag: String = userInfo[TagCollectionViewCell.removedTagNameUserInfoKey] as? String else {
+            guard let targetTagName: String = userInfo[TagCollectionViewCell.removedTagNameUserInfoKey] as? String else {
                 return
             }
-            guard let targetIndex = self?.tags.firstIndex(where: {$0.name == targetTag}) else {
+            guard let targetIndex = self?.tags.firstIndex(where: {$0.name == targetTagName}) else {
                 return
             }
-            self?.removeTag(at: targetIndex)
-            self?.tagCollectionView.reloadSections(IndexSet(integer: 1))
-            
-            if let targetNote = self?.targetNote {
-                guard let targetTagEntity = self?.tagEntities.first(where: { tagEntity in
-                    tagEntity.name == targetTag
-                }) else { return }
-                targetNote.removeFromTags(targetTagEntity)
-                targetTagEntity.removeFromNotes(targetNote)
-                self?.isTagChanged = true
-                print("remove relation \(targetNote.contents ?? "") \(targetTagEntity.name ?? "")")
-            }
+            self?.removeTagFromList(at: targetIndex)
+            self?.removeTagFromCoreData(tagName: targetTagName)
         }
     }
     
-    private func removeTag(at targetIndex : Int) {
+    private func removeTagFromList(at targetIndex : Int) {
         self.tags.remove(at: targetIndex)
         self.tagCollectionView.deleteItems(at: [IndexPath(item: targetIndex, section: 1)])
+        self.tagCollectionView.reloadSections(IndexSet(integer: 1))
+    }
+    
+    private func removeTagFromCoreData(tagName: String) {
+        guard let targetTagEntity = self.tagEntities.first(where: { $0.name == tagName }) else {
+            return
+        }
+        if let targetNote = self.targetNote {
+            TagManager.shared.delete(tag: targetTagEntity, in: targetNote)
+            self.isTagChanged = true
+        }
     }
     
     // MARK: Deinitializer

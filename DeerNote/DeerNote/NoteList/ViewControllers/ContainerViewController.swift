@@ -55,6 +55,15 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addChildVCs()
+        observeTagDidRemoved()
+    }
+    
+    private func observeTagDidRemoved() {
+        NotificationCenter.default.addObserver(forName: .tagDidRemoved, object: nil, queue: .main) { _ in
+            self.resetTagNoteVC()
+            self.noteListNav.popToRootViewController(animated: true)
+            self.closeMenu(completion: nil)
+        }
     }
     
     private func addChildVCs() {

@@ -15,6 +15,7 @@
 		EE145B8727B9012B008EAA35 /* TagCreatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE145B8627B9012B008EAA35 /* TagCreatorCollectionViewCell.swift */; };
 		EE1970CF27BA44930026CE19 /* TrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1970CE27BA44930026CE19 /* TrashViewController.swift */; };
 		EE1970D227BA48590026CE19 /* DeletedNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1970D127BA48590026CE19 /* DeletedNoteTableViewCell.swift */; };
+		EE56851D27CA5BAB00995497 /* Notification+MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56851C27CA5BAB00995497 /* Notification+MenuVC.swift */; };
 		EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7933A427B4FC220004BEF8 /* ContainerViewController.swift */; };
 		EE97D0EB27BF94580095A517 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97D0EA27BF94580095A517 /* CoreDataManagerTests.swift */; };
 		EE97D0EE27BF952D0095A517 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97D0ED27BF952D0095A517 /* CoreDataManager.swift */; };
@@ -76,6 +77,7 @@
 		EE145B8627B9012B008EAA35 /* TagCreatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCreatorCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE1970CE27BA44930026CE19 /* TrashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashViewController.swift; sourceTree = "<group>"; };
 		EE1970D127BA48590026CE19 /* DeletedNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedNoteTableViewCell.swift; sourceTree = "<group>"; };
+		EE56851C27CA5BAB00995497 /* Notification+MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+MenuVC.swift"; sourceTree = "<group>"; };
 		EE7933A427B4FC220004BEF8 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		EE97D0EA27BF94580095A517 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		EE97D0ED27BF952D0095A517 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -180,6 +182,14 @@
 			path = Trash;
 			sourceTree = "<group>";
 		};
+		EE56851B27CA5B8400995497 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EE56851C27CA5BAB00995497 /* Notification+MenuVC.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		EE7933A327B4FC110004BEF8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +226,7 @@
 		EEB769FB27ABAF2B00BCB4B6 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				EE56851B27CA5B8400995497 /* Extension */,
 				EEBA7DA527A5A71900DB4824 /* MenuViewController.swift */,
 			);
 			path = Menu;
@@ -511,6 +522,7 @@
 				EE023C5427B02104004833A8 /* UINavigationController + shouldAutoroate.swift in Sources */,
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
 				EED986C627C7E44F0077B54D /* TagManager.swift in Sources */,
+				EE56851D27CA5BAB00995497 /* Notification+MenuVC.swift in Sources */,
 				EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */,
 				EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */,
 				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,
