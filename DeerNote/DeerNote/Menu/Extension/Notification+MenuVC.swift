@@ -11,3 +11,7 @@ import Foundation
 extension Notification.Name {
     static let tagDidRemoved = Notification.Name(rawValue: "tagDidRemoved")
 }
+
+extension MenuViewController {
+    static let removedTagNameUserInfoKey: String = "tagName"
+}

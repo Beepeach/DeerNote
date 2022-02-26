@@ -59,10 +59,18 @@ class ContainerViewController: UIViewController {
     }
     
     private func observeTagDidRemoved() {
-        NotificationCenter.default.addObserver(forName: .tagDidRemoved, object: nil, queue: .main) { _ in
-            self.resetTagNoteVC()
-            self.noteListNav.popToRootViewController(animated: true)
-            self.closeMenu(completion: nil)
+        NotificationCenter.default.addObserver(forName: .tagDidRemoved, object: nil, queue: .main) { [weak self] noti in
+            guard let userInfo = noti.userInfo else {
+                return
+            }
+            guard let tagName = userInfo[MenuViewController.removedTagNameUserInfoKey] as? String else {
+                return
+            }
+            self?.resetTagNoteVC()
+            if self?.noteListVC.title == tagName {
+                self?.noteListNav.popToRootViewController(animated: true)
+                // TODO: DimmingView가 나오지 않는 문제를 해결해야합니다.
+            }
         }
     }
     

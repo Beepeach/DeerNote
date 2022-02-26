@@ -19,7 +19,7 @@ extension Notification.Name {
     static let notePinButtonDidTapped = Notification.Name("noteDidPinned")
 }
 
-extension NoteListViewController {
+extension PopoverViewController {
     static let selectedNoteIDUserInfoKey: String = "id"
 }
 

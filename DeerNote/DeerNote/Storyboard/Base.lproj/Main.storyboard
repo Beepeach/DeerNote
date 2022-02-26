@@ -942,20 +942,20 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="태그 없음" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tha-I7-KUa" userLabel="태그 없음">
-                                        <rect key="frame" x="30" y="8" width="284" height="21"/>
+                                        <rect key="frame" x="30" y="8" width="276" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWx-pm-u2T">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="37"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="306" height="37"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <connections>
                                             <action selector="tapUntagged:" destination="1y5-Q4-m9M" eventType="touchUpInside" id="INN-Nq-qyS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1m-jC-Fr4">
-                                        <rect key="frame" x="322" y="3.5" width="56" height="30"/>
+                                        <rect key="frame" x="314" y="3.5" width="56" height="30"/>
                                         <color key="tintColor" systemColor="systemTealColor"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="태그 수정"/>
@@ -1034,7 +1034,7 @@
                             <constraint firstItem="j78-7o-wWd" firstAttribute="top" secondItem="wcQ-t0-1W1" secondAttribute="top" constant="12" id="J8X-ew-7V2"/>
                             <constraint firstItem="It3-PR-g0g" firstAttribute="top" secondItem="j78-7o-wWd" secondAttribute="bottom" constant="6" id="K5H-rN-01z"/>
                             <constraint firstItem="gfJ-bp-bh4" firstAttribute="leading" secondItem="o3k-ZB-Qvi" secondAttribute="leading" id="Sy8-Wi-Mxq"/>
-                            <constraint firstItem="P1m-jC-Fr4" firstAttribute="trailing" secondItem="yIA-TL-T7z" secondAttribute="trailing" constant="8" id="ZNo-Ap-YmV"/>
+                            <constraint firstItem="P1m-jC-Fr4" firstAttribute="trailing" secondItem="yIA-TL-T7z" secondAttribute="trailing" id="ZNo-Ap-YmV"/>
                             <constraint firstAttribute="trailing" secondItem="LEB-S8-51v" secondAttribute="trailing" id="aYr-X2-Iea"/>
                             <constraint firstAttribute="bottom" secondItem="2b1-7t-Bgr" secondAttribute="bottom" id="bw5-13-P7a"/>
                             <constraint firstItem="o3k-ZB-Qvi" firstAttribute="leading" secondItem="It3-PR-g0g" secondAttribute="leading" id="cdW-1M-eem"/>
@@ -1050,6 +1050,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tagEditButton" destination="P1m-jC-Fr4" id="5GV-q3-gQQ"/>
                         <outlet property="tagTableView" destination="2b1-7t-Bgr" id="zMA-nN-h4r"/>
                     </connections>
                 </viewController>

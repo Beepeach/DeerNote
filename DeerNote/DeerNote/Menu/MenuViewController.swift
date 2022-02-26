@@ -33,11 +33,11 @@ class MenuViewController: UIViewController {
         return controller
     }()
     weak var delegate: MenuViewControllerDeleagete?
-    
+    private var isEditingMode: Bool = false
     
     // MARK: @IBOutlet
     @IBOutlet weak var tagTableView: UITableView!
-    
+    @IBOutlet weak var tagEditButton: UIButton!
     
     // MARK: ViewLifeCycle
     override func viewDidLoad() {
@@ -70,7 +70,15 @@ class MenuViewController: UIViewController {
     
     @IBAction func tapTagEditButton(_ sender: Any) {
         // TODO: tableView Editing mode
-        tagTableView.setEditing(true, animated: true)
+        isEditingMode.toggle()
+        
+        if isEditingMode == true {
+            tagEditButton.setTitle(" 확인 ", for: .normal)
+        } else {
+            tagEditButton.setTitle("태그 수정", for: .normal)
+        }
+        
+        tagTableView.setEditing(isEditingMode, animated: true)
     }
 }
 
@@ -112,7 +120,7 @@ extension MenuViewController: UITableViewDelegate {
         case .delete:
             let targetTagEntity = fetchedResultsController.object(at: indexPath)
             TagManager.shared.delete(tag: targetTagEntity)
-            NotificationCenter.default.post(name: .tagDidRemoved, object: nil)
+            NotificationCenter.default.post(name: .tagDidRemoved, object: nil, userInfo: ["tagName": targetTagEntity.name ?? "Untagged"])
         default:
             break
         }
