@@ -342,6 +342,14 @@ extension NoteListViewController: UICollectionViewDataSource {
     private func updateData(remove source: IndexPath, insert destination: IndexPath) {
         let note = notes.remove(at: source.item)
         notes.insert(note, at: destination.item)
+        removePin(in: note)
+    }
+    
+    private func removePin(in note: NoteEntity) {
+        guard let _ = note.pinnedDate else {
+            return
+        }
+        note.pinnedDate = nil
     }
     
     private func updateCustomSortIndex() {
