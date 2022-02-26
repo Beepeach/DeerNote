@@ -12,11 +12,12 @@
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="notes" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="TagEntity" syncable="YES">
+        <attribute name="customSortIndex" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
     <elements>
         <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="164"/>
-        <element name="Tag" positionX="-49.1796875" positionY="-251.7890625" width="128" height="59"/>
+        <element name="Tag" positionX="-49.1796875" positionY="-251.7890625" width="128" height="74"/>
     </elements>
 </model>

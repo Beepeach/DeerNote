@@ -25,8 +25,9 @@ class MenuViewController: UIViewController {
     
     // MARK: Properties
     lazy var fetchedResultsController: NSFetchedResultsController<TagEntity> = {
+        let customSortIndexASCEDescriptor: NSSortDescriptor = NSSortDescriptor(key: "customSortIndex", ascending: true)
         let tagNameASCESortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        let fetchRequest: NSFetchRequest<TagEntity> = TagManager.shared.setupAllTagsFetchRequest(sort: [tagNameASCESortDescriptor])
+        let fetchRequest: NSFetchRequest<TagEntity> = TagManager.shared.setupAllTagsFetchRequest(sort: [customSortIndexASCEDescriptor, tagNameASCESortDescriptor])
         let controller: NSFetchedResultsController<TagEntity> = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = self
         
@@ -140,7 +141,21 @@ extension MenuViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        return
+        // TODO: - 좀 비효율적인 방식이므로 더 좋은 방법이 있다면 바꿔주는게 좋습니다.
+        guard var tags = fetchedResultsController.fetchedObjects else {
+            return
+        }
+        let tag = fetchedResultsController.object(at: sourceIndexPath)
+        tags.remove(at: sourceIndexPath.row)
+        tags.insert(tag, at: destinationIndexPath.row)
+        saveCustomSortIndexToCurrentIndex(tags: tags)
+    }
+    
+    private func saveCustomSortIndexToCurrentIndex(tags: [TagEntity]) {
+        for (index, tag) in tags.enumerated() {
+            tag.customSortIndex = Int64(index)
+        }
+        CoreDataManager.shared.saveMainContext()
     }
 }
 
@@ -164,16 +179,9 @@ extension MenuViewController: NSFetchedResultsControllerDelegate {
             }
             tagTableView.deleteRows(at: [deletedIndex], with: .fade)
         case .move:
-            guard let sourceIndex = indexPath,
-                  let destinationIndex = newIndexPath else {
-                      return
-                  }
-            tagTableView.moveRow(at: sourceIndex, to: destinationIndex)
+            break
         case .update:
-            guard let updatedIndex = newIndexPath else {
-                return
-            }
-            tagTableView.reloadRows(at: [updatedIndex], with: .fade)
+            break
         @unknown default:
             break
         }
@@ -181,5 +189,6 @@ extension MenuViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tagTableView.endUpdates()
+        tagTableView.reloadData()
     }
 }

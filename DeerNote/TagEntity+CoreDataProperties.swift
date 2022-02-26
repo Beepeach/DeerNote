@@ -2,7 +2,7 @@
 //  TagEntity+CoreDataProperties.swift
 //  DeerNote
 //
-//  Created by JunHeeJo on 2/25/22.
+//  Created by JunHeeJo on 2/26/22.
 //
 //
 
@@ -17,6 +17,7 @@ extension TagEntity {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var customSortIndex: Int64
     @NSManaged public var notes: NSSet?
 
 }

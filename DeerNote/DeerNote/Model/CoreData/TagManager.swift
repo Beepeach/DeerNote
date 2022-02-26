@@ -47,8 +47,8 @@ class TagManager {
     
     @discardableResult
     func createNewTags(name: String) -> TagEntity? {
-        let nameAECE: NSSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        let request: NSFetchRequest<TagEntity> = setupAllTagsFetchRequest(sort: [nameAECE])
+        let nameASCE: NSSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let request: NSFetchRequest<TagEntity> = setupAllTagsFetchRequest(sort: [nameASCE])
         let allTags = fetchTags(with: request)
         
         if allTags.contains(where: { $0.name == name }) {
