@@ -344,11 +344,8 @@ extension NoteListViewController: UICollectionViewDataSource {
     }
     
     private func updateCustomSortIndex() {
-        var count: Int = 0
-        
-        notes.forEach {
-            NoteManager.shared.updateWithNoSave($0, sortIndex: count)
-            count += 1
+        for (index, note) in notes.enumerated() {
+            NoteManager.shared.updateWithNoSave(note, sortIndex: index)
         }
     }
 }
@@ -427,7 +424,6 @@ extension NoteListViewController: NoteCollectionViewCellDelegate {
     private func setupVCData(_ popoverVC: PopoverViewController, at selectedIndex: Int, source: UIButton) {
         let targetNote = notes[selectedIndex]
         popoverVC.targetNote = targetNote
-        popoverVC.index = source.tag
         popoverVC.isPinned = targetNote.customSortIndex < 0 ? true : false
     }
 }
