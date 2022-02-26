@@ -126,23 +126,34 @@ class NoteListViewController: UIViewController {
     }
     
     private func observeNoteDidMoveTrash() {
-        NotificationCenter.default.addObserver(forName: .noteDidMoveTrash, object: nil, queue: .main) { noti in
-            guard let userInfo = noti.userInfo else {
+        NotificationCenter.default.addObserver(forName: .noteDidMoveTrash, object: nil, queue: .main) { notification in
+            guard let userInfo = notification.userInfo else {
                 return
             }
-            guard let targetIndex = userInfo[NoteListViewController.selectedNoteIndexUserInfoKey] as? Int else {
+            guard let targetNoteID = userInfo["id"] as? NSManagedObjectID else {
                 return
             }
-            
-            self.removeNote(at: targetIndex)
+            guard let targetNote = self.notes.filter({ note in
+                note.objectID == targetNoteID
+            }).first else {
+                return
+            }
+            guard let targetIndex = self.notes.firstIndex(of: targetNote) else {
+                return
+            }
+
+            self.removeNoteFromList(at: targetIndex)
+            self.reloadAfterRemovedCell(after: targetIndex)
         }
     }
     
-    private func removeNote(at targetIndex: Int) {
-        self.notes.remove(at: targetIndex)
-        self.noteListCollectionView.deleteItems(at: [IndexPath(item: targetIndex, section: 0)])
-        
-        (targetIndex ..< self.notes.count).forEach {
+    private func removeNoteFromList(at index: Int) {
+        self.notes.remove(at: index)
+        self.noteListCollectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
+    }
+    
+    private func reloadAfterRemovedCell(after deletedIndex : Int) {
+        (deletedIndex ..< self.notes.count).forEach {
             self.noteListCollectionView.reloadItems(at: [IndexPath(item: $0, section: 0)])
         }
     }

@@ -20,7 +20,7 @@ extension Notification.Name {
 }
 
 extension NoteListViewController {
-    static let selectedNoteIndexUserInfoKey: String = "index"
+    static let selectedNoteIDUserInfoKey: String = "id"
 }
 
 
