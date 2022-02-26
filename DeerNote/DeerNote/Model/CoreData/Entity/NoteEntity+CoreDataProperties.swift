@@ -25,6 +25,7 @@ extension NoteEntity {
     @NSManaged public var modifiedDate: Date?
     @NSManaged public var tags: NSSet?
     @NSManaged public var customSortIndex: Int64
+    @NSManaged public var pinnedDate: Date?
 
 }
 

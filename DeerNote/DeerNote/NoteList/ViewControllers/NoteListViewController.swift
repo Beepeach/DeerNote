@@ -65,7 +65,8 @@ class NoteListViewController: UIViewController {
     private func fetchAppropriateNote() {
         let modifiedDateDSCE = NSSortDescriptor(key: "modifiedDate", ascending: false)
         let customSortIndexASCE = NSSortDescriptor(key: "customSortIndex", ascending: true)
-        let request = NoteManager.shared.setupAllNoteFetchRequest(sort: [customSortIndexASCE, modifiedDateDSCE], trash: false)
+        let pinnedDateDSCE = NSSortDescriptor(key: "pinnedDate", ascending: false)
+        let request = NoteManager.shared.setupAllNoteFetchRequest(sort: [pinnedDateDSCE, customSortIndexASCE, modifiedDateDSCE], trash: false)
         guard let allNotes = NoteManager.shared.fetchNotes(with: request) else {
             return
         }
@@ -318,7 +319,7 @@ extension NoteListViewController: UICollectionViewDataSource {
         cell.optionsButton.tag = indexPath.item
         cell.optionsButton.isEnabled = !isLongPressed
         
-        cell.pinImageView.isHidden = targetNote.customSortIndex < 0 ? false : true
+        cell.pinImageView.isHidden = targetNote.pinnedDate == nil ? true : false
     }
     
     private func startOrStopShakeAnimation(_ cell: NoteCollectionViewCell) {
@@ -424,7 +425,7 @@ extension NoteListViewController: NoteCollectionViewCellDelegate {
     private func setupVCData(_ popoverVC: PopoverViewController, at selectedIndex: Int, source: UIButton) {
         let targetNote = notes[selectedIndex]
         popoverVC.targetNote = targetNote
-        popoverVC.isPinned = targetNote.customSortIndex < 0 ? true : false
+        popoverVC.isPinned = targetNote.pinnedDate == nil ? false : true
     }
 }
 

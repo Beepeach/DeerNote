@@ -18,12 +18,12 @@ class PopoverViewController: UIViewController {
     
     // MARK: @IBAction
     @IBAction func tapPinButton(_ sender: UIButton) {
-        updateCustomSortIndex()
+        updatePinnedDate()
         NotificationCenter.default.post(name: .notePinButtonDidTapped, object: nil)
         dismiss(animated: true, completion: nil)
     }
     
-    private func updateCustomSortIndex() {
+    private func updatePinnedDate() {
         guard let targetNote = targetNote else {
             return
         }
@@ -32,9 +32,9 @@ class PopoverViewController: UIViewController {
         }
         
         if isPinned == true {
-            NoteManager.shared.update(targetNote, sortIndex: 0)
+            NoteManager.shared.update(targetNote, pinnedDate: nil)
         } else {
-            NoteManager.shared.update(targetNote, sortIndex: -1)
+            NoteManager.shared.update(targetNote, pinnedDate: Date())
         }
     }
     

@@ -8,6 +8,7 @@
         <attribute name="fromColor" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" customClassName=".UIColor"/>
         <attribute name="isDeletedNote" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pinnedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="toColor" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" customClassName="UIColor"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="notes" inverseEntity="Tag"/>
     </entity>
@@ -17,7 +18,7 @@
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
     <elements>
-        <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="164"/>
+        <element name="Note" positionX="-694.4765625" positionY="-169.71875" width="128" height="179"/>
         <element name="Tag" positionX="-49.1796875" positionY="-251.7890625" width="128" height="74"/>
     </elements>
 </model>

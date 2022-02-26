@@ -108,6 +108,12 @@ class NoteManager {
         }
     }
     
+    func update(_ note: NoteEntity, pinnedDate: Date?) {
+        note.pinnedDate = pinnedDate
+        
+        coredataManager.saveMainContext()
+    }
+    
     func delete(note: NoteEntity) {
         coredataManager.mainContext.delete(note)
         coredataManager.saveMainContext()
@@ -123,6 +129,7 @@ class NoteManager {
         note.isDeletedNote = true
         note.deletedDate = Date()
         note.customSortIndex = 0
+        note.pinnedDate = nil
         
         coredataManager.saveMainContext()
         print("Move Trash")
