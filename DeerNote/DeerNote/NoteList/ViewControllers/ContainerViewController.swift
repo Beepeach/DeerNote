@@ -66,12 +66,15 @@ class ContainerViewController: UIViewController {
             guard let tagName = userInfo[MenuViewController.removedTagNameUserInfoKey] as? String else {
                 return
             }
-           
-            if self?.noteListVC.title == tagName {
-                self?.resetTagNoteVC()
-                self?.noteListNav.popToRootViewController(animated: true)
-                self?.openMenu(completion: nil)
-            }
+            self?.popTagVCWhenRemoveTagIsCurrentVC(tagName: tagName)
+        }
+    }
+    
+    private func popTagVCWhenRemoveTagIsCurrentVC(tagName: String) {
+        if self.noteListVC.title == tagName {
+            self.resetTagNoteVC()
+            self.noteListNav.popToRootViewController(animated: true)
+            self.openMenu(completion: nil)
         }
     }
     
