@@ -43,6 +43,15 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         performFetchResultsController()
+        observeSideMenuClosed()
+    }
+    
+    private func observeSideMenuClosed() {
+        NotificationCenter.default.addObserver(forName: .sideMenuDidClosed, object: nil, queue: .main) { _ in
+            if self.isEditingMode {
+                self.tapTagEditButton(self)
+            }
+        }
     }
     
     private func performFetchResultsController() {

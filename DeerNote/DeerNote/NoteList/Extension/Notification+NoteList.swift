@@ -27,4 +27,5 @@ extension PopoverViewController {
 // MARK: - ContainerViewController
 extension Notification.Name {
     static let tagNoteVCWillReplaced = Notification.Name(rawValue: "tagNoteVCWillReplaced")
+    static let sideMenuDidClosed = Notification.Name(rawValue: "sideMenuDidClosed")
 }
