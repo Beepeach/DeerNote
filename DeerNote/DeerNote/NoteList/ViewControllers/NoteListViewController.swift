@@ -197,6 +197,10 @@ class NoteListViewController: UIViewController {
             backgroundSerialQueue.cancelAllOperations()
             noteListCollectionView.endInteractiveMovement()
             
+            guard let _ = noteListCollectionView.indexPathForItem(at: pressStartLocation ?? .zero) else {
+                return
+            }
+            
             guard let selectedIndexPath = noteListCollectionView.indexPathForItem(at: sender.location(in: noteListCollectionView)) else {
                 resetCellWhenPressEndAmbiguousPosition()
                 return
