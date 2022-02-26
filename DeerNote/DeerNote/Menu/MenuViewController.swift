@@ -42,7 +42,10 @@ class MenuViewController: UIViewController {
     // MARK: ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        performFetchResultsController()
+    }
+    
+    private func performFetchResultsController() {
         do {
             try fetchedResultsController.performFetch()
         } catch {
@@ -69,16 +72,17 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func tapTagEditButton(_ sender: Any) {
-        // TODO: tableView Editing mode
         isEditingMode.toggle()
-        
+        toggleEditButtonTitle()
+        tagTableView.setEditing(isEditingMode, animated: true)
+    }
+    
+    private func toggleEditButtonTitle() {
         if isEditingMode == true {
             tagEditButton.setTitle(" 확인 ", for: .normal)
         } else {
             tagEditButton.setTitle("태그 수정", for: .normal)
         }
-        
-        tagTableView.setEditing(isEditingMode, animated: true)
     }
 }
 
