@@ -66,10 +66,11 @@ class ContainerViewController: UIViewController {
             guard let tagName = userInfo[MenuViewController.removedTagNameUserInfoKey] as? String else {
                 return
             }
-            self?.resetTagNoteVC()
+           
             if self?.noteListVC.title == tagName {
+                self?.resetTagNoteVC()
                 self?.noteListNav.popToRootViewController(animated: true)
-                // TODO: DimmingView가 나오지 않는 문제를 해결해야합니다.
+                self?.openMenu(completion: nil)
             }
         }
     }
