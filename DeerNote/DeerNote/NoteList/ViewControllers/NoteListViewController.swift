@@ -16,6 +16,16 @@ protocol NoteListViewControllerDelegate: AnyObject {
 class NoteListViewController: UIViewController {
     // MARK: Properties
     private var notes: [NoteEntity] = []
+    
+    private var filteredNotes: [NoteEntity] = []
+    private let searchController = UISearchController(searchResultsController: nil)
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
     weak var delegate: NoteListViewControllerDelegate?
     private var isLongPressed: Bool = false
     var pressStartLocation: CGPoint?
@@ -38,7 +48,7 @@ class NoteListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setdimmingView()
-        setupSearchBar()
+        setupSearchController()
         setupDoneBarButtonHidden()
         stopShakeAnimationWhenNoEdit()
         
@@ -91,9 +101,10 @@ class NoteListViewController: UIViewController {
         dimmingView.alpha = 0.0
     }
     
-    private func setupSearchBar() {
-        let searchBar = UISearchController(searchResultsController: nil)
-        self.navigationItem.searchController = searchBar
+    private func setupSearchController() {
+        searchController.searchBar.placeholder = "노트를 검색하세요."
+        searchController.searchResultsUpdater = self
+        self.navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
@@ -286,7 +297,12 @@ class NoteListViewController: UIViewController {
     }
     
     private func setupData(_ vc: NoteEditorViewController, noteIndex: IndexPath) {
-        let note = notes[noteIndex.item]
+        let note: NoteEntity
+        if isFiltering {
+            note = filteredNotes[noteIndex.item]
+        } else {
+            note = notes[noteIndex.item]
+        }
         vc.title = "Edit"
         vc.targetNote = note
         vc.contents = note.contents
@@ -297,6 +313,10 @@ class NoteListViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension NoteListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredNotes.count
+        }
+        
         return notes.count
     }
     
@@ -313,7 +333,12 @@ extension NoteListViewController: UICollectionViewDataSource {
     }
     
     private func setupCell(_ cell: NoteCollectionViewCell, at indexPath: IndexPath) {
-        let targetNote = notes[indexPath.item]
+        let targetNote: NoteEntity
+        if isFiltering {
+            targetNote = filteredNotes[indexPath.item]
+        } else {
+            targetNote = notes[indexPath.item]
+        }
         
         cell.cellColor = (targetNote.fromColor ?? GradationColor.blue.from, targetNote.toColor ?? GradationColor.blue.to)
         
@@ -443,5 +468,19 @@ extension NoteListViewController: NoteCollectionViewCellDelegate {
 extension NoteListViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
+    }
+}
+
+
+extension NoteListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        dump(searchController.searchBar.text)
+        guard let inputText = searchController.searchBar.text?.lowercased() else {
+            return
+        }
+        filteredNotes = notes.filter { $0.contents?.lowercased().contains(inputText) ?? false }
+        dump(filteredNotes)
+        
+        noteListCollectionView.reloadData()
     }
 }
