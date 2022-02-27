@@ -8,12 +8,8 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
-
-    @IBAction func tapDoneBatButtonItem(_ sender: UIBarButtonItem) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = .systemTeal
+        navigationController?.navigationBar.tintColor = .systemTeal
     }
 }
