@@ -105,7 +105,7 @@ class NoteListViewController: UIViewController {
         searchController.searchBar.placeholder = "노트를 검색하세요."
         searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.definesPresentationContext = true
     }
     
     private func setupDoneBarButtonHidden() {
