@@ -41,6 +41,7 @@
 		EEDD18B327C5FE8900DAAA52 /* NoteInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18B227C5FE8900DAAA52 /* NoteInfoTableViewController.swift */; };
 		EEDD18D527C672EE00DAAA52 /* NoteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18D427C672EE00DAAA52 /* NoteManagerTests.swift */; };
 		EEDD18D727C6732700DAAA52 /* MockNoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDD18D627C6732700DAAA52 /* MockNoteManager.swift */; };
+		EEDF256527CBB0F8000F768D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDF256427CBB0F8000F768D /* SettingsTableViewController.swift */; };
 		EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */; };
 		EEF2DFA127A4660C00CA9CA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */; };
 		EEF2DFA627A4660C00CA9CA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFA427A4660C00CA9CA0 /* Main.storyboard */; };
@@ -103,6 +104,7 @@
 		EEDD18B227C5FE8900DAAA52 /* NoteInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInfoTableViewController.swift; sourceTree = "<group>"; };
 		EEDD18D427C672EE00DAAA52 /* NoteManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManagerTests.swift; sourceTree = "<group>"; };
 		EEDD18D627C6732700DAAA52 /* MockNoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNoteManager.swift; sourceTree = "<group>"; };
+		EEDF256427CBB0F8000F768D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		EEF2DF9B27A4660C00CA9CA0 /* DeerNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeerNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DF9E27A4660C00CA9CA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEF2DFA027A4660C00CA9CA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -313,6 +315,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		EEDF256127CBAB95000F768D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EEDF256427CBB0F8000F768D /* SettingsTableViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		EEF2DF9227A4660C00CA9CA0 = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +355,7 @@
 				EE145B8127B7FEA5008EAA35 /* NoteEditor */,
 				EEDD18B127C5FE6700DAAA52 /* NoteInfo */,
 				EE1970CD27BA44730026CE19 /* Trash */,
+				EEDF256127CBAB95000F768D /* Settings */,
 			);
 			path = DeerNote;
 			sourceTree = "<group>";
@@ -516,6 +527,7 @@
 				EEBFCDFF27C760D900A70B1C /* Notification+TrashVC.swift in Sources */,
 				EEBA7DA627A5A71900DB4824 /* MenuViewController.swift in Sources */,
 				EE1970D227BA48590026CE19 /* DeletedNoteTableViewCell.swift in Sources */,
+				EEDF256527CBB0F8000F768D /* SettingsTableViewController.swift in Sources */,
 				EEBFCDF327C6974800A70B1C /* UIViewController+DateFormatter.swift in Sources */,
 				EEBA7DA827A5B4FD00DB4824 /* NoteListViewController.swift in Sources */,
 				EEBFCDF527C69C2200A70B1C /* Notification+NoteList.swift in Sources */,
