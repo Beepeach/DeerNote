@@ -38,17 +38,6 @@ class ContainerViewController: UIViewController {
         return noteListNav
     }()
     private lazy var noteListVC: NoteListViewController = noteListNav.viewControllers.first as? NoteListViewController ?? NoteListViewController()
-    private var visibleNoteListVC: NoteListViewController {
-        if noteListVC.children.isEmpty {
-            return noteListVC
-        }
-        
-        guard let tagNoteListVC = noteListVC.children.last as? NoteListViewController else {
-            return noteListVC
-        }
-        
-        return tagNoteListVC
-    }
 
     
     // MARK: VCLifeCycle
@@ -66,14 +55,13 @@ class ContainerViewController: UIViewController {
             guard let tagName = userInfo[MenuViewController.removedTagNameUserInfoKey] as? String else {
                 return
             }
-            self?.popTagVCWhenRemoveTagIsCurrentVC(tagName: tagName)
+            self?.replaceTagVCWhenRemoveTagIsCurrentVC(tagName: tagName)
         }
     }
     
-    private func popTagVCWhenRemoveTagIsCurrentVC(tagName: String) {
+    private func replaceTagVCWhenRemoveTagIsCurrentVC(tagName: String) {
         if self.noteListVC.title == tagName {
             self.resetTagNoteVC()
-            self.noteListNav.popToRootViewController(animated: true)
             self.openMenu(completion: nil)
         }
     }
@@ -119,7 +107,7 @@ class ContainerViewController: UIViewController {
             }
             let translation: CGPoint = sender.translation(in: targetView)
             
-            if canMovecheckNoteListNav(from: translation) {
+            if canMoveCheckNoteListNav(from: translation) {
                 moveNoteList(from: translation)
                 setDynamicDimmingViewAlpha()
             }
@@ -140,7 +128,7 @@ class ContainerViewController: UIViewController {
         differenceFromFirstTouch = 0.0
     }
     
-    private func canMovecheckNoteListNav(from translation: CGPoint) -> Bool {
+    private func canMoveCheckNoteListNav(from translation: CGPoint) -> Bool {
         if isWrong(touch: translation) {
             return false
         }
@@ -169,7 +157,7 @@ class ContainerViewController: UIViewController {
     }
     
     private func setDynamicDimmingViewAlpha() {
-        visibleNoteListVC.dimmingView.alpha = 0 + (0.5 * (noteListNav.view.frame.origin.x / menuVCWidth))
+        noteListVC.dimmingView.alpha = 0 + (0.5 * (noteListNav.view.frame.origin.x / menuVCWidth))
     }
     
     private func completeMenuAnimation(on condition: Bool) {
@@ -205,7 +193,7 @@ extension ContainerViewController: NoteListViewControllerDelegate {
     private func openMenu(completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.noteListNav.view.frame.origin.x = self.noteListNav.view.frame.width * 0.8
-            self.visibleNoteListVC.dimmingView.alpha = 0.5
+            self.noteListVC.dimmingView.alpha = 0.5
         } completion: { [weak self] done in
             if done {
                 self?.menuState = .opened
@@ -217,7 +205,7 @@ extension ContainerViewController: NoteListViewControllerDelegate {
     private func closeMenu(completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.noteListNav.view.frame.origin.x = 0
-            self.visibleNoteListVC.dimmingView.alpha = 0.0
+            self.noteListVC.dimmingView.alpha = 0.0
         } completion: { [weak self] done in
             if done {
                 self?.menuState = .closed
@@ -235,13 +223,12 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         switch mainMenu {
         case .all:
             resetTagNoteVC()
-            noteListNav.popToRootViewController(animated: true)
         case .trash:
             performSegue(mainMenu: mainMenu)
         case .settings:
             performSegue(mainMenu: mainMenu)
         case .untagged:
-            showTagNoteListVC(tag: nil)
+            replaceTagNoteListVC(tag: nil)
         }
         
         toggleSideMenu(completion: nil)
@@ -249,22 +236,15 @@ extension ContainerViewController: MenuViewControllerDeleagete {
     
     func didTap(_ vc: MenuViewController, tag: TagEntity) {
         toggleSideMenu(completion: nil)
-        showTagNoteListVC(tag: tag)
+        replaceTagNoteListVC(tag: tag)
     }
     
     private func resetTagNoteVC() {
-        if !noteListVC.children.isEmpty {
-            guard let tagNoteVC = noteListVC.children.first as? NoteListViewController else {
-                return
-            }
-            tagNoteVC.view.removeFromSuperview()
-            tagNoteVC.removeFromParent()
-            
-            noteListVC.title = "All"
-            noteListVC.tag = nil
-            noteListVC.isTagVC = false
-        }
-        print("Delete TagVC")
+        noteListVC.title = "All"
+        noteListVC.tag = nil
+        noteListVC.isTagVC = false
+        NotificationCenter.default.post(name: .tagNoteVCWillReplaced, object: nil)
+        print("Reset TagVC")
     }
     
     private func performSegue(mainMenu: MenuViewController.MainMenu) {
@@ -272,45 +252,13 @@ extension ContainerViewController: MenuViewControllerDeleagete {
         noteListVC.performSegue(withIdentifier: segueID, sender: nil)
     }
     
-    private func showTagNoteListVC(tag: TagEntity?) {
-        if noteListVC.children.isEmpty {
-            addTagNoteListVC(tag: tag)
-        } else {
-            replaceTagNoteListVC(tag: tag)
-        }
-    }
-    
-    private func addTagNoteListVC(tag: TagEntity?) {
-        guard let tagNoteListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoteListViewController") as? NoteListViewController else {
-            return
-        }
-        
-        if let tag = tag {
-            noteListVC.title = tag.name
-            tagNoteListVC.tag = tag
-            tagNoteListVC.isTagVC = true
-        } else {
-            noteListVC.title = "Untagged"
-            tagNoteListVC.isTagVC = true
-        }
-        
-        tagNoteListVC.delegate = self
-        noteListVC.addChild(tagNoteListVC)
-        noteListVC.view.addSubview(tagNoteListVC.view)
-        tagNoteListVC.didMove(toParent: noteListVC)
-        print("Add TagNoteListVC")
-    }
-    
     private func replaceTagNoteListVC(tag: TagEntity?) {
         if noteListVC.title == tag?.name ?? "Untagged" {
             return
         }
-        guard let targetNoteListVC = noteListVC.children.first as? NoteListViewController else {
-            return
-        }
         noteListVC.title = tag?.name ?? "Untagged"
-        targetNoteListVC.tag = tag
-        targetNoteListVC.isTagVC = true
+        noteListVC.tag = tag
+        noteListVC.isTagVC = true
         NotificationCenter.default.post(name: .tagNoteVCWillReplaced, object: nil)
         print("Replace TagNoteListVC")
     }
@@ -342,6 +290,3 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
         return false
     }
 }
-
-
-
