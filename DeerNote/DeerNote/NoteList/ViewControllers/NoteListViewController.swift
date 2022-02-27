@@ -340,7 +340,7 @@ extension NoteListViewController: UICollectionViewDataSource {
             targetNote = notes[indexPath.item]
         }
         
-        cell.cellColor = (targetNote.fromColor ?? GradationColor.blue.from, targetNote.toColor ?? GradationColor.blue.to)
+        cell.cellColor = GradationColor(from: targetNote.fromColor ?? GradationColor().from, to: targetNote.toColor ?? GradationColor().to)
         
         cell.contentsLabel.text = targetNote.contents
         cell.modifiedDateLabel.text = shortDateFormatter.string(for: targetNote.modifiedDate)

@@ -13,7 +13,7 @@ protocol NoteCollectionViewCellDelegate: AnyObject {
 
 class NoteCollectionViewCell: UICollectionViewCell {
     var isAnimating: Bool = true
-    var cellColor: (UIColor, UIColor)?
+    var cellColor: GradationColor?
     weak var delegate: NoteCollectionViewCellDelegate?
     
     // MARK: @IBOutlet
@@ -28,14 +28,6 @@ class NoteCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: ViewLifeCycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setCellCorner()
-        contentsLabel.textColor = .white
-        optionsButton.tintColor = .white
-        pinImageView.isHidden = true
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         setGradationBackgroundColor()
@@ -46,6 +38,14 @@ class NoteCollectionViewCell: UICollectionViewCell {
         if let previousGradientLayer = contentView.layer.sublayers?.first as? CAGradientLayer {
             previousGradientLayer.removeFromSuperlayer()
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setCellCorner()
+        contentsLabel.textColor = .white
+        optionsButton.tintColor = .white
+        pinImageView.isHidden = true
     }
     
     private func setCellCorner() {
@@ -62,7 +62,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
     }
     
     func setGradationBackgroundColor() {
-        self.contentView.setGradationBackgroundColor(colors: cellColor ?? GradationColor.blue)
+        self.contentView.setGradationBackgroundColor(colors: cellColor ?? GradationColor())
     }
     
     func startShakeAnimation() {
@@ -93,9 +93,5 @@ class NoteCollectionViewCell: UICollectionViewCell {
         self.layer.removeAnimation(forKey: "shakeAnimation")
         isAnimating = false
         optionsButton.isEnabled = true
-    }
-    
-    deinit {
-        print("cell", #function)
     }
 }

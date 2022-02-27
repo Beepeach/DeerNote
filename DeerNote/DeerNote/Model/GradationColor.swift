@@ -7,14 +7,13 @@
 
 import UIKit
 
-class GradationColor {
+struct GradationColor {
     // MARK: Properties
     // Default값은 blue와 같습니다.
-    static let shared: GradationColor = GradationColor()
     var from: UIColor
     var to: UIColor
     
-    private lazy var colorTable: [(UIColor, UIColor)] = {
+    private var colorTable: [(UIColor, UIColor)] = {
         var colorTable: [(UIColor, UIColor)]  = []
         colorTable.append(GradationColor.red)
         colorTable.append(GradationColor.orangeRed)
@@ -59,7 +58,7 @@ class GradationColor {
     
     
     // MARK: Methods
-    func append(fromColor: UIColor, toColor: UIColor) {
+    mutating func append(fromColor: UIColor, toColor: UIColor) {
         self.colorTable.append((fromColor, toColor))
     }
     
@@ -76,5 +75,10 @@ class GradationColor {
     init() {
         self.from = UIColor(red: 0.1774400771, green: 0.466574192, blue: 0.8732826114, alpha: 1)
         self.to = UIColor(red: 0.00491155684, green: 0.287129879, blue: 0.7411141396, alpha: 1)
+    }
+    
+    init(from: UIColor, to: UIColor) {
+        self.from = from
+        self.to = to
     }
 }

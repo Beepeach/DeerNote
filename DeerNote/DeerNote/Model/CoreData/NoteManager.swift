@@ -68,7 +68,7 @@ class NoteManager {
     private func createNewNote(_ contents: String) -> NoteEntity {
         let newNote = NoteEntity(context: CoreDataManager.shared.mainContext)
         let currentData = Date()
-        let randomColor = GradationColor.shared.getRandomColor()
+        let randomColor = GradationColor().getRandomColor()
         
         newNote.contents = contents
         newNote.createdDate = currentData
