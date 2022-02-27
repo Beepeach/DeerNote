@@ -55,13 +55,10 @@ class NoteListViewController: UIViewController {
         observeNoteDidRestore()
         observeNoteDidMoveTrash()
         observeNotePinState()
+        observeNoteVCWillReplaced()
+        observeSideMenuOnOff()
         
         fetchAppropriateNote()
-        
-        NotificationCenter.default.addObserver(forName: .tagNoteVCWillReplaced, object: nil, queue: .main) { [weak self] _ in
-            self?.fetchAppropriateNote()
-            self?.noteListCollectionView.reloadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -167,6 +164,23 @@ class NoteListViewController: UIViewController {
     private func reloadAfterRemovedCell(after deletedIndex : Int) {
         (deletedIndex ..< self.notes.count).forEach {
             self.noteListCollectionView.reloadItems(at: [IndexPath(item: $0, section: 0)])
+        }
+    }
+    
+    private func observeSideMenuOnOff() {
+        NotificationCenter.default.addObserver(forName: .sideMenuDidOpend, object: nil, queue: .main) { [weak self] _ in
+            self?.searchController.searchBar.isUserInteractionEnabled = false
+        }
+        
+        NotificationCenter.default.addObserver(forName: .sideMenuDidClosed, object: nil, queue: .main) { [weak self] _ in
+            self?.searchController.searchBar.isUserInteractionEnabled = true
+        }
+    }
+    
+    private func observeNoteVCWillReplaced() {
+        NotificationCenter.default.addObserver(forName: .tagNoteVCWillReplaced, object: nil, queue: .main) { [weak self] _ in
+            self?.fetchAppropriateNote()
+            self?.noteListCollectionView.reloadData()
         }
     }
     

@@ -197,6 +197,7 @@ extension ContainerViewController: NoteListViewControllerDelegate {
         } completion: { [weak self] done in
             if done {
                 self?.menuState = .opened
+                NotificationCenter.default.post(name: .sideMenuDidOpend, object: nil)
                 completion?()
             }
         }
