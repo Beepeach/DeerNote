@@ -57,6 +57,7 @@ class NoteListViewController: UIViewController {
         observeNotePinState()
         observeNoteVCWillReplaced()
         observeSideMenuOnOff()
+        observeNoteSortMenuWillDisappear()
         
         fetchAppropriateNote()
     }
@@ -70,10 +71,8 @@ class NoteListViewController: UIViewController {
     }
     
     private func fetchAppropriateNote() {
-        let modifiedDateDSCE = NSSortDescriptor(key: "modifiedDate", ascending: false)
-        let customSortIndexASCE = NSSortDescriptor(key: "customSortIndex", ascending: true)
-        let pinnedDateDSCE = NSSortDescriptor(key: "pinnedDate", ascending: false)
-        let request = NoteManager.shared.setupAllNoteFetchRequest(sort: [pinnedDateDSCE, customSortIndexASCE, modifiedDateDSCE], trash: false)
+        let sortDescriptors = setupUserAppropriateSortDescriptors()
+        let request = NoteManager.shared.setupAllNoteFetchRequest(sort: sortDescriptors, trash: false)
         guard let allNotes = NoteManager.shared.fetchNotes(with: request) else {
             return
         }
@@ -92,6 +91,23 @@ class NoteListViewController: UIViewController {
             // untagged
             notes = allNotes.filter { $0.tags?.count == 0 }
         }
+    }
+    
+    private func setupUserAppropriateSortDescriptors() -> [NSSortDescriptor] {
+        var userSelectedSort: String = Sort.modifiedDate.rawValue
+        var userSelectedOrder: Bool = Bool(Sort.descending.rawValue) ?? false
+        
+        if let sort = UserDefaults.standard.string(forKey: NoteSortTableViewController.noteSortUserInfoKey),
+           let order = UserDefaults.standard.string(forKey: NoteSortTableViewController.noteOrderUserInfoKey) {
+            userSelectedSort = sort
+            userSelectedOrder = Bool(order) ?? false
+        }
+        
+        let pinnedDateDSCE = NSSortDescriptor(key: "pinnedDate", ascending: false)
+        let customSortIndexASCE = NSSortDescriptor(key: "customSortIndex", ascending: true)
+        let userSelectSort = NSSortDescriptor(key: userSelectedSort, ascending: userSelectedOrder)
+        
+        return [pinnedDateDSCE, customSortIndexASCE, userSelectSort]
     }
     
     private func setdimmingView() {
@@ -182,6 +198,18 @@ class NoteListViewController: UIViewController {
             self?.fetchAppropriateNote()
             self?.noteListCollectionView.reloadData()
         }
+    }
+    
+    private func observeNoteSortMenuWillDisappear() {
+        NotificationCenter.default.addObserver(forName: .noteSortMenuWillDisappear, object: nil, queue: .main) { _ in
+            self.fetchAppropriateNote()
+            self.resetCustomSortIndex()
+            self.noteListCollectionView.reloadData()
+        }
+    }
+    
+    private func resetCustomSortIndex() {
+        notes.forEach {$0.customSortIndex = 0}
     }
     
     

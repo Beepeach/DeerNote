@@ -45,6 +45,8 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
         performFetchResultsController()
         observeSideMenuClosed()
+        
+        // TODO: Tag정렬 기능 추가
     }
     
     private func observeSideMenuClosed() {

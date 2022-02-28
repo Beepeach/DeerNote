@@ -30,6 +30,9 @@
 		EEBD353627CBF79C005F5DE2 /* TagSortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD353527CBF79C005F5DE2 /* TagSortTableViewController.swift */; };
 		EEBD353827CBF7CC005F5DE2 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD353727CBF7CC005F5DE2 /* FAQViewController.swift */; };
 		EEBD353A27CBF7DD005F5DE2 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD353927CBF7DD005F5DE2 /* NoticeViewController.swift */; };
+		EEBD353C27CC90F0005F5DE2 /* SortOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD353B27CC90F0005F5DE2 /* SortOptionTableViewCell.swift */; };
+		EEBD354227CCE531005F5DE2 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD354127CCE531005F5DE2 /* Sort.swift */; };
+		EEBD354527CCE805005F5DE2 /* Notification+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBD354427CCE805005F5DE2 /* Notification+Settings.swift */; };
 		EEBFCDF327C6974800A70B1C /* UIViewController+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */; };
 		EEBFCDF527C69C2200A70B1C /* Notification+NoteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */; };
 		EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */; };
@@ -97,6 +100,9 @@
 		EEBD353527CBF79C005F5DE2 /* TagSortTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSortTableViewController.swift; sourceTree = "<group>"; };
 		EEBD353727CBF7CC005F5DE2 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		EEBD353927CBF7DD005F5DE2 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		EEBD353B27CC90F0005F5DE2 /* SortOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionTableViewCell.swift; sourceTree = "<group>"; };
+		EEBD354127CCE531005F5DE2 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		EEBD354427CCE805005F5DE2 /* Notification+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Settings.swift"; sourceTree = "<group>"; };
 		EEBFCDF227C6974800A70B1C /* UIViewController+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DateFormatter.swift"; sourceTree = "<group>"; };
 		EEBFCDF427C69C2200A70B1C /* Notification+NoteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteList.swift"; sourceTree = "<group>"; };
 		EEBFCDF727C6A72500A70B1C /* Notification+NoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+NoteEditor.swift"; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 				EE97D0EC27BF951D0095A517 /* CoreData */,
 				EE13B1A627A7C75A0060589B /* Tag.swift */,
 				EEB76A0127AC168900BCB4B6 /* GradationColor.swift */,
+				EEBD354127CCE531005F5DE2 /* Sort.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,6 +278,34 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		EEBD353F27CCE483005F5DE2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EEDF256427CBB0F8000F768D /* SettingsTableViewController.swift */,
+				EEBD353927CBF7DD005F5DE2 /* NoticeViewController.swift */,
+				EEBD353327CBF77F005F5DE2 /* NoteSortTableViewController.swift */,
+				EEBD353527CBF79C005F5DE2 /* TagSortTableViewController.swift */,
+				EEBD353727CBF7CC005F5DE2 /* FAQViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EEBD354027CCE49A005F5DE2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EEBD353B27CC90F0005F5DE2 /* SortOptionTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EEBD354327CCE7EA005F5DE2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EEBD354427CCE805005F5DE2 /* Notification+Settings.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		EEBFCDF627C6A71000A70B1C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,11 +361,9 @@
 		EEDF256127CBAB95000F768D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				EEDF256427CBB0F8000F768D /* SettingsTableViewController.swift */,
-				EEBD353927CBF7DD005F5DE2 /* NoticeViewController.swift */,
-				EEBD353327CBF77F005F5DE2 /* NoteSortTableViewController.swift */,
-				EEBD353527CBF79C005F5DE2 /* TagSortTableViewController.swift */,
-				EEBD353727CBF7CC005F5DE2 /* FAQViewController.swift */,
+				EEBD354327CCE7EA005F5DE2 /* Extension */,
+				EEBD353F27CCE483005F5DE2 /* ViewControllers */,
+				EEBD354027CCE49A005F5DE2 /* Cell */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -526,6 +559,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE13B1A927A7C90E0060589B /* NoteCollectionViewCell.swift in Sources */,
+				EEBD354527CCE805005F5DE2 /* Notification+Settings.swift in Sources */,
 				EEDD18B027C526F300DAAA52 /* PopoverViewController.swift in Sources */,
 				EEDD18B327C5FE8900DAAA52 /* NoteInfoTableViewController.swift in Sources */,
 				EEDD187127C10E9800DAAA52 /* ColorTransformer.swift in Sources */,
@@ -555,6 +589,7 @@
 				EEBFCDF827C6A72500A70B1C /* Notification+NoteEditor.swift in Sources */,
 				EEF2DFA927A4660C00CA9CA0 /* DeerNote.xcdatamodeld in Sources */,
 				EEDD187C27C27EE900DAAA52 /* NoteEntity+CoreDataClass.swift in Sources */,
+				EEBD353C27CC90F0005F5DE2 /* SortOptionTableViewCell.swift in Sources */,
 				EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */,
 				EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */,
 				EEBFCDFB27C6A96800A70B1C /* Notification+NoteInfo.swift in Sources */,
@@ -562,6 +597,7 @@
 				EEBD353827CBF7CC005F5DE2 /* FAQViewController.swift in Sources */,
 				EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */,
 				EEDD187D27C27EE900DAAA52 /* NoteEntity+CoreDataProperties.swift in Sources */,
+				EEBD354227CCE531005F5DE2 /* Sort.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
