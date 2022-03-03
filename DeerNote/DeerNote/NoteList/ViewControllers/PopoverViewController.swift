@@ -39,7 +39,7 @@ class PopoverViewController: UIViewController {
     }
     
     @IBAction func tapTrashButton(_ sender: UIButton) {
-        let alertController =  UIAlertController(title: "알림", message: "해당 노트를 삭제하시겠어요??", preferredStyle: .alert)
+        let alertController =  UIAlertController(title: "알림", message: "해당 노트를 삭제하시겠어요?", preferredStyle: .alert)
         setupTrashAlert(controller: alertController)
         present(alertController, animated: true, completion: nil)
     }
