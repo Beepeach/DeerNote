@@ -119,6 +119,7 @@ class NoteListViewController: UIViewController {
         searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
         searchController.definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func setupDoneBarButtonHidden() {
