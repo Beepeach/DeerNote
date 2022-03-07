@@ -11,13 +11,18 @@ import CoreData
 class NoteManager {
     // MARK: Properties
     static let shared: NoteManager = NoteManager()
+    var coredataManager: CoreDataManager
     private var allNotes: [NoteEntity] = []
-    var coredataManager = CoreDataManager.shared
+    
+    init(coredataManager: CoreDataManager = CoreDataManager.shared ) {
+        self.coredataManager = coredataManager
+    }
     
     // MARK: Methods
     func fetchNotes(with request: NSFetchRequest<NoteEntity>) -> [NoteEntity]? {
         do {
-            return try coredataManager.mainContext.fetch(request)
+            allNotes = try coredataManager.mainContext.fetch(request)
+            return allNotes
         } catch {
             // TODO: - fetch실패시 에러처리를 해야합니다.
             print(#function, print(error.localizedDescription))
@@ -38,11 +43,16 @@ class NoteManager {
         return request
     }
     
-    func addNote(contents: String, tags: [Tag]) {
+    @discardableResult
+    func addNote(contents: String, tags: [Tag]) -> NoteEntity {
         let newNote = createNewNote(contents)
         connectTagAndNote(tags: tags, note: newNote)
+        
+        allNotes.append(newNote)
+        
         coredataManager.saveMainContext()
         print("Add Note")
+        return newNote
     }
     
     private func connectTagAndNote(tags: [Tag], note: NoteEntity) {
@@ -66,7 +76,7 @@ class NoteManager {
     
     @discardableResult
     private func createNewNote(_ contents: String) -> NoteEntity {
-        let newNote = NoteEntity(context: CoreDataManager.shared.mainContext)
+        let newNote = NoteEntity(context: coredataManager.mainContext)
         let currentData = Date()
         let randomColor = GradationColor().getRandomColor()
         
@@ -114,12 +124,20 @@ class NoteManager {
         coredataManager.saveMainContext()
     }
     
-    func delete(note: NoteEntity) {
-        coredataManager.mainContext.delete(note)
-        coredataManager.saveMainContext()
-        print("Delete note")
+    @discardableResult
+    func delete(note: NoteEntity) -> Bool {
+        if let targetNoteIndex = allNotes.firstIndex(of: note) {
+            allNotes.remove(at: targetNoteIndex)
+            coredataManager.mainContext.delete(note)
+            coredataManager.saveMainContext()
+            print("Delete note")
+            return true
+        }
+        
+        return false
     }
     
+    //TODO: 이게 굳이 필요할까???
     func deleteWithNoSave(note: NoteEntity) {
         coredataManager.mainContext.delete(note)
         print("Delete note with no save")

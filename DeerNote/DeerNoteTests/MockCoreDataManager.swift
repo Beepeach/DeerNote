@@ -11,8 +11,8 @@ import CoreData
 
 // 메모리에만 저장하는 MockCoreData입니다.
 class MockCoreDataManager: CoreDataManager {
-    override func saveMainContext() {
-    }
+//    override func saveMainContext() {
+//    }
     
     override var mainContext: NSManagedObjectContext {
         return testContainer.viewContext
