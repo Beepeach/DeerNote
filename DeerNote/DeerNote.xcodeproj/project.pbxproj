@@ -199,6 +199,32 @@
 			path = Trash;
 			sourceTree = "<group>";
 		};
+		EE33438F27D661890064C1CA /* TestClasses */ = {
+			isa = PBXGroup;
+			children = (
+				EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */,
+			);
+			path = TestClasses;
+			sourceTree = "<group>";
+		};
+		EE33439027D6619B0064C1CA /* CoreDataTestCase */ = {
+			isa = PBXGroup;
+			children = (
+				EE97D0EA27BF94580095A517 /* CoreDataManagerTests.swift */,
+				EEDD18D427C672EE00DAAA52 /* NoteManagerTests.swift */,
+				EE33438D27D63CC00064C1CA /* TagManagerTests.swift */,
+			);
+			path = CoreDataTestCase;
+			sourceTree = "<group>";
+		};
+		EE33439127D7730D0064C1CA /* TestCases */ = {
+			isa = PBXGroup;
+			children = (
+				EEB76A0B27AC226600BCB4B6 /* GradationColorsTests.swift */,
+			);
+			path = TestCases;
+			sourceTree = "<group>";
+		};
 		EE56851B27CA5B8400995497 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,11 +434,9 @@
 		EEF2DFB727A4660D00CA9CA0 /* DeerNoteTests */ = {
 			isa = PBXGroup;
 			children = (
-				EEB76A0B27AC226600BCB4B6 /* GradationColorsTests.swift */,
-				EE97D0EA27BF94580095A517 /* CoreDataManagerTests.swift */,
-				EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */,
-				EEDD18D427C672EE00DAAA52 /* NoteManagerTests.swift */,
-				EE33438D27D63CC00064C1CA /* TagManagerTests.swift */,
+				EE33439027D6619B0064C1CA /* CoreDataTestCase */,
+				EE33438F27D661890064C1CA /* TestClasses */,
+				EE33439127D7730D0064C1CA /* TestCases */,
 			);
 			path = DeerNoteTests;
 			sourceTree = "<group>";
