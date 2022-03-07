@@ -12,7 +12,11 @@ class TagManager {
     // MARK: Properties
     static let shared: TagManager = TagManager()
     private var allTags: [TagEntity] = []
-    var coredataManager: CoreDataManager = CoreDataManager.shared
+    var coredataManager: CoreDataManager
+    
+    init(coredataManager: CoreDataManager = CoreDataManager.shared) {
+        self.coredataManager = coredataManager
+    }
     
     // MARK: Methods
     func fetchTags(with request: NSFetchRequest<TagEntity>) -> [TagEntity] {
