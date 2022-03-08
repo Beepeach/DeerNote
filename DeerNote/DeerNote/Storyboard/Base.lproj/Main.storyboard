@@ -476,7 +476,7 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="square.and.pencil" catalog="system" id="KgC-RH-vSI">
+                            <barButtonItem title="addNote" image="square.and.pencil" catalog="system" id="KgC-RH-vSI">
                                 <color key="tintColor" systemColor="systemTealColor"/>
                                 <connections>
                                     <segue destination="hco-nt-dVO" kind="show" id="WP6-rf-pVF"/>
@@ -618,6 +618,9 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="teu-dj-Hhj">
                                 <rect key="frame" x="12" y="56" width="363" height="561"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Contents">
+                                    <accessibilityTraits key="traits" button="YES"/>
+                                </accessibility>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -637,7 +640,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="New" largeTitleDisplayMode="never" id="H7Q-Cx-CsH">
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="keyboard" id="7zE-co-y5K">
+                            <barButtonItem title="keyboardHide" image="keyboard" id="7zE-co-y5K">
                                 <color key="tintColor" systemColor="systemTealColor"/>
                                 <connections>
                                     <action selector="tapEndEditButton:" destination="hco-nt-dVO" id="yLC-jT-dOA"/>
@@ -1461,7 +1464,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uwn-Si-vGD"/>
+        <segue reference="WP6-rf-pVF"/>
         <segue reference="60S-Ik-l0g"/>
     </inferredMetricsTieBreakers>
     <resources>

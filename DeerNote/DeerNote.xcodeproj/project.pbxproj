@@ -56,7 +56,6 @@
 		EEF2DFAB27A4660C00CA9CA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFAA27A4660C00CA9CA0 /* Assets.xcassets */; };
 		EEF2DFAE27A4660C00CA9CA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF2DFAC27A4660C00CA9CA0 /* LaunchScreen.storyboard */; };
 		EEF2DFC327A4660D00CA9CA0 /* DeerNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */; };
-		EEF2DFC527A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +129,6 @@
 		EEF2DFB427A4660D00CA9CA0 /* DeerNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeerNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DFBE27A4660D00CA9CA0 /* DeerNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeerNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteUITests.swift; sourceTree = "<group>"; };
-		EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeerNoteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,7 +443,6 @@
 			isa = PBXGroup;
 			children = (
 				EEF2DFC227A4660D00CA9CA0 /* DeerNoteUITests.swift */,
-				EEF2DFC427A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift */,
 			);
 			path = DeerNoteUITests;
 			sourceTree = "<group>";
@@ -641,7 +638,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEF2DFC527A4660D00CA9CA0 /* DeerNoteUITestsLaunchTests.swift in Sources */,
 				EEF2DFC327A4660D00CA9CA0 /* DeerNoteUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
