@@ -8,7 +8,6 @@
 import UIKit
 
 class NoticeDetailViewController: UIViewController {
-    
     var noticeTitle: String?
     var date: Date?
     var contents: String?

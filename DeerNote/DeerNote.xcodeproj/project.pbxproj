@@ -337,10 +337,10 @@
 			children = (
 				EEDF256427CBB0F8000F768D /* SettingsTableViewController.swift */,
 				EEBD353927CBF7DD005F5DE2 /* NoticeViewController.swift */,
+				EE829A0B27DCBDCF003067A0 /* NoticeDetailViewController.swift */,
 				EEBD353327CBF77F005F5DE2 /* NoteSortTableViewController.swift */,
 				EEBD353527CBF79C005F5DE2 /* TagSortTableViewController.swift */,
 				EEBD353727CBF7CC005F5DE2 /* FAQViewController.swift */,
-				EE829A0B27DCBDCF003067A0 /* NoticeDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
