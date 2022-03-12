@@ -23,6 +23,12 @@
 		EE829A0127DCA0C3003067A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE829A0027DCA0C3003067A0 /* GoogleService-Info.plist */; };
 		EE829A0427DCA294003067A0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EE829A0327DCA294003067A0 /* FirebaseAnalytics */; };
 		EE829A0627DCA294003067A0 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EE829A0527DCA294003067A0 /* FirebaseDatabase */; };
+		EE829A0827DCA8F6003067A0 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE829A0727DCA8F6003067A0 /* Notice.swift */; };
+		EE829A0A27DCB545003067A0 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE829A0927DCB545003067A0 /* NoticeTableViewCell.swift */; };
+		EE829A0C27DCBDCF003067A0 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE829A0B27DCBDCF003067A0 /* NoticeDetailViewController.swift */; };
+		EE829A0E27DCEA3A003067A0 /* CommonDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE829A0D27DCEA3A003067A0 /* CommonDecodableTests.swift */; };
+		EE829A1127DCEBA8003067A0 /* Notice.json in Resources */ = {isa = PBXBuildFile; fileRef = EE829A1027DCEBA8003067A0 /* Notice.json */; };
+		EE829A1327DCEBCC003067A0 /* NoticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE829A1227DCEBCC003067A0 /* NoticeTests.swift */; };
 		EE97D0EB27BF94580095A517 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97D0EA27BF94580095A517 /* CoreDataManagerTests.swift */; };
 		EE97D0EE27BF952D0095A517 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97D0ED27BF952D0095A517 /* CoreDataManager.swift */; };
 		EEB76A0227AC168900BCB4B6 /* GradationColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB76A0127AC168900BCB4B6 /* GradationColor.swift */; };
@@ -93,6 +99,12 @@
 		EE56851F27CA76F000995497 /* TagEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		EE7933A427B4FC220004BEF8 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		EE829A0027DCA0C3003067A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE829A0727DCA8F6003067A0 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
+		EE829A0927DCB545003067A0 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
+		EE829A0B27DCBDCF003067A0 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
+		EE829A0D27DCEA3A003067A0 /* CommonDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDecodableTests.swift; sourceTree = "<group>"; };
+		EE829A1027DCEBA8003067A0 /* Notice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notice.json; sourceTree = "<group>"; };
+		EE829A1227DCEBCC003067A0 /* NoticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTests.swift; sourceTree = "<group>"; };
 		EE97D0EA27BF94580095A517 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		EE97D0ED27BF952D0095A517 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		EEB76A0127AC168900BCB4B6 /* GradationColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradationColor.swift; sourceTree = "<group>"; };
@@ -207,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				EEDD186E27BFAEF500DAAA52 /* MockCoreDataManager.swift */,
+				EE829A0D27DCEA3A003067A0 /* CommonDecodableTests.swift */,
 			);
 			path = TestClasses;
 			sourceTree = "<group>";
@@ -225,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				EEB76A0B27AC226600BCB4B6 /* GradationColorsTests.swift */,
+				EE829A1227DCEBCC003067A0 /* NoticeTests.swift */,
 			);
 			path = TestCases;
 			sourceTree = "<group>";
@@ -247,6 +261,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		EE829A0F27DCEB87003067A0 /* TestAssets */ = {
+			isa = PBXGroup;
+			children = (
+				EE829A1027DCEBA8003067A0 /* Notice.json */,
+			);
+			path = TestAssets;
+			sourceTree = "<group>";
+		};
 		EE97D0EC27BF951D0095A517 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +278,7 @@
 				EEDD188327C28C2600DAAA52 /* NoteManager.swift */,
 				EE97D0ED27BF952D0095A517 /* CoreDataManager.swift */,
 				EEDD187027C10E9800DAAA52 /* ColorTransformer.swift */,
+				EE829A0727DCA8F6003067A0 /* Notice.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -317,6 +340,7 @@
 				EEBD353327CBF77F005F5DE2 /* NoteSortTableViewController.swift */,
 				EEBD353527CBF79C005F5DE2 /* TagSortTableViewController.swift */,
 				EEBD353727CBF7CC005F5DE2 /* FAQViewController.swift */,
+				EE829A0B27DCBDCF003067A0 /* NoticeDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -325,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				EEBD353B27CC90F0005F5DE2 /* SortOptionTableViewCell.swift */,
+				EE829A0927DCB545003067A0 /* NoticeTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -439,6 +464,7 @@
 		EEF2DFB727A4660D00CA9CA0 /* DeerNoteTests */ = {
 			isa = PBXGroup;
 			children = (
+				EE829A0F27DCEB87003067A0 /* TestAssets */,
 				EE33439027D6619B0064C1CA /* CoreDataTestCase */,
 				EE33438F27D661890064C1CA /* TestClasses */,
 				EE33439127D7730D0064C1CA /* TestCases */,
@@ -577,6 +603,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE829A1127DCEBA8003067A0 /* Notice.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +644,7 @@
 				EEBFCDF527C69C2200A70B1C /* Notification+NoteList.swift in Sources */,
 				EE023C5427B02104004833A8 /* UINavigationController + shouldAutoroate.swift in Sources */,
 				EEF2DF9F27A4660C00CA9CA0 /* AppDelegate.swift in Sources */,
+				EE829A0A27DCB545003067A0 /* NoticeTableViewCell.swift in Sources */,
 				EED986C627C7E44F0077B54D /* TagManager.swift in Sources */,
 				EE56851D27CA5BAB00995497 /* Notification+MenuVC.swift in Sources */,
 				EE56852127CA76F000995497 /* TagEntity+CoreDataProperties.swift in Sources */,
@@ -629,6 +657,8 @@
 				EE7933A527B4FC220004BEF8 /* ContainerViewController.swift in Sources */,
 				EE145B8327B7FED1008EAA35 /* NoteEditorViewController.swift in Sources */,
 				EEBFCDFB27C6A96800A70B1C /* Notification+NoteInfo.swift in Sources */,
+				EE829A0827DCA8F6003067A0 /* Notice.swift in Sources */,
+				EE829A0C27DCBDCF003067A0 /* NoticeDetailViewController.swift in Sources */,
 				EEDD188427C28C2600DAAA52 /* NoteManager.swift in Sources */,
 				EEBD353827CBF7CC005F5DE2 /* FAQViewController.swift in Sources */,
 				EEB76A0727AC1D6600BCB4B6 /* UIView+setGradationBackgroundColor.swift in Sources */,
@@ -642,9 +672,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE97D0EB27BF94580095A517 /* CoreDataManagerTests.swift in Sources */,
+				EE829A1327DCEBCC003067A0 /* NoticeTests.swift in Sources */,
 				EEDD18D527C672EE00DAAA52 /* NoteManagerTests.swift in Sources */,
 				EE33438E27D63CC00064C1CA /* TagManagerTests.swift in Sources */,
 				EEDD186F27BFAEF500DAAA52 /* MockCoreDataManager.swift in Sources */,
+				EE829A0E27DCEA3A003067A0 /* CommonDecodableTests.swift in Sources */,
 				EEB76A0C27AC226600BCB4B6 /* GradationColorsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
