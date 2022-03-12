@@ -542,6 +542,7 @@
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Tag" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="F4f-IC-Unv">
                                                             <rect key="frame" x="0.0" y="0.0" width="83.5" height="34"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="tapTextField"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                         </textField>
@@ -572,6 +573,7 @@
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcF-rt-0XW">
                                                             <rect key="frame" x="37" y="3" width="20" height="20"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="tagDeleteButton"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="7bF-pC-wzk"/>
                                                                 <constraint firstAttribute="width" secondItem="VcF-rt-0XW" secondAttribute="height" multiplier="1:1" id="d1s-6x-wy3"/>
@@ -601,6 +603,9 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="tagCollectionView"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="dataSource" destination="hco-nt-dVO" id="JLf-68-pV7"/>
                                         </connections>
@@ -1500,11 +1505,11 @@
                                         <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t8W-tU-g8l" id="fO4-N2-K5t">
-                                            <rect key="frame" x="0.0" y="0.0" width="330" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Ktd-bv-zJ5">
-                                                    <rect key="frame" x="20" y="0.0" width="302" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="305.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
@@ -1538,11 +1543,11 @@
                                         <rect key="frame" x="20" y="186.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PTl-yT-sVX" id="dO4-ZK-wPD">
-                                            <rect key="frame" x="0.0" y="0.0" width="330" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="내림차순" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="m5A-oY-p9B">
-                                                    <rect key="frame" x="20" y="0.0" width="302" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="305.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
